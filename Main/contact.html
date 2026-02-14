@@ -35,9 +35,6 @@
 
     main{ flex:1; }
 
-    /* =========================
-       LOADING BLUR (LIKE MUTUAL PAGE FEEL)
-    ========================= */
     .page-blur{
       opacity: 0;
       filter: blur(14px);
@@ -77,12 +74,6 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* =========================
-       NAVBAR – BLEND WITH WHITE (GUARANTEED)
-       IMPORTANT:
-       - Use .nn-nav class in HTML
-       - No bg-light / shadow classes
-    ========================= */
     .logo-mask{
       display:inline-block;
       height:56px;
@@ -98,23 +89,18 @@
     }
 
     nav.nn-nav{
-      background: var(--light) !important;
-      background-color: var(--light) !important;
-
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
       backdrop-filter: blur(14px) !important;
       -webkit-backdrop-filter: blur(14px) !important;
-
-      /* No “box” feel: keep separator ultra-soft */
       border-bottom: 1px solid rgba(176,190,197,0.35) !important;
       box-shadow: 0 4px 14px rgba(26,35,126,0.04) !important;
-
       padding: 6px 0 !important;
     }
 
     nav.nn-nav.scrolled{
-      background: var(--light) !important;
-      background-color: var(--light) !important;
-
+      background:#FFFFFF !important;
+      background-color:#FFFFFF !important;
       border-bottom: 1px solid rgba(176,190,197,0.45) !important;
       box-shadow: 0 6px 18px rgba(26,35,126,0.05) !important;
     }
@@ -143,9 +129,6 @@
       .navbar-collapse{ padding-bottom:10px; }
     }
 
-    /* =========================
-       BACKGROUND
-    ========================= */
     .animated-bg{
       position: fixed;
       inset: 0;
@@ -166,20 +149,9 @@
       100%{ background-position: 0% 50%; }
     }
 
-    /* =========================
-       PAGE WRAPPER
-    ========================= */
-    .page{
-      padding: 42px 0 60px;
-    }
-    .container-mf{
-      width: min(1180px, 92%);
-      margin: 0 auto;
-    }
+    .page{ padding: 42px 0 60px; }
+    .container-mf{ width: min(1180px, 92%); margin: 0 auto; }
 
-    /* =========================
-       CONTACT SHELL
-    ========================= */
     .contact-shell{
       background:#fff;
       border: 1px solid rgba(176,190,197,0.55);
@@ -193,7 +165,6 @@
       min-height: 560px;
     }
 
-    /* LEFT PANEL */
     .left{
       background: rgba(176,190,197,0.14);
       padding: 56px;
@@ -254,7 +225,6 @@
       word-break: break-word;
     }
 
-    /* DECOR */
     .blob-sm{
       position:absolute;
       width:44px;
@@ -276,11 +246,7 @@
       opacity: 0.95;
     }
 
-    /* RIGHT PANEL */
-    .right{
-      padding:56px;
-      background:#fff;
-    }
+    .right{ padding:56px; background:#fff; }
     .form-title{
       font-size:18px;
       font-weight:700;
@@ -337,7 +303,6 @@
       margin-top: 2px;
     }
 
-    /* Quick templates */
     .chips{
       display:flex;
       gap:10px;
@@ -362,7 +327,6 @@
       transform: translateY(-1px);
     }
 
-    /* BUTTON */
     .btn-mf{
       margin-top:6px;
       padding:14px;
@@ -379,30 +343,30 @@
       box-shadow: 0 16px 34px rgba(26,35,126,0.22);
     }
 
-    /* Toast confirmation */
     .toast{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: min(420px, calc(100% - 36px));
-      background: rgba(249,250,251,0.96);
-      border: 1px solid rgba(176,190,197,0.65);
-      box-shadow: 0 18px 50px rgba(26,35,126,0.18);
-      border-radius: 16px;
-      padding: 14px;
-      opacity: 0;
-      transform: translateY(14px);
-      pointer-events:none;
-      transition: 0.35s ease;
-      z-index: 9999;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .toast.show{
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events:auto;
-    }
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.98);
+  width: min(420px, calc(100% - 36px));
+  background: rgba(249,250,251,0.96);
+  border: 1px solid rgba(176,190,197,0.65);
+  box-shadow: 0 18px 50px rgba(26,35,126,0.18);
+  border-radius: 16px;
+  padding: 14px;
+  opacity: 0;
+  pointer-events:none;
+  transition: 0.35s ease;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.toast.show{
+  opacity: 1;
+  pointer-events:auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
     .toast-head{
       display:flex;
       justify-content:space-between;
@@ -436,9 +400,6 @@
       line-height: 1.55;
     }
 
-    /* =========================
-       FOOTER (WITH LOGO IMAGE)
-    ========================= */
     .site-footer{
       background: var(--primary);
       color: rgba(249,250,251,0.92);
@@ -569,9 +530,6 @@
       color: rgba(249,250,251,0.75);
     }
 
-    /* =========================
-       RESPONSIVE
-    ========================= */
     @media (max-width:980px){
       .contact-grid{ grid-template-columns:1fr; }
       .left, .right{ padding:40px 22px; }
@@ -586,28 +544,22 @@
       .footer-grid{ grid-template-columns: 1fr; }
       .footer-btn{ width: 100%; }
     }
-    /* Make navbar match logo white background exactly */
-nav.nn-nav,
-nav.nn-nav.scrolled{
-  background: #FFFFFF !important;
-  background-color: #FFFFFF !important;
-}
 
-/* Make sure the logo crop area is also pure white */
-nav.nn-nav .logo-mask{
-  background: #FFFFFF !important;
-}
-
-/* Optional: if you still see a line around logo area */
-nav.nn-nav .navbar-brand{
-  background: transparent !important;
-}
-
+    nav.nn-nav,
+    nav.nn-nav.scrolled{
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+    }
+    nav.nn-nav .logo-mask{
+      background: #FFFFFF !important;
+    }
+    nav.nn-nav .navbar-brand{
+      background: transparent !important;
+    }
   </style>
 </head>
 
 <body>
-  <!-- LOADER -->
   <div class="loader" id="loader">
     <div class="spinner" aria-label="Loading"></div>
   </div>
@@ -615,7 +567,6 @@ nav.nn-nav .navbar-brand{
   <main class="page-blur">
     <div class="animated-bg"></div>
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm sticky-top nn-nav">
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="#">
@@ -639,22 +590,11 @@ nav.nn-nav .navbar-brand{
       </div>
     </nav>
 
-    <script>
-      window.addEventListener('scroll', function () {
-        const nav = document.querySelector('nav.nn-nav');
-        if (!nav) return;
-        if (window.scrollY > 50) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      });
-    </script>
-
-    <!-- PAGE -->
     <div class="page">
       <div class="container-mf">
         <div class="contact-shell">
           <div class="contact-grid">
 
-            <!-- LEFT PANEL -->
             <aside class="left">
               <h1>Get in Touch</h1>
               <p>
@@ -684,7 +624,7 @@ nav.nn-nav .navbar-brand{
                   </div>
                   <div>
                     <p class="info-k">Phone</p>
-                    <p class="info-v" id="displayPhone">+91 90000 00000</p>
+                    <p class="info-v" id="displayPhone">+91 9869521722</p>
                   </div>
                 </li>
 
@@ -710,25 +650,27 @@ nav.nn-nav .navbar-brand{
               <div class="blob-lg"></div>
             </aside>
 
-            <!-- RIGHT PANEL -->
             <section class="right">
               <div class="form-title">Contact Form</div>
 
-              <form id="contactForm" novalidate>
+              <!-- IMPORTANT: removed novalidate so browser validation works -->
+              <form id="contactForm">
                 <div class="row2">
                   <div>
                     <label for="firstName">First name<span class="req">*</span></label>
-                    <input id="firstName" type="text" placeholder="Enter first name" required />
+                    <input id="firstName" type="text" placeholder="Enter first name" required
+                           minlength="2" maxlength="40" />
                   </div>
                   <div>
                     <label for="lastName">Last name<span class="req">*</span></label>
-                    <input id="lastName" type="text" placeholder="Enter last name" required />
+                    <input id="lastName" type="text" placeholder="Enter last name" required
+                           minlength="2" maxlength="40" />
                   </div>
                 </div>
 
                 <div>
                   <label for="email">Email<span class="req">*</span></label>
-                  <input id="email" type="email" placeholder="Enter email" required />
+                  <input id="email" type="email" placeholder="Enter email" required maxlength="120" />
                 </div>
 
                 <div>
@@ -744,14 +686,16 @@ nav.nn-nav .navbar-brand{
                       <option value="+60">Malaysia (+60)</option>
                       <option value="+81">Japan (+81)</option>
                     </select>
-                    <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required />
+                    <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required
+                           minlength="7" maxlength="14" />
                   </div>
                   <div class="helper" id="phoneHint">Selected country code: India (+91)</div>
                 </div>
 
                 <div>
                   <label for="message">Message<span class="req">*</span></label>
-                  <textarea id="message" placeholder="Tell us what you need help with" required></textarea>
+                  <textarea id="message" placeholder="Tell us what you need help with" required
+                            minlength="10" maxlength="1200"></textarea>
 
                   <div class="chips" aria-label="Quick message templates">
                     <div class="chip" data-fill="I want to start an SIP. Please guide me on suitable categories and risk.">SIP guidance</div>
@@ -769,7 +713,6 @@ nav.nn-nav .navbar-brand{
       </div>
     </div>
 
-    <!-- Toast -->
     <div class="toast" id="toast">
       <div class="toast-head">
         <b>Submission confirmed</b>
@@ -784,12 +727,41 @@ nav.nn-nav .navbar-brand{
         document.body.classList.add("loaded");
       });
 
-      // Phone preview in left block + hint
+      // navbar scroll
+      window.addEventListener('scroll', function () {
+        const nav = document.querySelector('nav.nn-nav');
+        if (!nav) return;
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }, { passive:true });
+
+      // Elements
+      const form = document.getElementById("contactForm");
+      const firstName = document.getElementById("firstName");
+      const lastName  = document.getElementById("lastName");
+      const emailEl   = document.getElementById("email");
       const countryCode = document.getElementById("countryCode");
       const phone = document.getElementById("phone");
+      const messageEl = document.getElementById("message");
+
       const phoneHint = document.getElementById("phoneHint");
       const displayPhone = document.getElementById("displayPhone");
 
+      // Toast
+      const toast = document.getElementById("toast");
+      const toastBody = document.getElementById("toastBody");
+      const toastClose = document.getElementById("toastClose");
+      let toastTimer = null;
+
+      function showToast(message){
+        toastBody.textContent = message;
+        toast.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 3800);
+      }
+      toastClose.addEventListener("click", () => toast.classList.remove("show"));
+
+      // Phone preview
       function updatePhoneUI(){
         const text = countryCode.options[countryCode.selectedIndex].textContent.trim();
         phoneHint.textContent = "Selected country code: " + text;
@@ -797,68 +769,141 @@ nav.nn-nav .navbar-brand{
         const digits = (phone.value || "").replace(/[^\d]/g, "").slice(0, 14);
         displayPhone.textContent = digits ? (countryCode.value + " " + digits) : (countryCode.value + " 90000 00000");
       }
-      countryCode.addEventListener("change", updatePhoneUI);
-      phone.addEventListener("input", updatePhoneUI);
+
+      // Keep only digits in phone input (still same UI)
+      phone.addEventListener("input", () => {
+        const digits = (phone.value || "").replace(/[^\d]/g, "");
+        if (phone.value !== digits) phone.value = digits;
+        updatePhoneUI();
+        validatePhone();
+      });
+
+      countryCode.addEventListener("change", () => {
+        updatePhoneUI();
+        validatePhone();
+      });
+
       updatePhoneUI();
 
       // Chips fill message
       document.querySelectorAll(".chip").forEach(chip => {
         chip.addEventListener("click", () => {
-          const msg = document.getElementById("message");
-          msg.value = chip.getAttribute("data-fill") || "";
-          msg.focus();
+          messageEl.value = chip.getAttribute("data-fill") || "";
+          messageEl.focus();
+          validateMessage();
         });
       });
 
-      // Toast
-      const toast = document.getElementById("toast");
-      const toastBody = document.getElementById("toastBody");
-      const toastClose = document.getElementById("toastClose");
+      // Validation helpers
+      function setInvalid(el, msg){ el.setCustomValidity(msg); }
+      function setValid(el){ el.setCustomValidity(""); }
 
-      function showToast(message){
-        toastBody.textContent = message;
-        toast.classList.add("show");
-        clearTimeout(window.__t);
-        window.__t = setTimeout(() => toast.classList.remove("show"), 3800);
+      function cleanName(v){ return (v || "").trim().replace(/\s+/g, " "); }
+
+      function validateFirstName(){
+        const v = cleanName(firstName.value);
+        firstName.value = v;
+
+        if (!v) return setInvalid(firstName, "Please enter your first name."), false;
+        if (v.length < 2) return setInvalid(firstName, "First name must be at least 2 characters."), false;
+        if (v.length > 40) return setInvalid(firstName, "First name is too long."), false;
+        if (!/^[A-Za-z][A-Za-z\s'.-]*$/.test(v)) return setInvalid(firstName, "First name can contain letters and basic punctuation only."), false;
+
+        setValid(firstName);
+        return true;
       }
-      toastClose.addEventListener("click", () => toast.classList.remove("show"));
 
-      // Validation + submit
-      function validEmail(v){
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      function validateLastName(){
+        const v = cleanName(lastName.value);
+        lastName.value = v;
+
+        if (!v) return setInvalid(lastName, "Please enter your last name."), false;
+        if (v.length < 2) return setInvalid(lastName, "Last name must be at least 2 characters."), false;
+        if (v.length > 40) return setInvalid(lastName, "Last name is too long."), false;
+        if (!/^[A-Za-z][A-Za-z\s'.-]*$/.test(v)) return setInvalid(lastName, "Last name can contain letters and basic punctuation only."), false;
+
+        setValid(lastName);
+        return true;
       }
 
-      document.getElementById("contactForm").addEventListener("submit", (e) => {
-        e.preventDefault();
+      function validateEmail(){
+        const v = (emailEl.value || "").trim();
+        emailEl.value = v;
 
-        const first = document.getElementById("firstName").value.trim();
-        const last = document.getElementById("lastName").value.trim();
-        const email = document.getElementById("email").value.trim();
+        if (!v) return setInvalid(emailEl, "Please enter your email address."), false;
+        if (v.length > 120) return setInvalid(emailEl, "Email is too long."), false;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return setInvalid(emailEl, "Please enter a valid email address."), false;
+
+        setValid(emailEl);
+        return true;
+      }
+
+      function validatePhone(){
+        const cc = (countryCode.value || "").trim();
         const digits = (phone.value || "").replace(/[^\d]/g, "");
-        const message = document.getElementById("message").value.trim();
 
-        if(!first || !last || !email || !digits || !message){
-          showToast("Please fill all required fields.");
-          return;
-        }
-        if(!validEmail(email)){
-          showToast("Please enter a valid email address.");
-          return;
-        }
-        if(digits.length < 7){
-          showToast("Please enter a valid phone number.");
-          return;
+        if (!digits) return setInvalid(phone, "Please enter your phone number."), false;
+
+        if (digits.length < 7 || digits.length > 14) {
+          return setInvalid(phone, "Phone number must be between 7 and 14 digits."), false;
         }
 
+        // India strict rule
+        if (cc === "+91") {
+          if (digits.length !== 10) return setInvalid(phone, "For India (+91), phone number must be 10 digits."), false;
+          if (!/^[6-9]\d{9}$/.test(digits)) return setInvalid(phone, "For India (+91), enter a valid 10-digit mobile number."), false;
+        }
+
+        setValid(phone);
+        return true;
+      }
+
+      function validateMessage(){
+        const v = (messageEl.value || "").trim();
+        if (!v) return setInvalid(messageEl, "Please enter your message."), false;
+        if (v.length < 10) return setInvalid(messageEl, "Message should be at least 10 characters."), false;
+        if (v.length > 1200) return setInvalid(messageEl, "Message is too long (max 1200 characters)."), false;
+
+        setValid(messageEl);
+        return true;
+      }
+
+      // Live validation
+      firstName.addEventListener("input", validateFirstName);
+      lastName.addEventListener("input", validateLastName);
+      emailEl.addEventListener("input", validateEmail);
+      messageEl.addEventListener("input", validateMessage);
+
+      // Submit
+      form.addEventListener("submit", (e) => {
+        // apply our custom rules BEFORE browser checkValidity()
+        validateFirstName();
+        validateLastName();
+        validateEmail();
+        validatePhone();
+        validateMessage();
+
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          form.reportValidity();     // THIS will now show messages (novalidate removed)
+          showToast("Please fill all required fields correctly.");
+          return;
+        }
+
+        // if valid, stop actual submit (demo)
+        e.preventDefault();
         showToast("Your message has been sent. We will contact you shortly.");
-        document.getElementById("message").value = "";
+        form.reset();
+
+        // clear custom validity after reset
+        [firstName,lastName,emailEl,phone,messageEl].forEach(el => el.setCustomValidity(""));
+        updatePhoneUI();
       });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container-mf">
       <div class="footer-grid">
@@ -883,7 +928,7 @@ nav.nn-nav .navbar-brand{
             <span>|</span>
             <a href="mailto:connect@neonestfinserve.in">connect@neonestfinserve.in</a>
             <span>|</span>
-            <a href="tel:+919000000000">+91 90000 00000</a>
+            <a href="tel:+919000000000">+91 9869527122</a>
           </div>
         </div>
 
