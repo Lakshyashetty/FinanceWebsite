@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | NeoNestFinserve</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#1A237E;
+      --secondary:#2ECC71;
+      --accent:#F4C542;
+      --light:#F9FAFB;
+      --gray:#B0BEC5;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      background: var(--light);
+      color: var(--primary);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow-x:hidden;
+    }
+
+    main{ flex:1; }
+
+    /* =========================
+       LOADING BLUR (LIKE MUTUAL PAGE FEEL)
+    ========================= */
+    .page-blur{
+      opacity: 0;
+      filter: blur(14px);
+      transform: translateY(10px);
+      transition: 700ms ease;
+      will-change: opacity, filter, transform;
+    }
+    body.loaded .page-blur{
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+
+    .loader{
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: grid;
+      place-items: center;
+      background: rgba(249,250,251,0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: 450ms ease;
+    }
+    body.loaded .loader{
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner{
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 4px solid rgba(176,190,197,0.55);
+      border-top-color: var(--primary);
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =========================
+       NAVBAR – BLEND WITH WHITE (GUARANTEED)
+       IMPORTANT:
+       - Use .nn-nav class in HTML
+       - No bg-light / shadow classes
+    ========================= */
+    .logo-mask{
+      display:inline-block;
+      height:56px;
+      overflow:hidden;
+    }
+    .navbar-brand .logo{
+      height:130px;
+      width:auto;
+      object-fit:contain;
+      transform: translateY(-42px) scale(1.12);
+      transform-origin:center;
+      display:block;
+    }
+
+    nav.nn-nav{
+      background: var(--light) !important;
+      background-color: var(--light) !important;
+
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+
+      /* No “box” feel: keep separator ultra-soft */
+      border-bottom: 1px solid rgba(176,190,197,0.35) !important;
+      box-shadow: 0 4px 14px rgba(26,35,126,0.04) !important;
+
+      padding: 6px 0 !important;
+    }
+
+    nav.nn-nav.scrolled{
+      background: var(--light) !important;
+      background-color: var(--light) !important;
+
+      border-bottom: 1px solid rgba(176,190,197,0.45) !important;
+      box-shadow: 0 6px 18px rgba(26,35,126,0.05) !important;
+    }
+
+    nav.nn-nav > .container,
+    nav.nn-nav > .container-fluid{
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .nav-link{
+      font-weight:600;
+      color: var(--primary) !important;
+      transition: 0.2s ease;
+      border-radius:10px;
+      padding:10px 12px;
+    }
+    .nav-link:hover{
+      color:var(--secondary) !important;
+      background:rgba(26,35,126,0.05);
+    }
+
+    @media (max-width:768px){
+      .navbar-brand .logo{ height:80px; }
+      .navbar-nav{ text-align:center; margin-top:12px; }
+      .navbar-collapse{ padding-bottom:10px; }
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+    .animated-bg{
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      background: linear-gradient(
+        120deg,
+        rgba(26,35,126,0.10),
+        rgba(46,204,113,0.10),
+        rgba(244,197,66,0.10),
+        rgba(176,190,197,0.14)
+      );
+      background-size: 280% 280%;
+      animation: gradientMove 14s ease infinite;
+    }
+    @keyframes gradientMove{
+      0%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
+      100%{ background-position: 0% 50%; }
+    }
+
+    /* =========================
+       PAGE WRAPPER
+    ========================= */
+    .page{
+      padding: 42px 0 60px;
+    }
+    .container-mf{
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    /* =========================
+       CONTACT SHELL
+    ========================= */
+    .contact-shell{
+      background:#fff;
+      border: 1px solid rgba(176,190,197,0.55);
+      border-radius: 26px;
+      box-shadow: 0 22px 70px rgba(26,35,126,0.10);
+      overflow:hidden;
+    }
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+
+    /* LEFT PANEL */
+    .left{
+      background: rgba(176,190,197,0.14);
+      padding: 56px;
+      position:relative;
+      overflow:hidden;
+    }
+    .left h1{
+      margin:0;
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.05;
+      font-weight: 800;
+      color: rgba(26,35,126,0.78);
+    }
+    .left p{
+      margin: 14px 0 28px;
+      max-width: 520px;
+      color: rgba(26,35,126,0.70);
+      line-height: 1.7;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .info-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:18px;
+      max-width: 520px;
+    }
+    .info-item{
+      display:grid;
+      grid-template-columns: 34px 1fr;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      border:1px solid rgba(176,190,197,0.65);
+      background: rgba(249,250,251,0.70);
+      display:grid;
+      place-items:center;
+    }
+    .info-k{
+      font-size:12px;
+      font-weight:700;
+      color: rgba(26,35,126,0.60);
+      margin: 0 0 4px;
+    }
+    .info-v{
+      font-size:14px;
+      font-weight:600;
+      color: rgba(26,35,126,0.88);
+      line-height: 1.6;
+      margin:0;
+      word-break: break-word;
+    }
+
+    /* DECOR */
+    .blob-sm{
+      position:absolute;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      right:120px;
+      bottom:168px;
+      background: radial-gradient(circle, var(--accent), var(--secondary));
+      opacity: 0.95;
+    }
+    .blob-lg{
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      right:-90px;
+      bottom:-110px;
+      background: radial-gradient(circle, var(--accent), var(--primary));
+      opacity: 0.95;
+    }
+
+    /* RIGHT PANEL */
+    .right{
+      padding:56px;
+      background:#fff;
+    }
+    .form-title{
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:18px;
+      color: rgba(26,35,126,0.92);
+    }
+
+    form{ display:grid; gap:14px; }
+
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+
+    label{
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:6px;
+      display:block;
+      color: rgba(26,35,126,0.72);
+    }
+    .req{ color: var(--accent); }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(176,190,197,0.70);
+      background: rgba(249,250,251,0.90);
+      font-size:14px;
+      color: rgba(26,35,126,0.92);
+      outline:none;
+      transition: 0.2s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 4px rgba(46,204,113,0.16);
+      background:#fff;
+    }
+    textarea{ min-height:120px; resize:vertical; }
+
+    .phone-row{
+      display:grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 12px;
+    }
+
+    .helper{
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(26,35,126,0.60);
+      line-height: 1.55;
+      margin-top: 2px;
+    }
+
+    /* Quick templates */
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 8px;
+    }
+    .chip{
+      border: 1px solid rgba(176,190,197,0.70);
+      background: rgba(249,250,251,0.92);
+      color: rgba(26,35,126,0.82);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor:pointer;
+      transition: 0.2s ease;
+      user-select:none;
+    }
+    .chip:hover{
+      border-color: rgba(46,204,113,0.80);
+      color: var(--secondary);
+      transform: translateY(-1px);
+    }
+
+    /* BUTTON */
+    .btn-mf{
+      margin-top:6px;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background: var(--primary);
+      color: var(--light);
+      font-weight:700;
+      cursor:pointer;
+      transition: 0.25s ease;
+    }
+    .btn-mf:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(26,35,126,0.22);
+    }
+
+    /* Toast confirmation */
+    .toast{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: min(420px, calc(100% - 36px));
+      background: rgba(249,250,251,0.96);
+      border: 1px solid rgba(176,190,197,0.65);
+      box-shadow: 0 18px 50px rgba(26,35,126,0.18);
+      border-radius: 16px;
+      padding: 14px;
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events:none;
+      transition: 0.35s ease;
+      z-index: 9999;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events:auto;
+    }
+    .toast-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .toast-head b{
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(26,35,126,0.92);
+    }
+    .toast-close{
+      border: 1px solid rgba(176,190,197,0.75);
+      background: rgba(249,250,251,0.98);
+      color: rgba(26,35,126,0.90);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-weight: 800;
+      cursor:pointer;
+      transition: 0.2s ease;
+    }
+    .toast-close:hover{
+      border-color: rgba(46,204,113,0.85);
+      color: var(--secondary);
+    }
+    .toast-body{
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(26,35,126,0.74);
+      line-height: 1.55;
+    }
+
+    /* =========================
+       FOOTER (WITH LOGO IMAGE)
+    ========================= */
+    .site-footer{
+      background: var(--primary);
+      color: rgba(249,250,251,0.92);
+      padding: 58px 0 24px;
+      margin-top: 60px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr;
+      gap: 22px;
+      align-items:start;
+    }
+
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(249,250,251,0.10);
+      border: 1px solid rgba(176,190,197,0.30);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+    .footer-logo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    .footer-text{
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(249,250,251,0.85);
+      font-weight: 500;
+      max-width: 520px;
+    }
+
+    .footer-cta{
+      margin-top: 18px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+
+    .footer-btn{
+      background: rgba(249,250,251,0.92);
+      color: var(--primary);
+      border: 1px solid rgba(176,190,197,0.35);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-weight: 800;
+      cursor:pointer;
+      transition: 0.2s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 170px;
+    }
+    .footer-btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+    }
+
+    .footer-col h4{
+      margin: 4px 0 14px;
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      font-weight: 800;
+      color: rgba(249,250,251,0.92);
+    }
+    .footer-links{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap: 10px;
+    }
+    .footer-links a{
+      color: rgba(249,250,251,0.82);
+      text-decoration:none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+    .footer-links a:hover{
+      color: var(--accent);
+    }
+
+    .footer-contact{
+      margin-top: 18px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      color: rgba(249,250,251,0.86);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .footer-contact a{
+      color: rgba(249,250,251,0.92);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(176,190,197,0.28);
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(249,250,251,0.75);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width:980px){
+      .contact-grid{ grid-template-columns:1fr; }
+      .left, .right{ padding:40px 22px; }
+      .blob-sm{ right: 36px; bottom: 160px; }
+      .blob-lg{ right: -110px; bottom: -140px; }
+      .footer-grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width:560px){
+      .row2{ grid-template-columns:1fr; }
+      .phone-row{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .footer-btn{ width: 100%; }
+    }
+    /* Make navbar match logo white background exactly */
+nav.nn-nav,
+nav.nn-nav.scrolled{
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Make sure the logo crop area is also pure white */
+nav.nn-nav .logo-mask{
+  background: #FFFFFF !important;
+}
+
+/* Optional: if you still see a line around logo area */
+nav.nn-nav .navbar-brand{
+  background: transparent !important;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="spinner" aria-label="Loading"></div>
+  </div>
+
+  <main class="page-blur">
+    <div class="animated-bg"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm sticky-top nn-nav">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+        <a class="navbar-brand" href="#">
+          <span class="logo-mask">
+            <img src="../images/Logo1.jpg" class="logo" alt="NeoNest Logo">
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navLinks">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="mutual.html">Mutual Fund</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      window.addEventListener('scroll', function () {
+        const nav = document.querySelector('nav.nn-nav');
+        if (!nav) return;
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      });
+    </script>
+
+    <!-- PAGE -->
+    <div class="page">
+      <div class="container-mf">
+        <div class="contact-shell">
+          <div class="contact-grid">
+
+            <!-- LEFT PANEL -->
+            <aside class="left">
+              <h1>Get in Touch</h1>
+              <p>
+                Let’s partner and level up your Mutual Fund journey with clarity, structure, and professional guidance.
+              </p>
+
+              <ul class="info-list">
+                <li class="info-item">
+                  <div class="icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 6.5H20V17.5H4V6.5Z" stroke="#1A237E" stroke-width="2"/>
+                      <path d="M4.5 7L12 12.5L19.5 7" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="info-k">Email</p>
+                    <p class="info-v">connect@neonestfinserve.in</p>
+                  </div>
+                </li>
+
+                <li class="info-item">
+                  <div class="icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M8 3H16V21H8V3Z" stroke="#1A237E" stroke-width="2"/>
+                      <path d="M10 18H14" stroke="#1A237E" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="info-k">Phone</p>
+                    <p class="info-v" id="displayPhone">+91 90000 00000</p>
+                  </div>
+                </li>
+
+                <li class="info-item">
+                  <div class="icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 22s7-5.2 7-12a7 7 0 10-14 0c0 6.8 7 12 7 12z" stroke="#1A237E" stroke-width="2"/>
+                      <path d="M12 10.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" stroke="#1A237E" stroke-width="2"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="info-k">Address</p>
+                    <p class="info-v">
+                      NeoNestFinserve, Corporate Office<br/>
+                      Your City, Your State<br/>
+                      India
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="blob-sm"></div>
+              <div class="blob-lg"></div>
+            </aside>
+
+            <!-- RIGHT PANEL -->
+            <section class="right">
+              <div class="form-title">Contact Form</div>
+
+              <form id="contactForm" novalidate>
+                <div class="row2">
+                  <div>
+                    <label for="firstName">First name<span class="req">*</span></label>
+                    <input id="firstName" type="text" placeholder="Enter first name" required />
+                  </div>
+                  <div>
+                    <label for="lastName">Last name<span class="req">*</span></label>
+                    <input id="lastName" type="text" placeholder="Enter last name" required />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="email">Email<span class="req">*</span></label>
+                  <input id="email" type="email" placeholder="Enter email" required />
+                </div>
+
+                <div>
+                  <label>Phone number<span class="req">*</span></label>
+                  <div class="phone-row">
+                    <select id="countryCode" aria-label="Country code" required>
+                      <option value="+91" selected>India (+91)</option>
+                      <option value="+1">United States (+1)</option>
+                      <option value="+44">United Kingdom (+44)</option>
+                      <option value="+971">United Arab Emirates (+971)</option>
+                      <option value="+61">Australia (+61)</option>
+                      <option value="+65">Singapore (+65)</option>
+                      <option value="+60">Malaysia (+60)</option>
+                      <option value="+81">Japan (+81)</option>
+                    </select>
+                    <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required />
+                  </div>
+                  <div class="helper" id="phoneHint">Selected country code: India (+91)</div>
+                </div>
+
+                <div>
+                  <label for="message">Message<span class="req">*</span></label>
+                  <textarea id="message" placeholder="Tell us what you need help with" required></textarea>
+
+                  <div class="chips" aria-label="Quick message templates">
+                    <div class="chip" data-fill="I want to start an SIP. Please guide me on suitable categories and risk.">SIP guidance</div>
+                    <div class="chip" data-fill="I want tax saving options (ELSS). Please share category-level guidance.">Tax saving</div>
+                    <div class="chip" data-fill="I want a long-term plan for wealth creation. Please guide based on my time horizon.">Long-term plan</div>
+                  </div>
+                </div>
+
+                <button class="btn-mf" type="submit">Request a callback</button>
+              </form>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <div class="toast-head">
+        <b>Submission confirmed</b>
+        <button class="toast-close" id="toastClose" type="button">Close</button>
+      </div>
+      <div class="toast-body" id="toastBody">Your message has been sent.</div>
+    </div>
+
+    <script>
+      // Loading blur finish
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+      });
+
+      // Phone preview in left block + hint
+      const countryCode = document.getElementById("countryCode");
+      const phone = document.getElementById("phone");
+      const phoneHint = document.getElementById("phoneHint");
+      const displayPhone = document.getElementById("displayPhone");
+
+      function updatePhoneUI(){
+        const text = countryCode.options[countryCode.selectedIndex].textContent.trim();
+        phoneHint.textContent = "Selected country code: " + text;
+
+        const digits = (phone.value || "").replace(/[^\d]/g, "").slice(0, 14);
+        displayPhone.textContent = digits ? (countryCode.value + " " + digits) : (countryCode.value + " 90000 00000");
+      }
+      countryCode.addEventListener("change", updatePhoneUI);
+      phone.addEventListener("input", updatePhoneUI);
+      updatePhoneUI();
+
+      // Chips fill message
+      document.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const msg = document.getElementById("message");
+          msg.value = chip.getAttribute("data-fill") || "";
+          msg.focus();
+        });
+      });
+
+      // Toast
+      const toast = document.getElementById("toast");
+      const toastBody = document.getElementById("toastBody");
+      const toastClose = document.getElementById("toastClose");
+
+      function showToast(message){
+        toastBody.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(window.__t);
+        window.__t = setTimeout(() => toast.classList.remove("show"), 3800);
+      }
+      toastClose.addEventListener("click", () => toast.classList.remove("show"));
+
+      // Validation + submit
+      function validEmail(v){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const first = document.getElementById("firstName").value.trim();
+        const last = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const digits = (phone.value || "").replace(/[^\d]/g, "");
+        const message = document.getElementById("message").value.trim();
+
+        if(!first || !last || !email || !digits || !message){
+          showToast("Please fill all required fields.");
+          return;
+        }
+        if(!validEmail(email)){
+          showToast("Please enter a valid email address.");
+          return;
+        }
+        if(digits.length < 7){
+          showToast("Please enter a valid phone number.");
+          return;
+        }
+
+        showToast("Your message has been sent. We will contact you shortly.");
+        document.getElementById("message").value = "";
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-mf">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-logo" aria-hidden="true">
+              <img src="../images/Logo1.jpg" alt="NeoNestFinserve">
+            </div>
+            NeoNestFinserve
+          </div>
+
+          <div class="footer-text">
+            An all-in-one platform for mutual fund learning and guidance. We help you understand categories, SIP planning, risk alignment, and long-term wealth creation with clarity.
+          </div>
+
+          <div class="footer-cta">
+            <a class="footer-btn" href="contact.html">Book a free call</a>
+          </div>
+
+          <div class="footer-contact" style="margin-top:16px;">
+            <span>Contact NeoNestFinserve Team</span>
+            <span>|</span>
+            <a href="mailto:connect@neonestfinserve.in">connect@neonestfinserve.in</a>
+            <span>|</span>
+            <a href="tel:+919000000000">+91 90000 00000</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product & Service</h4>
+          <ul class="footer-links">
+            <li><a href="mutual.html">Mutual Fund Learning</a></li>
+            <li><a href="mutual.html#fundTypes">Fund Categories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul class="footer-links">
+            <li><a href="mutual.html#faq">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="mutual.html#advisor">Disclaimer</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Terms and conditions</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 NeoNestFinserve. All Rights Reserved.</div>
+        <div>Mutual fund investments are subject to market risks.</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
