@@ -569,6 +569,13 @@ footer{
     transform: translate3d(0,0,0) !important;
     filter: blur(0);
   }
+  #fot{
+      background:var(--primary);
+      color:white;
+      padding:22px;
+      text-align:center;
+      margin-top: auto;
+    }
 
   .d1{ transition-delay: 120ms; }
   .d2{ transition-delay: 240ms; }
@@ -582,7 +589,7 @@ footer{
 </head>
 
 <body>
-
+<main>
   <!-- Loader -->
   <div class="loader" id="loader"><div class="spinner"></div></div>
 
@@ -885,10 +892,13 @@ footer{
 
       </div>
     </section>
-
-    <footer class="reveal d1">
+    </main>
+<footer id="fot">
+  © All Rights Reserved to NeoNest Finserve Company
+</footer>
+    <!-- <footer class="reveal d1">
       © All Rights Reserved to NeoNest Finserve Company
-    </footer>
+    </footer> -->
 
   </div><!-- /page-blur -->
 
