@@ -426,6 +426,16 @@
     cursor:pointer;
     transition:0.2s ease;
   }
+  .approach-nav-btn.left{ left:14px; }
+  .approach-nav-btn.right{ right:14px; }
+  .approach-nav-btn:hover{
+    transform: translateY(-50%) scale(1.08);
+    background: rgba(255,255,255,0.25);
+  }
+
+  @media(max-width:768px){
+    .approach-nav-btn{ width:44px; height:44px; font-size:24px; }
+  }
 
   .approach-card{
     flex:0 0 auto;
@@ -447,42 +457,96 @@
     box-shadow: 0 35px 75px rgba(0,0,0,0.18);
   }
 
-  .approach-card img{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-    display:block;
-    filter: contrast(1.05) saturate(1.05);
+.approach-card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  display:block;
+}
+
+/* Body */
+.approach-body{
+  padding:22px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height: calc(520px - 240px);
+}
+
+/* NAV BUTTONS */
+.approach-nav-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:30;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.10);
+  font-size:30px;
+  font-weight:900;
+  color:#1A237E;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:0.2s ease;
+}
+.approach-nav-btn.left{ left:18px; }
+.approach-nav-btn.right{ right:18px; }
+
+.approach-nav-btn:hover{
+  transform:translateY(-50%) scale(1.08);
+  background: rgba(255,255,255,0.25);
+}
+
+/* BLUR ENDS (like your reference image) */
+.approach-fade{
+  position:absolute;
+  top:0;
+  width:90px;
+  height:100%;
+  z-index:15;
+  pointer-events:none;
+}
+.approach-fade.left{
+  left:0;
+  background: linear-gradient(to right, rgba(233,238,245,1), rgba(233,238,245,0));
+}
+.approach-fade.right{
+  right:0;
+  background: linear-gradient(to left, rgba(233,238,245,1), rgba(233,238,245,0));
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+
+  .approach-track{
+    padding: 20px 20px;
   }
 
-  .approach-body{
-    padding:22px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    height: calc(520px - 240px);
+  .approach-card{
+    width: 85vw;
+    max-width: 380px;
   }
-  .approach-body h4{
-    font-weight:800;
-    color:#111;
-    font-size:1.5rem;
-    margin-bottom:10px;
+
+  /* make buttons smaller + visible for thumb */
+  .approach-nav-btn{
+    width:44px;
+    height:44px;
+    font-size:24px;
+    background: rgba(255,255,255,0.25);
   }
-  .approach-body p{
-    color:#3d3d3d;
-    font-size:1rem;
-    line-height:1.6;
-    margin-bottom:18px;
+
+  .approach-nav-btn.left{ left:10px; }
+  .approach-nav-btn.right{ right:10px; }
+
+  .approach-fade{
+    width:55px;
   }
-  .approach-body .btn{
-    border-radius:12px;
-    font-weight:700;
-    padding:12px 18px;
-  }
-  @media(max-width:768px){
-    .approach-card{ width:85vw; max-width:380px; }
-  }
+}
 
   /* ================= FOUNDERS ================= */
   .founder-card-modern{
@@ -760,14 +824,15 @@ footer{
         </div>
       </div>
 
-      <h2 class="text-center mt-5">Our Approach</h2>
+     <h2 class="text-center mt-5">Our Approach</h2>
 
-      <div class="container approach-cinema">
-        <div class="approach-slider" id="approachSlider">
-          <button class="approach-nav-btn left" id="prevApproach">‹</button>
+<div class="approach-wrapper">
+  <div class="approach-slider" id="approachSlider">
 
-          <div class="approach-track" id="approachTrack">
-            <div class="approach-card">
+    <button class="approach-nav-btn left" id="prevApproach">‹</button>
+
+    <div class="approach-track" id="approachTrack">
+      <div class="approach-card">
               <img src="../images/img1.jpg" alt="Clarity over noise" />
               <div class="approach-body">
                 <div>
@@ -776,9 +841,8 @@ footer{
                 </div>
                 <a class="btn btn-primary" href="#" role="button">Read more</a>
               </div>
-            </div>
-
-            <div class="approach-card">
+    </div>
+ <div class="approach-card">
               <img src="../images/img2.jpg" alt="Confidence over confusion" />
               <div class="approach-body">
                 <div>
@@ -789,7 +853,7 @@ footer{
               </div>
             </div>
 
-            <div class="approach-card">
+ <div class="approach-card">
               <img src="../images/img3.jpg" alt="Education over influence" />
               <div class="approach-body">
                 <div>
@@ -799,8 +863,7 @@ footer{
                 <a class="btn btn-primary" href="#" role="button">Read more</a>
               </div>
             </div>
-
-            <div class="approach-card">
+ <div class="approach-card">
               <img src="../images/carousel4.jpg" alt="Savings habits" />
               <div class="approach-body">
                 <div>
@@ -811,7 +874,8 @@ footer{
               </div>
             </div>
 
-            <div class="approach-card">
+
+<div class="approach-card">
               <img src="../images/carousel5.jpg" alt="Business growth finance" />
               <div class="approach-body">
                 <div>
@@ -822,7 +886,7 @@ footer{
               </div>
             </div>
 
-            <div class="approach-card">
+<div class="approach-card">
               <img src="../images/carousel6.jpg" alt="Smart investing" />
               <div class="approach-body">
                 <div>
@@ -833,6 +897,16 @@ footer{
               </div>
             </div>
           </div>
+
+    <button class="approach-nav-btn right" id="nextApproach">›</button>
+
+    <!-- blur ends -->
+    <div class="approach-fade left"></div>
+    <div class="approach-fade right"></div>
+
+  </div>
+</div>
+
 
           <button class="approach-nav-btn right" id="nextApproach">›</button>
         </div>
@@ -939,55 +1013,66 @@ footer{
       }
 
       // Approach slider (kept same behavior)
-      const track  = document.getElementById("approachTrack");
-      const slider = document.getElementById("approachSlider");
-      const prevBtn = document.getElementById("prevApproach");
-      const nextBtn = document.getElementById("nextApproach");
-      if (!track || !slider) return;
+      const track = document.getElementById("approachTrack");
+  const prevBtn = document.getElementById("prevApproach");
+  const nextBtn = document.getElementById("nextApproach");
 
-      const originals = Array.from(track.children);
-      originals.forEach(card => track.appendChild(card.cloneNode(true)));
+  // Button scroll
+  function scrollByCard(direction){
+    const card = track.querySelector(".approach-card");
+    if(!card) return;
 
-      let pos = 0;
-      const speed = 0.7;
-      let paused = false;
+    const gap = 18;
+    const scrollAmount = card.offsetWidth + gap;
 
-      function stepSize() {
-        const card = track.querySelector(".approach-card");
-        return card ? (card.offsetWidth + 18) : 360;
-      }
-      function maxPos() { return track.scrollWidth / 2; }
+    track.scrollBy({
+      left: direction * scrollAmount,
+      behavior: "smooth"
+    });
+  }
 
-      function setPos(newPos) {
-        const max = maxPos();
-        pos = ((newPos % max) + max) % max;
-        track.style.transform = `translate3d(-${pos}px,0,0)`;
-      }
+  prevBtn.addEventListener("click", () => scrollByCard(-1));
+  nextBtn.addEventListener("click", () => scrollByCard(1));
 
-      function loop() {
-        if (!paused) setPos(pos + speed);
-        requestAnimationFrame(loop);
-      }
+  // Trackpad / mouse wheel => horizontal scroll
+  track.addEventListener("wheel", (e) => {
+    e.preventDefault();
 
-      slider.addEventListener("mouseenter", () => paused = true);
-      slider.addEventListener("mouseleave", () => paused = false);
+    const speed = 1.2;
+    const delta = (Math.abs(e.deltaY) > Math.abs(e.deltaX)) ? e.deltaY : e.deltaX;
 
-      if (nextBtn) {
-        nextBtn.addEventListener("click", () => {
-          paused = true;
-          setPos(pos + stepSize());
-          setTimeout(() => paused = false, 350);
-        });
-      }
-      if (prevBtn) {
-        prevBtn.addEventListener("click", () => {
-          paused = true;
-          setPos(pos - stepSize());
-          setTimeout(() => paused = false, 350);
-        });
-      }
+    track.scrollLeft += delta * speed;
+  }, { passive: false });
 
-      loop();
+  // OPTIONAL: smooth grab-drag with mouse
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    track.classList.add("dragging");
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener("mouseleave", () => {
+    isDown = false;
+    track.classList.remove("dragging");
+  });
+
+  track.addEventListener("mouseup", () => {
+    isDown = false;
+    track.classList.remove("dragging");
+  });
+
+  track.addEventListener("mousemove", (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.6;
+    track.scrollLeft = scrollLeft - walk;
+  });
     });
   </script>
 </body>
