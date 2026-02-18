@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
     :root{
@@ -44,19 +45,19 @@
        LOADING BLUR
     ========================= */
     .page-blur{
-  opacity: 0;
-  filter: blur(14px);
-  transform: translateY(10px);
-  transition: 700ms ease;
-  transition-delay: 120ms;  
-  will-change: opacity, filter, transform;
-}
-body.loaded .page-blur{
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-  transition-delay: 0ms;     
-}
+      opacity: 0;
+      filter: blur(14px);
+      transform: translateY(10px);
+      transition: 700ms ease;
+      transition-delay: 120ms;  
+      will-change: opacity, filter, transform;
+    }
+    body.loaded .page-blur{
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+      transition-delay: 0ms;     
+    }
 
     .loader{
       position: fixed;
@@ -112,15 +113,15 @@ body.loaded .page-blur{
     ========================= */
     .logo-mask{
       display:inline-block;
-      height:56px;
+      height:78px; /* CHANGED (was 56px) */
       overflow:hidden;
       background:#FFFFFF;
     }
     .navbar-brand .logo{
-      height:130px;
+      height:170px; /* CHANGED (was 130px) */
       width:auto;
       object-fit:contain;
-      transform: translateY(-42px) scale(1.12);
+      transform: translateY(-52px) scale(1.12); /* CHANGED */
       transform-origin:center;
       display:block;
     }
@@ -159,7 +160,8 @@ body.loaded .page-blur{
     }
 
     @media (max-width:768px){
-      .navbar-brand .logo{ height:80px; }
+      .logo-mask{ height:60px; } /* CHANGED */
+      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); } /* CHANGED */
       .navbar-nav{ text-align:center; margin-top:12px; }
       .navbar-collapse{ padding-bottom:10px; }
     }
@@ -268,33 +270,233 @@ body.loaded .page-blur{
     }
 
     /* ================= SECTION LAYOUT ================= */
-    .section{ padding:72px 20px; }
-    .wrap{ max-width:1020px; margin:0 auto; }
+/* ===========================
+   FOUNDER SECTION (HOVER STYLE)
+=========================== */
 
-    .section-head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom:18px;
-      flex-wrap:wrap;
-    }
+.section {
+  padding: 60px 0;
+}
 
-    .section-title{
-      color:var(--primary);
-      font-weight:900;
-      letter-spacing:-0.3px;
-      margin:0;
-      font-size:1.6rem;
-    }
+.wrap {
+  width: min(1150px, 92%);
+  margin: auto;
+}
 
-    .section-sub{
-      color: rgba(26,35,126,0.65);
-      margin:0;
-      line-height:1.6;
-      max-width:560px;
-      font-weight:600;
-    }
+.section-title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a237e;
+}
+
+.section-sub {
+  max-width: 800px;
+  margin: 14px auto 0;
+  text-align: center;
+  line-height: 1.6;
+  color: #444;
+  font-size: 15px;
+}
+
+/* ====== GRID ====== */
+.founders-grid {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+
+  /* FIX EXTRA LEFT/RIGHT SPACE */
+  padding: 0;
+}
+
+/* ====== CARD ====== */
+.founder-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.founder-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.18);
+}
+
+/* ====== IMAGE FIX (NO HALF FACE) ====== */
+.founder-img {
+  width: 100%;
+  height: 280px;
+  background: #f2f2f2;
+  overflow: hidden;
+  
+}
+
+.founder-img img {
+  width: 100%;
+  height: 100%;
+  /* BEST FIX FOR FACE */
+  object-fit: contain;
+  object-position: top;
+  
+
+  display: block;
+}
+
+/* ====== BODY ====== */
+.founder-body {
+  padding: 18px 18px 16px;
+  text-align: center;
+  position: relative;
+}
+
+/* Name */
+.founder-body h5 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a237e;
+  margin-bottom: 6px;
+}
+
+/* Role */
+.role {
+  display: inline-block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* HR */
+.founder-body hr {
+  border: none;
+  height: 1px;
+  background: #e5e5e5;
+  margin: 12px 0 14px;
+}
+
+/* ====== ICONS ====== */
+.founder-icons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  position: relative;
+  z-index: 5;
+}
+
+.founder-icons .ic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #d8d8d8;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 18px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.founder-icons .ic:hover {
+  transform: scale(1.08);
+}
+
+/* Icon Colors */
+.ic.linkedin { color: #0a66c2; }
+.ic.facebook { color: #1877f2; }
+.ic.x { color: #111; }
+
+/* ====== CONTENT (THE MAIN PART YOU WANT) ====== */
+
+/*
+IMPORTANT:
+- Content should appear BETWEEN name and icons
+- It should slide UP from HR line
+- It should NOT overlap name
+- It should push icons downward
+- Card should auto expand height
+*/
+
+/* Default hidden state */
+.founder-content {
+  background: rgba(26,35,126,0.85);
+  color: #fff;
+  border-radius: 14px;
+
+  /* Space from name */
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  /* Padding inside overlay */
+  padding: 0 14px;
+
+  /* Smooth slide effect */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+
+  transition: max-height 0.6s ease, opacity 0.4s ease, transform 0.45s ease, padding 0.5s ease;
+}
+
+/* Paragraph styling */
+.founder-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Hover / Active state */
+.founder-card:hover .founder-content,
+.founder-card.active .founder-content {
+  max-height: 500px; /* expands */
+  opacity: 1;
+  transform: translateY(0);
+
+  /* padding expands only when open */
+  padding: 14px 14px;
+}
+
+/* Space fix: name should never be covered */
+.founder-card:hover h5,
+.founder-card.active h5 {
+  margin-bottom: 10px;
+}
+
+/* ====== MOBILE NOTE ====== */
+.tap-note {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #444;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 992px) {
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-img {
+    height: 260px;
+  }
+}
+
+@media (max-width: 520px) {
+  .section-title {
+    font-size: 30px;
+  }
+
+  .founder-img {
+    height: 220px;
+  }
+
+  .founder-body {
+    padding: 16px 14px 14px;
+  }
+}
 
     /* ================= CARDS ================= */
     .block, .pill-card{
@@ -480,66 +682,65 @@ body.loaded .page-blur{
     <section class="hero">
       <div class="hero-inner">
         <div class="kicker reveal d1">About NeoNest Finserve</div>
-        <h1 class="reveal d2">Clarity-first financial understanding.</h1>
+        <h1 class="reveal d2">People don’t lack intelligence — they lack clarity.</h1>
         <p class="reveal d3">
-          Neonest Finserve exists to make financial information structured, transparent, and easier to understand without noise or pressure.
+          NeoNest exists to bring structure to complexity, calm to the clutter, and confidence to financial learning —
+          without tips, predictions, or pressure.
         </p>
       </div>
     </section>
 
-    <!-- ABOUT BLOCKS -->
+    <!-- ABOUT US -->
     <section class="section">
       <div class="wrap">
         <div class="section-head reveal d1">
           <h1 class="section-title">About Us</h1>
-          <p class="section-sub">Block-by-block clarity, designed for readers who value calm and structure.</p>
+          <p class="section-sub">
+            A modern, structured space for understanding money — designed for clarity, not influence.
+          </p>
         </div>
 
         <div class="block reveal d2">
-          <div class="label">The observation</div>
+          <div class="label">Why NeoNest was created</div>
           <p>
-            Neonest Finserve was created by professionals who spent years observing one challenge:
-            <strong>People don’t lack intelligence they lack clarity.</strong>
+            NeoNest Finserve was created by professionals who spent years observing one challenge:
+            <strong>financial information is scattered, noisy, and overwhelming.</strong>
+          </p>
+          <p>
+            People don’t struggle because they are incapable — they struggle because the information is not organised.
           </p>
         </div>
 
         <div class="block reveal d3">
-          <div class="label">The problem</div>
+          <div class="label">What we aim to change</div>
           <p>
-            Financial information is scattered, noisy, and often overwhelming.
-            This makes even simple concepts feel complicated and hard to follow.
+            NeoNest aims to change that by building a structured, transparent space where individuals can make sense of money
+            without pressure, persuasion, or promotional noise.
           </p>
         </div>
 
         <div class="block reveal d4">
-          <div class="label">What we’re building</div>
-          <p>
-            Neonest aims to change that by building a structured, transparent space where individuals can make sense of money
-            without pressure or persuasion.
-          </p>
-        </div>
-
-        <div class="block reveal d5">
           <div class="label">Our goal</div>
           <p>
-            Our goal is simple: <strong>to make financial understanding feel accessible, intuitive, and empowering.</strong>
+            Our goal is simple:
+            <strong>to make financial understanding feel accessible, intuitive, and empowering.</strong>
           </p>
         </div>
       </div>
     </section>
 
-    <!-- PURPOSE -->
+    <!-- OUR PURPOSE -->
     <section class="section pt-0">
       <div class="wrap">
         <div class="block purpose reveal d2">
           <div class="label">Our Purpose</div>
           <h3>Simple. Transparent. Accessible.</h3>
           <p>
-            To make financial information simple, transparent, and accessible so that every person, regardless of background or experience,
-            feels empowered to manage their money thoughtfully.
+            To make financial information simple, transparent, and accessible —
+            so that every person, regardless of background or experience, feels empowered to manage their money thoughtfully.
           </p>
           <p class="mt-2">
-            Neonest Finserve exists to bring <strong>structure to complexity</strong>, <strong>calm to the clutter</strong>,
+            NeoNest Finserve exists to bring <strong>structure to complexity</strong>, <strong>calm to the clutter</strong>,
             and <strong>meaning</strong> to your financial choices.
           </p>
           <div class="quote">
@@ -550,36 +751,200 @@ body.loaded .page-blur{
       </div>
     </section>
 
-    <!-- PRINCIPLES -->
+    <!-- OUR APPROACH -->
     <section class="section pt-0">
       <div class="wrap">
         <div class="section-head reveal d1">
-          <h2 class="section-title">How we work</h2>
-          <p class="section-sub">The principles behind every insight we publish.</p>
+          <h2 class="section-title">Our Approach</h2>
+          <p class="section-sub">
+            Principles that shape every page — especially how we explain Mutual Funds, SIPs, risk, and long-term investing.
+          </p>
         </div>
 
         <div class="row g-4">
-          <div class="col-md-4 reveal d2">
+          <div class="col-md-6 reveal d2">
             <div class="pill-card">
-              <h5>Clarity</h5>
-              <p>Plain language and clean structure, so you can follow confidently.</p>
+              <h5>Clarity over noise</h5>
+              <p>
+                We don’t use complicated language or intimidating jargon.
+                Every insight is explained in a way you can follow comfortably.
+              </p>
             </div>
           </div>
-          <div class="col-md-4 reveal d3">
+
+          <div class="col-md-6 reveal d3">
             <div class="pill-card">
-              <h5>Transparency</h5>
-              <p>No pressure, no persuasion. Information that respects your decisions.</p>
+              <h5>Confidence over confusion</h5>
+              <p>
+                Clean visuals, clear categories, and intuitive navigation ensure you never feel lost while learning.
+              </p>
             </div>
           </div>
-          <div class="col-md-4 reveal d4">
+
+          <div class="col-md-6 reveal d4">
             <div class="pill-card">
-              <h5>Accessibility</h5>
-              <p>Useful for beginners, valuable for experienced readers, built for everyone.</p>
+              <h5>Education over influence</h5>
+              <p>
+                Our content is created to support learning —
+                not to suggest actions, outcomes, or returns.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 reveal d5">
+            <div class="pill-card">
+              <h5>Respect for your independence</h5>
+              <p>
+                Your decisions are yours. Our role is to help you decode, interpret, and organise information —
+                not to offer personalised guidance.
+              </p>
             </div>
           </div>
         </div>
+
+        <div class="block reveal d3 mt-4">
+          <div class="label">What we focus on</div>
+          <p>
+            We focus on quality information — never on advising or directing actions.
+            NeoNest is built for people who want to learn about Mutual Funds, SIPs, and financial topics
+            at their own pace.
+          </p>
+        </div>
       </div>
     </section>
+
+    <!-- SEBI SAFE DISCLAIMERS -->
+    <section class="section pt-0">
+      <div class="wrap">
+        <div class="section-head reveal d1">
+          <h2 class="section-title">SEBI-Safe Disclaimers</h2>
+          <p class="section-sub">
+            Transparency matters. Here is our regulatory disclosure in a clear format.
+          </p>
+        </div>
+
+        <div class="block reveal d2">
+          <div class="label">Important Regulatory Disclosure</div>
+          <p>
+            At present, NeoNest Finserve is <strong>not</strong> a SEBI-registered Investment Adviser (RIA) or Research Analyst (RA).
+          </p>
+          <p class="mt-2">
+            We do not provide:
+          </p>
+          <p class="mt-2" style="margin-bottom:0;">
+            • Investment advice<br>
+            • Stock tips<br>
+            • Buy / sell / hold recommendations<br>
+            • Portfolio management<br>
+            • Forecasts or return expectations<br>
+            • Personalised guidance of any kind
+          </p>
+        </div>
+
+        <div class="block reveal d3">
+          <div class="label">Educational only</div>
+          <p>
+            All information on this platform is educational and informational.
+            Users should make independent decisions or consult a licensed financial adviser if required.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM / FOUNDERS -->
+   <section class="section pt-0">
+  <div class="wrap">
+
+    <div class="section-head">
+      <h2 class="section-title">Founders with Purpose</h2>
+      <p class="section-sub">
+        NeoNest was started by industry professionals with deep experience in Investments, Research, banking, finance,
+        and consumer behaviour — united by one mission: make financial understanding accessible for everyone.
+      </p>
+    </div>
+
+    <div class="founders-grid">
+
+      <!-- Founder 1 -->
+      <div class="founder-card">
+
+        <div class="founder-img">
+          <img src="../images/Navin.jpeg" alt="Navin Jain">
+        </div>
+
+        <div class="founder-body">
+          <h5>Navin Jain</h5>
+          <span class="role">Co-Founder</span>
+
+          <!-- This is the "trigger line" -->
+          <hr>
+
+          <!-- CONTENT should slide from HR to name -->
+          <div class="founder-content">
+            <p>
+              A seasoned finance professional with close to two decades of expertise in financial strategy,
+              Balance Sheet & Liquidity Management, Corporate Treasury, Domestic & Overseas Markets,
+              PnL optimisation, and risk management.
+            </p>
+            <p>
+              He has been associated with Societe Generale, HDFC Bank Ltd., Bandhan Bank, and IDBI Bank Ltd.
+            </p>
+          </div>
+
+          <!-- Icons always stay at bottom -->
+          <div class="founder-icons">
+            <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="ic facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Founder 2 -->
+      <div class="founder-card">
+
+        <div class="founder-img">
+          <img src="../images/santosh.jpeg" alt="Santosh Singh">
+        </div>
+
+        <div class="founder-body">
+          <h5>Santosh Singh</h5>
+          <span class="role">Co-Founder</span>
+
+          <hr>
+
+          <div class="founder-content">
+            <p>
+              Santosh is a Chartered Accountant & CFA charterholder with around 25 years of profound experience
+              in financial markets.
+            </p>
+            <p>
+              He was associated with Motilal Oswal Asset Management as Head of Research and later as Fund Manager.
+              Previously, he was Head of Research and Lead Analyst at Haitong International Securities Ltd.
+            </p>
+            <p>
+              Notably, he was ranked the No. 1 analyst in India for the insurance sector in the Asia Money polls from 2015 to 2017.
+            </p>
+          </div>
+
+          <div class="founder-icons">
+            <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="ic facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+<!-- Mobile Hint -->
+    <p class="tap-note">
+      <!-- On mobile, instead of hover (not possible), we can make it tap-to-open and another tap to close. -->
+    </p>
+
+  </div>
+</section>
 
     <footer class="reveal d1">
       © All Rights Reserved to NeoNest Finserve Company
@@ -598,13 +963,6 @@ body.loaded .page-blur{
         const els = document.querySelectorAll(".reveal");
         if(!els.length) return;
 
-        const showVisible = () => {
-          els.forEach(el => {
-            const r = el.getBoundingClientRect();
-            if (r.top < window.innerHeight * 0.92 && r.bottom > 0) el.classList.add("show");
-          });
-        };
-
         if (!("IntersectionObserver" in window)) {
           els.forEach(el => el.classList.add("show"));
           return;
@@ -620,7 +978,6 @@ body.loaded .page-blur{
         }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
 
         els.forEach(el => obs.observe(el));
-        window.addEventListener("load", showVisible, { once:true });
       })();
 
       // Gentle hero parallax like mutual page
@@ -633,6 +990,43 @@ body.loaded .page-blur{
           hero.style.transform = `translateY(${scrolled * 0.015}px)`;
         }, { passive:true });
       })();
+
+      
+      // Tap-to-open for mobile (hover doesn't work on phones)
+(function () {
+  const cards = document.querySelectorAll(".founder-card");
+  if (!cards.length) return;
+
+  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+  if (!isTouchDevice) return;
+
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+
+      // If user clicks icons, don't toggle card
+      if (e.target.closest(".founder-icons a")) return;
+
+      // Close other cards
+      cards.forEach((c) => {
+        if (c !== card) c.classList.remove("active");
+      });
+
+      // Toggle current
+      card.classList.toggle("active");
+    });
+  });
+
+  // Tap outside closes all
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".founder-card")) {
+      cards.forEach((c) => c.classList.remove("active"));
+    }
+  });
+})();
+
+
+      
     </script>
   </main>
 </body>
