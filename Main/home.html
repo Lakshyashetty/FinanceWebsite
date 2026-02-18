@@ -8,6 +8,8 @@
   <!-- Fonts + Bootstrap -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 
 <style>
   :root{
@@ -508,7 +510,232 @@
   }
 }
 
+   /* ===========================
+   FOUNDER SECTION (HOVER STYLE)
+=========================== */ */
+
+.section {
+  padding: 60px 0;
+}
+
+.wrap {
+  width: min(1150px, 92%);
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a237e;
+}
+
+.section-sub {
+  max-width: 800px;
+  margin: 14px auto 0;
+  text-align: center;
+  line-height: 1.6;
+  color: #444;
+  font-size: 15px;
+}
+
+/* ====== GRID ====== */
+.founders-grid {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+
+  /* FIX EXTRA LEFT/RIGHT SPACE */
+  padding: 0;
+}
+
+/* ====== CARD ====== */
+.founder-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.founder-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.18);
+}
+
+/* ====== IMAGE FIX (NO HALF FACE) ====== */
+.founder-img {
+  width: 100%;
+  height: 280px;
+  background: #f2f2f2;
+  overflow: hidden;
   
+}
+
+.founder-img img {
+
+   width: 100%;
+  height: 320px;
+  object-fit: contain;
+  object-position: center;
+  background: linear-gradient(180deg,#f9fafb,#eef3ff);
+  padding: 14px;
+}
+
+/* ====== BODY ====== */
+.founder-body {
+  padding: 18px 18px 16px;
+  text-align: center;
+  position: relative;
+}
+
+/* Name */
+.founder-body h5 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a237e;
+  margin-bottom: 6px;
+}
+
+/* Role */
+.role {
+  display: inline-block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* HR */
+.founder-body hr {
+  border: none;
+  height: 1px;
+  background: #e5e5e5;
+  margin: 12px 0 14px;
+}
+
+/* ====== ICONS ====== */
+.founder-icons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  position: relative;
+  z-index: 5;
+}
+
+.founder-icons .ic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #d8d8d8;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 18px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.founder-icons .ic:hover {
+  transform: scale(1.08);
+}
+
+/* Icon Colors */
+.ic.linkedin { color: #0a66c2; }
+.ic.facebook { color: #1877f2; }
+.ic.x { color: #111; }
+
+/* ====== CONTENT (THE MAIN PART YOU WANT) ====== */
+
+/*
+IMPORTANT:
+- Content should appear BETWEEN name and icons
+- It should slide UP from HR line
+- It should NOT overlap name
+- It should push icons downward
+- Card should auto expand height
+*/
+
+/* Default hidden state */
+.founder-content {
+  background: rgba(26,35,126,0.85);
+  color: #fff;
+  border-radius: 14px;
+
+  /* Space from name */
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  /* Padding inside overlay */
+  padding: 0 14px;
+
+  /* Smooth slide effect */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+
+  transition: max-height 0.6s ease, opacity 0.4s ease, transform 0.45s ease, padding 0.5s ease;
+}
+
+/* Paragraph styling */
+.founder-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Hover / Active state */
+.founder-card:hover .founder-content,
+.founder-card.active .founder-content {
+  max-height: 500px; /* expands */
+  opacity: 1;
+  transform: translateY(0);
+
+  /* padding expands only when open */
+  padding: 14px 14px;
+}
+
+/* Space fix: name should never be covered */
+.founder-card:hover h5,
+.founder-card.active h5 {
+  margin-bottom: 10px;
+}
+
+/* ====== MOBILE NOTE ====== */
+.tap-note {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #444;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 992px) {
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-img {
+    height: 260px;
+  }
+}
+
+@media (max-width: 520px) {
+  .section-title {
+    font-size: 30px;
+  }
+
+  .founder-img {
+    height: 220px;
+  }
+
+  .founder-body {
+    padding: 16px 14px 14px;
+  }
+}
 
   footer{
     background: var(--primary);
@@ -851,6 +1078,100 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
     </section>
 
     <!-- ================= FOUNDERS ================= -->
+<!-- TEAM / FOUNDERS -->
+   <section class="section pt-0">
+  <div class="wrap">
+
+    <div class="section-head">
+      <h2 class="section-title">Founders </h2>
+      <p class="section-sub">
+        NeoNest was started by industry professionals with deep experience in Investments, Research, banking, finance,
+        and consumer behaviour — united by one mission: make financial understanding accessible for everyone.
+      </p>
+    </div>
+
+    <div class="founders-grid">
+
+      <!-- Founder 1 -->
+      <div class="founder-card">
+
+        <div class="founder-img">
+          <img src="../images/Navin.jpeg" alt="Navin Jain">
+        </div>
+
+        <div class="founder-body">
+          <h5>Navin Jain</h5>
+          <span class="role">Co-Founder</span>
+
+          <!-- This is the "trigger line" -->
+          <hr>
+
+          <!-- CONTENT should slide from HR to name -->
+          <div class="founder-content">
+            <p>
+              A seasoned finance professional with close to two decades of expertise in financial strategy,
+              Balance Sheet & Liquidity Management, Corporate Treasury, Domestic & Overseas Markets,
+              PnL optimisation, and risk management.
+            </p>
+            <p>
+              He has been associated with Societe Generale, HDFC Bank Ltd., Bandhan Bank, and IDBI Bank Ltd.
+            </p>
+          </div>
+
+          <!-- Icons always stay at bottom -->
+          <div class="founder-icons">
+            <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="ic facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Founder 2 -->
+      <div class="founder-card">
+
+        <div class="founder-img">
+          <img src="../images/santosh.jpeg" alt="Santosh Singh">
+        </div>
+
+        <div class="founder-body">
+          <h5>Santosh Singh</h5>
+          <span class="role">Co-Founder</span>
+
+          <hr>
+
+          <div class="founder-content">
+            <p>
+              Santosh is a Chartered Accountant & CFA charterholder with around 25 years of profound experience
+              in financial markets.
+            </p>
+            <p>
+              He was associated with Motilal Oswal Asset Management as Head of Research and later as Fund Manager.
+              Previously, he was Head of Research and Lead Analyst at Haitong International Securities Ltd.
+            </p>
+            <p>
+              Notably, he was ranked the No. 1 analyst in India for the insurance sector in the Asia Money polls from 2015 to 2017.
+            </p>
+          </div>
+
+          <div class="founder-icons">
+            <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="ic facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+<!-- Mobile Hint -->
+    <p class="tap-note">
+      
+    </p>
+
+  </div>
+</section>
 
 
 </main>
@@ -953,6 +1274,38 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
       track.scrollLeft = scrollLeft - walk;
     });
   });
+  // Tap-to-open for mobile (hover doesn't work on phones)
+(function () {
+  const cards = document.querySelectorAll(".founder-card");
+  if (!cards.length) return;
+
+  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+  if (!isTouchDevice) return;
+
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+
+      // If user clicks icons, don't toggle card
+      if (e.target.closest(".founder-icons a")) return;
+
+      // Close other cards
+      cards.forEach((c) => {
+        if (c !== card) c.classList.remove("active");
+      });
+
+      // Toggle current
+      card.classList.toggle("active");
+    });
+  });
+
+  // Tap outside closes all
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".founder-card")) {
+      cards.forEach((c) => c.classList.remove("active"));
+    }
+  });
+})();
 </script>
 
 </body>
