@@ -335,29 +335,6 @@
     .hero-desc{ font-size: 1.05rem; }
   }
 
-  /* ================= LIVE STRIP ================= */
-  .market-strip{
-    background:white;
-    border-top:1px solid #eee;
-    border-bottom:1px solid #eee;
-    padding:8px 0;
-    overflow:hidden;
-    white-space:nowrap;
-  }
-  .market-track{
-    display:inline-flex;
-    gap:30px;
-    animation:ticker 10s linear infinite forwards;
-    transform:translate3d(0,0,0);
-  }
-  @keyframes ticker{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(-50%); }
-  }
-  .market-item{ font-size:14px; font-weight:600; }
-  .green{ color:#1b9e3e; }
-  .red{ color:#d93025; }
-
   /* ================= SECTIONS ================= */
   .section{ padding:100px 20px; }
 
@@ -754,25 +731,6 @@ footer{
         <span class="neo-arrow-btn" aria-hidden="true">›</span>
       </button>
     </div>
-
-    <!-- ================= LIVE STRIP ================= -->
-    <section class="market-strip reveal d5">
-      <div class="market-track">
-        <div class="market-item">Best Mutual Funds <span class="green">+1.24%</span></div>
-        <div class="market-item">Large Cap Leaders <span class="green">+0.82%</span></div>
-        <div class="market-item">High Growth Stocks <span class="red">-0.31%</span></div>
-        <div class="market-item">Dividend Picks <span class="green">+0.67%</span></div>
-        <div class="market-item">Momentum Themes <span class="green">+1.11%</span></div>
-        <div class="market-item">Value Opportunities <span class="red">-0.14%</span></div>
-
-        <div class="market-item">Best Mutual Funds <span class="green">+1.24%</span></div>
-        <div class="market-item">Large Cap Leaders <span class="green">+0.82%</span></div>
-        <div class="market-item">High Growth Stocks <span class="red">-0.31%</span></div>
-        <div class="market-item">Dividend Picks <span class="green">+0.67%</span></div>
-        <div class="market-item">Momentum Themes <span class="green">+1.11%</span></div>
-        <div class="market-item">Value Opportunities <span class="red">-0.14%</span></div>
-      </div>
-    </section>
 
     <!-- ================= HERO ================= -->
     <section class="hero hero-clean">
