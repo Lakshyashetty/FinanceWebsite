@@ -94,15 +94,15 @@
 
     .logo-mask{
       display:inline-block;
-      height:56px;
+      height:78px;
       overflow:hidden;
       background:#FFFFFF;
     }
     .navbar-brand .logo{
-      height:130px;
+      height:180px;
       width:auto;
       object-fit:contain;
-      transform: translateY(-42px) scale(1.12);
+      transform: translateY(-48px) scale(1.12);
       transform-origin:center;
       display:block;
     }
@@ -133,7 +133,8 @@
       background:rgba(26,35,126,0.05);
     }
     @media (max-width:768px){
-      .navbar-brand .logo{ height:80px; }
+     .logo-mask{ height:60px; } /* CHANGED */
+      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); } /* CHANGED */
       .navbar-nav{ text-align:center; margin-top:12px; }
       .navbar-collapse{ padding-bottom:10px; }
     }
@@ -400,7 +401,7 @@
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="#">
           <span class="logo-mask">
-            <img src="Logo1.jpg" class="logo" alt="NeoNest Logo">
+            <img src="../images/Logo1.jpg" class="logo" alt="NeoNest Logo">
           </span>
         </a>
 
