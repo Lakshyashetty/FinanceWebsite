@@ -112,60 +112,49 @@
        NAVBAR (MATCH LOGO WHITE)
     ========================= */
     .logo-mask{
-      display:inline-block;
-      height:78px; /* CHANGED (was 56px) */
-      overflow:hidden;
-      background:#FFFFFF;
-    }
-    .navbar-brand .logo{
-      height:180px; /* CHANGED (was 130px) */
-      width:auto;
-      object-fit:contain;
-      transform: translateY(-48px) scale(1.12); /* CHANGED */
-      transform-origin:center;
-      display:block;
-    }
+    display:inline-block;
+    height:78px; /* UPDATED (bigger) */
+    overflow:hidden;
+  }
 
-    nav.nn-nav{
-      background:#FFFFFF !important;
-      background-color:#FFFFFF !important;
-      backdrop-filter: blur(14px) !important;
-      -webkit-backdrop-filter: blur(14px) !important;
-      border-bottom: 1px solid rgba(176,190,197,0.35) !important;
-      box-shadow: 0 4px 14px rgba(26,35,126,0.04) !important;
-      padding: 6px 0 !important;
-    }
-    nav.nn-nav.scrolled{
-      background:#FFFFFF !important;
-      background-color:#FFFFFF !important;
-      border-bottom: 1px solid rgba(176,190,197,0.45) !important;
-      box-shadow: 0 6px 18px rgba(26,35,126,0.05) !important;
-    }
-    nav.nn-nav > .container,
-    nav.nn-nav > .container-fluid{
-      background: transparent !important;
-      box-shadow: none !important;
-    }
-
-    .nav-link{
-      font-weight:600;
-      color:var(--primary) !important;
-      transition: 0.2s ease;
-      border-radius:10px;
-      padding:10px 12px;
-    }
-    .nav-link:hover{
-      color:var(--secondary) !important;
-      background:rgba(26,35,126,0.05);
-    }
-
-    @media (max-width:768px){
-      .logo-mask{ height:60px; } /* CHANGED */
-      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); } /* CHANGED */
-      .navbar-nav{ text-align:center; margin-top:12px; }
-      .navbar-collapse{ padding-bottom:10px; }
-    }
-
+  .navbar-brand .logo{
+    height:180px; /* UPDATED (bigger) */
+    width:auto;
+    object-fit:contain;
+    transform:translateY(-48px) scale(1.22); /* UPDATED */
+    transform-origin:center;
+    display:block;
+  }
+  .navbar{
+    background:white;
+    box-shadow:0 4px 18px rgba(0,0,0,0.04);
+    padding:2px 2px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .navbar.scrolled{
+    background:rgba(255,255,255,0.96);
+    box-shadow:0 6px 22px rgba(0,0,0,0.06);
+  }
+  .nav-link{
+    font-weight:500;
+    color:var(--primary) !important;
+    transition:color 0.2s ease, background 0.2s ease;
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .nav-link:hover{
+    color:var(--secondary) !important;
+    background:rgba(26,35,126,0.06);
+  }
+  @media (max-width:768px){
+    .logo-mask{ height:64px; }
+    .navbar-brand .logo{ height:140px; transform:translateY(-42px) scale(1.15); }
+    .navbar-nav{ text-align:center; margin-top:12px; }
+    .navbar-collapse{ padding-bottom:10px; }
+  }
     /* =========================
        HERO (SECOND IMAGE BACKGROUND)
     ========================= */

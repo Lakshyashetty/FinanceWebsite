@@ -49,54 +49,49 @@
 
     /* ===== LOGO MASK ===== */
     .logo-mask{
-     display:inline-block;
+    display:inline-block;
     height:78px; /* UPDATED (bigger) */
     overflow:hidden;
-    }
+  }
 
-    .navbar-brand .logo{
-      height:180px; /* UPDATED (bigger) */
+  .navbar-brand .logo{
+    height:180px; /* UPDATED (bigger) */
     width:auto;
     object-fit:contain;
     transform:translateY(-48px) scale(1.22); /* UPDATED */
     transform-origin:center;
     display:block;
-    }
-
-    .navbar{
-      background: rgba(255, 255, 255, 0.75) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow:0 4px 18px rgba(0,0,0,0.04);
-      padding:2px 2px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-
-    .navbar.scrolled{
-      background:rgba(255,255,255,0.96) !important;
-      box-shadow:0 6px 22px rgba(0,0,0,0.06);
-    }
-
-    .nav-link{
-      font-weight:500;
-      color:var(--primary) !important;
-      transition:color 0.2s ease, background 0.2s ease;
-      border-radius:10px;
-      padding:10px 12px;
-    }
-    .nav-link:hover{
-      color:var(--secondary) !important;
-      background:rgba(26,35,126,0.06);
-    }
-
-    @media (max-width:768px){
-      .navbar-brand .logo{ height:80px; }
-      .navbar-nav{ text-align:center; margin-top:12px; }
-      .navbar-collapse{ padding-bottom:10px; }
-    }
-
+  }
+  .navbar{
+    background:white;
+    box-shadow:0 4px 18px rgba(0,0,0,0.04);
+    padding:2px 2px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .navbar.scrolled{
+    background:rgba(255,255,255,0.96);
+    box-shadow:0 6px 22px rgba(0,0,0,0.06);
+  }
+  .nav-link{
+    font-weight:500;
+    color:var(--primary) !important;
+    transition:color 0.2s ease, background 0.2s ease;
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .nav-link:hover{
+    color:var(--secondary) !important;
+    background:rgba(26,35,126,0.06);
+  }
+  @media (max-width:768px){
+    .logo-mask{ height:64px; }
+    .navbar-brand .logo{ height:140px; transform:translateY(-42px) scale(1.15); }
+    .navbar-nav{ text-align:center; margin-top:12px; }
+    .navbar-collapse{ padding-bottom:10px; }
+  }
     /* =========================================
        1) ANIMATED GRADIENT BACKGROUND (GLOBAL)
     ========================================= */
