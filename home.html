@@ -1278,36 +1278,46 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
   });
   // Tap-to-open for mobile (hover doesn't work on phones)
 (function () {
+
   const cards = document.querySelectorAll(".founder-card");
   if (!cards.length) return;
 
-  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  // Detect touch device
+  const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
-  if (!isTouchDevice) return;
+  if (!isTouch) return; // Desktop stays hover-based
 
   cards.forEach((card) => {
-    card.addEventListener("click", (e) => {
 
-      // If user clicks icons, don't toggle card
+    card.addEventListener("click", function (e) {
+
+      // If clicking icon → don't toggle
       if (e.target.closest(".founder-icons a")) return;
 
-      // Close other cards
-      cards.forEach((c) => {
-        if (c !== card) c.classList.remove("active");
-      });
+      const isAlreadyActive = card.classList.contains("active");
 
-      // Toggle current
-      card.classList.toggle("active");
+      // Close all cards first
+      cards.forEach(c => c.classList.remove("active"));
+
+      // If it was NOT active → open it
+      // If it WAS active → it stays closed (second tap closes it)
+      if (!isAlreadyActive) {
+        card.classList.add("active");
+      }
+
     });
+
   });
 
-  // Tap outside closes all
-  document.addEventListener("click", (e) => {
+  // Tap outside → close everything
+  document.addEventListener("click", function (e) {
     if (!e.target.closest(".founder-card")) {
-      cards.forEach((c) => c.classList.remove("active"));
+      cards.forEach(c => c.classList.remove("active"));
     }
   });
+
 })();
+
 </script>
 
 </body>
