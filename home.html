@@ -1279,42 +1279,30 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
   // Tap-to-open for mobile (hover doesn't work on phones)
 (function () {
 
-  const cards = document.querySelectorAll(".founder-card");
-  if (!cards.length) return;
+  (function () {
 
-  // Detect touch device
+  const cards = document.querySelectorAll(".founder-card");
+
+  // Detect touch device only
   const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
-  if (!isTouch) return; // Desktop stays hover-based
+  if (!isTouch) return; // Desktop keeps hover behavior
 
-  cards.forEach((card) => {
+  cards.forEach(card => {
 
     card.addEventListener("click", function (e) {
 
-      // If clicking icon → don't toggle
+      // If user clicks social icons, do not toggle
       if (e.target.closest(".founder-icons a")) return;
 
-      const isAlreadyActive = card.classList.contains("active");
-
-      // Close all cards first
-      cards.forEach(c => c.classList.remove("active"));
-
-      // If it was NOT active → open it
-      // If it WAS active → it stays closed (second tap closes it)
-      if (!isAlreadyActive) {
-        card.classList.add("active");
-      }
+      // Just toggle active class on same card
+      card.classList.toggle("active");
 
     });
 
   });
 
-  // Tap outside → close everything
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".founder-card")) {
-      cards.forEach(c => c.classList.remove("active"));
-    }
-  });
+})();
 
 })();
 
