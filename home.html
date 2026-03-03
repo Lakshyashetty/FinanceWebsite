@@ -128,6 +128,7 @@
     object-fit: cover;
     display: block;
     filter: saturate(1.05);
+      
   }
 
   /* IMPORTANT FIX: overlay must not capture clicks */
@@ -1282,27 +1283,34 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
   // Tap-to-open for mobile (hover doesn't work on phones)
 
 
-  /* ===============================
-   MOBILE TAP TO EXPAND (FIXED)
+/* ===============================
+   MOBILE TAP TO EXPAND / COLLAPSE
 ================================ */
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  // Detect touch devices only
+  const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+  if (!isMobile) return; // Do nothing on desktop
+
   const cards = document.querySelectorAll(".founder-card");
 
   cards.forEach(card => {
+
     card.addEventListener("click", function (e) {
 
       // Prevent toggle when clicking social icons
       if (e.target.closest(".founder-icons a")) return;
 
-      // Toggle this card only
+      // Toggle only THIS card
       card.classList.toggle("active");
 
     });
+
   });
 
-});;
+});
 
 
 
