@@ -693,16 +693,30 @@ IMPORTANT:
   margin-bottom: 10px;
 }
 
-/* Hover / Active state */
-.founder-card:hover .founder-content,
+@media (hover: hover) {
+  .founder-card:hover .founder-content {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 14px;
+  }
+
+  .founder-card:hover h5 {
+    margin-bottom: 10px;
+  }
+}
+/* MOBILE ACTIVE ONLY */
 .founder-card.active .founder-content {
-  max-height: 500px; /* expands */
+  max-height: 500px;
   opacity: 1;
   transform: translateY(0);
-
-  /* padding expands only when open */
-  padding: 14px 14px;
+  padding: 14px;
 }
+
+.founder-card.active h5 {
+  margin-bottom: 10px;
+}
+
 
 /* Space fix: name should never be covered */
 .founder-card:hover h5,
@@ -1253,21 +1267,21 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Detect touch devices only
+  const cards = document.querySelectorAll(".founder-card");
+
+  // Detect mobile (touch device)
   const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
   if (!isMobile) return; // Do nothing on desktop
-
-  const cards = document.querySelectorAll(".founder-card");
 
   cards.forEach(card => {
 
     card.addEventListener("click", function (e) {
 
-      // Prevent toggle when clicking social icons
+      // Prevent toggle if clicking on social icons
       if (e.target.closest(".founder-icons a")) return;
 
-      // Toggle only THIS card
+      // Toggle SAME card only
       card.classList.toggle("active");
 
     });
@@ -1275,8 +1289,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-
-
 
 </script>
 
