@@ -43,31 +43,6 @@
     transform: translateY(0);
   }
 
-  .loader{
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: grid;
-    place-items: center;
-    background: rgba(249,250,251,0.90);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    transition: 450ms ease;
-  }
-  body.loaded .loader{
-    opacity: 0;
-    pointer-events: none;
-  }
-  .spinner{
-    width: 58px;
-    height: 58px;
-    border-radius: 999px;
-    border: 4px solid rgba(176,190,197,0.55);
-    border-top-color: var(--primary);
-    animation: spin 0.9s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
   /* ================= NAVBAR ================= */
   .logo-mask{
     display:inline-block;
@@ -796,7 +771,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item reveal d2"><a class="nav-link active" href="Home.html">Home</a></li>
             <li class="nav-item reveal d3"><a class="nav-link" href="about.html">About Us</a></li>
-            <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Mutual Fund</a></li>
+            <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
             <li class="nav-item reveal d5"><a class="nav-link" href="contact.html">Contact Us</a></li>
             <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
           </ul>
@@ -812,7 +787,6 @@
         <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="1"></button>
         <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="2"></button>
         <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="3"></button>
-        <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="4"></button>
         <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="5"></button>
       </div>
 
@@ -831,7 +805,6 @@
           <div class="carousel-caption">
             <h2>Turn savings into a strategy.</h2>
             <p>Build a savings system that supports goals like travel, education, emergency funds, and financial freedom.</p>
-            <a href="#" class="btn btn-slide">Start Saving Better</a>
           </div>
         </div>
 
@@ -840,16 +813,6 @@
           <div class="carousel-caption">
             <h2>SIP is not just a plan.</h2>
             <p>It’s discipline. Learn how consistent investing can create powerful results over time.</p>
-            <a href="#" class="btn btn-slide">Learn SIP</a>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <img src="../images/carousel4.jpg" alt="Business finance">
-          <div class="carousel-caption">
-            <h2>Business finance, simplified.</h2>
-            <p>From cashflow to risk planning—understand what makes businesses financially strong.</p>
-            <a href="#" class="btn btn-slide">Business Insights</a>
           </div>
         </div>
 
@@ -858,7 +821,6 @@
           <div class="carousel-caption">
             <h2>Plan your retirement with confidence.</h2>
             <p>Learn the basics of long-term investing, retirement funds, and goal-based financial planning.</p>
-            <a href="#" class="btn btn-slide">Retirement Guide</a>
           </div>
         </div>
 
@@ -867,7 +829,6 @@
           <div class="carousel-caption">
             <h2>Finance for families & future.</h2>
             <p>Support your family with smart decisions—insurance, budgeting, education funds, and wealth planning.</p>
-            <a href="#" class="btn btn-slide">Family Planning</a>
           </div>
         </div>
       </div>
@@ -1072,9 +1033,9 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
   <div class="wrap">
 
     <div class="section-head">
-      <h2 class="section-title">Founders </h2>
+      <h2 class="section-title">Our Team </h2>
       <p class="section-sub">
-        NeoNest was started by industry professionals with deep experience in Investments, Research, banking, finance,
+        Neonest Finserve was started by industry professionals with deep experience in Investments, Research, banking, finance,
         and consumer behaviour — united by one mission: make financial understanding accessible for everyone.
       </p>
     </div>
@@ -1103,14 +1064,13 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
               PnL optimisation, and risk management.
             </p>
             <p>
-              He has been associated with Societe Generale, HDFC Bank Ltd., Bandhan Bank, and IDBI Bank Ltd.
+              He has been associated with Institutional like Societe Generale, HDFC Bank Ltd., Bandhan Bank, and IDBI Bank Ltd.
             </p>
           </div>
 
           <!-- Icons always stay at bottom -->
           <div class="founder-icons">
             <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="ic facebook" target="_blank"><i class="bi bi-facebook"></i></a>
             <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
           </div>
 
@@ -1146,7 +1106,6 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 
           <div class="founder-icons">
             <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="ic facebook" target="_blank"><i class="bi bi-facebook"></i></a>
             <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
           </div>
 
@@ -1166,7 +1125,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 </main>
 
 <footer id="fot">
-  © All Rights Reserved to NeoNest Finserve Company
+  © All Rights Reserved to Neonest Finserve Private Limited
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
