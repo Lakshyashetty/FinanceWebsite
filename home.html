@@ -31,12 +31,11 @@
 
   /* ===== LOADING BLUR (like other pages) ===== */
   .page-blur{
-    opacity: 0;
-    filter: blur(14px);
-    transform: translateY(10px);
-    transition: 700ms ease;
-    will-change: opacity, filter, transform;
-  }
+    opacity:0;
+  transform:translateY(10px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+  
   body.loaded .page-blur{
     opacity: 1;
     filter: blur(0);
@@ -97,7 +96,7 @@
 
   /* ================= CAROUSEL (TOP HERO) ================= */
   #financeCarousel { position: relative; background-color: #fff;}
-  #financeCarousel .carousel-item{ position: relative; height: 700px;}
+  #financeCarousel .carousel-item{ position: relative; height:clamp(420px, 70vh, 700px)}
 
   #financeCarousel .carousel-item img{
     height: 700px;
@@ -165,7 +164,9 @@
   }
 
   @media(max-width:768px){
-    #financeCarousel .carousel-item img{ height: 420px; }
+    #financeCarousel .carousel-item img{ width:100%;
+  height:100%;
+  object-fit:cover;}
     #financeCarousel .carousel-caption{ bottom: 14%; text-align:center; }
     #financeCarousel .carousel-caption p{ margin: 0 auto; }
      #financeCarousel .neo-arrow{display: none !important;}
@@ -1157,13 +1158,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 
    const items = Array.from(document.querySelectorAll(".reveal"));
 if (items.length) {
-  setTimeout(() => {
-    items.forEach((el, i) => {
-      const r = el.getBoundingClientRect();
-      const visible = r.top < window.innerHeight * 0.92 && r.bottom > 0;
-      if (visible) setTimeout(() => el.classList.add("in"), i * 80);
-    });
-  }, 200);
+ items.forEach(el => el.classList.add("in"));;
 
       if (!("IntersectionObserver" in window)) {
         items.forEach(el => el.classList.add("in"));
