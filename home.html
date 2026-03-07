@@ -164,9 +164,16 @@
   }
 
   @media(max-width:768px){
-    #financeCarousel .carousel-item img{ width:100%;
-  height:100%;
-  object-fit:cover;}
+ #financeCarousel .carousel-item{
+    height: 60vh;
+  }
+
+    #financeCarousel .carousel-item img{
+  /* width:100%;
+  height:100%; */
+  object-fit:cover;
+ object-position: center;
+}
     #financeCarousel .carousel-caption{ bottom: 14%; text-align:center; }
     #financeCarousel .carousel-caption p{ margin: 0 auto; }
      #financeCarousel .neo-arrow{display: none !important;}
