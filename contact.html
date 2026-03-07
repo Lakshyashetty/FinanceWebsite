@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | NeoNestFinserve</title>
+  <title>Contact Us | NeoNest Finserve</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> -->
-  <link rel="stylesheet" href="bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
@@ -18,67 +17,98 @@
       --accent:#F4C542;
       --light:#F9FAFB;
       --gray:#B0BEC5;
+      --text:#233043;
+      --muted:#607D8B;
+      --border:rgba(26,35,126,0.08);
+      --border-strong:rgba(26,35,126,0.12);
+      --shadow-soft:0 10px 30px rgba(15,23,42,0.06);
+      --shadow-md:0 18px 42px rgba(15,23,42,0.10);
+      --shadow-lg:0 28px 70px rgba(15,23,42,0.14);
     }
 
     *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:92px;
+    }
 
     body{
       margin:0;
-      font-family:"Poppins", sans-serif;
-      background: var(--light);
-      color: var(--primary);
+      font-family:"Inter", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(26,35,126,0.03), transparent 26%),
+        var(--light);
+      color:var(--text);
       min-height:100vh;
       display:flex;
       flex-direction:column;
       overflow-x:hidden;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    h1,h2,h3,h4,h5,h6,
+    .nav-link,
+    .btn-primary-soft,
+    .btn-primary-dark,
+    .footer-btn,
+    .eyebrow,
+    .form-title,
+    .footer-brand{
+      font-family:"Plus Jakarta Sans", sans-serif;
+      letter-spacing:-0.025em;
     }
 
     main{ flex:1; }
 
     .page-blur{
-      opacity: 0;
-      filter: blur(14px);
-      transform: translateY(10px);
-      transition: 700ms ease;
-      will-change: opacity, filter, transform;
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .45s ease, transform .45s ease;
     }
+
     body.loaded .page-blur{
-      opacity: 1;
-      filter: blur(0);
-      transform: translateY(0);
+      opacity:1;
+      transform:translateY(0);
     }
 
     .loader{
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      display: grid;
-      place-items: center;
-      background: rgba(249,250,251,0.90);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: 450ms ease;
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      display:grid;
+      place-items:center;
+      background:rgba(249,250,251,0.96);
+      transition:opacity .35s ease, visibility .35s ease;
     }
-    body.loaded .loader{
-      opacity: 0;
-      pointer-events: none;
+
+    .loader.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
     }
 
     .spinner{
-      width: 58px;
-      height: 58px;
-      border-radius: 999px;
-      border: 4px solid rgba(176,190,197,0.55);
-      border-top-color: var(--primary);
-      animation: spin 0.9s linear infinite;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:3px solid rgba(176,190,197,0.42);
+      border-top-color:var(--primary);
+      animation:spin .8s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
+    @keyframes spin{
+      to{ transform:rotate(360deg); }
+    }
+
+    /* ===== Navbar ===== */
     .logo-mask{
       display:inline-block;
       height:78px;
       overflow:hidden;
+      background:transparent;
     }
 
     .navbar-brand .logo{
@@ -91,262 +121,355 @@
     }
 
     nav.nn-nav{
-      background: #FFFFFF !important;
-      background-color: #FFFFFF !important;
-      backdrop-filter: blur(14px) !important;
-      -webkit-backdrop-filter: blur(14px) !important;
-      border-bottom: 1px solid rgba(176,190,197,0.35) !important;
-      box-shadow: 0 4px 14px rgba(26,35,126,0.04) !important;
-      padding: 6px 0 !important;
+      background:rgba(255,255,255,0.88) !important;
+      backdrop-filter:saturate(160%) blur(12px) !important;
+      -webkit-backdrop-filter:saturate(160%) blur(12px) !important;
+      border-bottom:1px solid rgba(26,35,126,0.06) !important;
+      box-shadow:0 6px 22px rgba(15,23,42,0.04) !important;
+      padding:4px 0 !important;
+      transition:background .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
 
     nav.nn-nav.scrolled{
-      background:#FFFFFF !important;
-      background-color:#FFFFFF !important;
-      border-bottom: 1px solid rgba(176,190,197,0.45) !important;
-      box-shadow: 0 6px 18px rgba(26,35,126,0.05) !important;
-    }
-
-    nav.nn-nav > .container,
-    nav.nn-nav > .container-fluid{
-      background: transparent !important;
-      box-shadow: none !important;
+      background:rgba(255,255,255,0.95) !important;
+      border-bottom:1px solid rgba(26,35,126,0.10) !important;
+      box-shadow:0 14px 34px rgba(15,23,42,0.06) !important;
     }
 
     .nav-link{
-      font-weight:600;
-      color: var(--primary) !important;
-      transition: 0.2s ease;
+      font-weight:700;
+      font-size:0.95rem;
+      color:var(--primary) !important;
       border-radius:10px;
-      padding:10px 12px;
+      padding:10px 14px !important;
+      transition:color .2s ease, background-color .2s ease;
     }
-    .nav-link:hover{
+
+    .nav-link:hover,
+    .nav-link.active{
       color:var(--secondary) !important;
       background:rgba(26,35,126,0.05);
     }
 
     @media (max-width:768px){
       .logo-mask{ height:60px; }
-      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); }
+      .navbar-brand .logo{
+        height:120px;
+        transform:translateY(-44px) scale(1.10);
+      }
       .navbar-nav{ text-align:center; margin-top:12px; }
       .navbar-collapse{ padding-bottom:10px; }
     }
 
-    .animated-bg{
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-      background: linear-gradient(
-        120deg,
-        rgba(26,35,126,0.10),
-        rgba(46,204,113,0.10),
-        rgba(244,197,66,0.10),
-        rgba(176,190,197,0.14)
-      );
-      background-size: 280% 280%;
-      animation: gradientMove 14s ease infinite;
-    }
-    @keyframes gradientMove{
-      0%{ background-position: 0% 50%; }
-      50%{ background-position: 100% 50%; }
-      100%{ background-position: 0% 50%; }
+    /* ===== Page layout ===== */
+    .page{
+      padding:36px 0 60px;
     }
 
-    .page{ padding: 42px 0 60px; }
-    .container-mf{ width: min(1180px, 92%); margin: 0 auto; }
-
-    .contact-shell{
-      background:#fff;
-      border: 1px solid rgba(176,190,197,0.55);
-      border-radius: 26px;
-      box-shadow: 0 22px 70px rgba(26,35,126,0.10);
-      overflow:hidden;
+    .container-mf{
+      width:min(1180px, 92%);
+      margin:0 auto;
     }
-    .contact-grid{
+
+    .contact-layout{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 560px;
-    }
-
-    .left{
-      background: rgba(176,190,197,0.14);
-      padding: 56px;
-      position:relative;
-      overflow:hidden;
-    }
-    .left h1{
-      margin:0;
-      font-size: clamp(32px, 4vw, 56px);
-      line-height: 1.05;
-      font-weight: 800;
-      color: rgba(26,35,126,0.78);
-    }
-    .left p{
-      margin: 14px 0 28px;
-      max-width: 520px;
-      color: rgba(26,35,126,0.70);
-      line-height: 1.7;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .info-list{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
+      grid-template-columns:0.88fr 1.12fr;
       gap:18px;
-      max-width: 520px;
     }
-    .info-item{
+
+    .detail-card{
+      padding:26px;
+    }
+
+    .detail-card h2{
+      margin:0 0 10px;
+      font-size:1.6rem;
+      line-height:1.08;
+      font-weight:800;
+      color:var(--primary);
+      text-align: center
+    }
+
+    .detail-card p.lead{
+      margin:0 0 22px;
+      color:rgba(35,48,67,0.76);
+      line-height:1.8;
+      font-size:0.96rem;
+      font-weight:500;
+      max-width:520px;
+    }
+
+    .info-stack{
       display:grid;
-      grid-template-columns: 34px 1fr;
+      gap:14px;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:42px 1fr;
       gap:14px;
       align-items:flex-start;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(26,35,126,0.07);
+      background:rgba(249,250,251,0.95);
     }
+
     .icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(176,190,197,0.65);
-      background: rgba(249,250,251,0.70);
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(26,35,126,0.08);
+      background:#fff;
       display:grid;
       place-items:center;
+      box-shadow:0 8px 18px rgba(15,23,42,0.05);
     }
+
     .info-k{
-      font-size:12px;
-      font-weight:700;
-      color: rgba(26,35,126,0.60);
-      margin: 0 0 4px;
+      font-size:11px;
+      font-weight:800;
+      color:rgba(26,35,126,0.58);
+      margin:0 0 4px;
+      text-transform:uppercase;
+      letter-spacing:0.04em;
     }
+
     .info-v{
       font-size:14px;
       font-weight:600;
-      color: rgba(26,35,126,0.88);
-      line-height: 1.6;
+      color:rgba(26,35,126,0.90);
+      line-height:1.7;
       margin:0;
-      word-break: break-word;
+      word-break:break-word;
     }
 
-    .right{ padding:56px; background:#fff; }
+    .trust-box{
+      margin-top:18px;
+      padding:16px 16px;
+      border-radius:18px;
+      background:linear-gradient(135deg, rgba(26,35,126,0.05), rgba(46,204,113,0.06));
+      border:1px solid rgba(26,35,126,0.06);
+      color:rgba(35,48,67,0.76);
+      line-height:1.75;
+      font-size:0.93rem;
+      font-weight:500;
+    }
+
+    .quick-links{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary-soft,
+    .btn-primary-dark{
+      border:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:800;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:transform .22s ease, box-shadow .22s ease, background-color .22s ease;
+    }
+
+    .btn-primary-soft{
+      background:#fff;
+      color:var(--primary);
+      border:1px solid rgba(26,35,126,0.08);
+      box-shadow:0 10px 22px rgba(15,23,42,0.05);
+    }
+
+    .btn-primary-dark{
+      background:var(--primary);
+      color:#fff;
+      box-shadow:0 14px 28px rgba(26,35,126,0.18);
+    }
+
+    .btn-primary-soft:hover,
+    .btn-primary-dark:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary-dark:hover{
+      color:#fff;
+      box-shadow:0 18px 34px rgba(26,35,126,0.24);
+    }
+
+    .btn-primary-soft:hover{
+      color:var(--primary);
+      box-shadow:0 14px 28px rgba(15,23,42,0.08);
+    }
+
+    .form-card{
+      padding:28px;
+    }
+
     .form-title{
-      font-size:18px;
-      font-weight:700;
-      margin-bottom:18px;
-      color: rgba(26,35,126,0.92);
+      font-size:1.22rem;
+      font-weight:900;
+      margin-bottom:8px;
+      color:rgba(26,35,126,0.94);
+      text-align: center
     }
 
-    form{ display:grid; gap:14px; }
+    .form-sub{
+      margin:0 0 22px;
+      color:rgba(35,48,67,0.72);
+      line-height:1.76;
+      font-size:0.94rem;
+      font-weight:500;
+      text-align: center;
+    }
+
+    form{
+      display:grid;
+      gap:14px;
+    }
 
     .row2{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:1fr 1fr;
       gap:14px;
     }
 
     label{
       font-size:12px;
-      font-weight:700;
+      font-weight:800;
       margin-bottom:6px;
       display:block;
-      color: rgba(26,35,126,0.72);
+      color:rgba(26,35,126,0.72);
+      text-transform:uppercase;
+      letter-spacing:0.04em;
     }
-    .req{ color: var(--accent); }
+
+    .req{ color:var(--accent); }
 
     input, select, textarea{
       width:100%;
-      padding:12px;
-      border-radius:12px;
-      border:1px solid rgba(176,190,197,0.70);
-      background: rgba(249,250,251,0.90);
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(26,35,126,0.10);
+      background:rgba(249,250,251,0.94);
       font-size:14px;
-      color: rgba(26,35,126,0.92);
+      color:rgba(26,35,126,0.92);
       outline:none;
-      transition: 0.2s ease;
+      transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+      font-family:"Inter", sans-serif;
     }
+
     input:focus, select:focus, textarea:focus{
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 4px rgba(46,204,113,0.16);
+      border-color:var(--secondary);
+      box-shadow:0 0 0 4px rgba(46,204,113,0.14);
       background:#fff;
     }
-    textarea{ min-height:120px; resize:vertical; }
+
+    textarea{
+      min-height:132px;
+      resize:vertical;
+    }
 
     .phone-row{
       display:grid;
-      grid-template-columns: 1.2fr 2fr;
-      gap: 12px;
+      grid-template-columns:1.15fr 2fr;
+      gap:12px;
     }
 
     .helper{
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(26,35,126,0.60);
-      line-height: 1.55;
-      margin-top: 2px;
+      font-size:12px;
+      font-weight:600;
+      color:rgba(35,48,67,0.62);
+      line-height:1.6;
+      margin-top:4px;
     }
 
     .chips{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top: 8px;
-    }
-    .chip{
-      border: 1px solid rgba(176,190,197,0.70);
-      background: rgba(249,250,251,0.92);
-      color: rgba(26,35,126,0.82);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor:pointer;
-      transition: 0.2s ease;
-      user-select:none;
-    }
-    .chip:hover{
-      border-color: rgba(46,204,113,0.80);
-      color: var(--secondary);
-      transform: translateY(-1px);
+      margin-top:10px;
     }
 
-    .btn-mf{
-      margin-top:6px;
-      padding:14px;
-      border:none;
-      border-radius:12px;
-      background: var(--primary);
-      color: var(--light);
-      font-weight:700;
+    .chip{
+      border:1px solid rgba(26,35,126,0.08);
+      background:rgba(249,250,251,0.96);
+      color:rgba(26,35,126,0.82);
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
       cursor:pointer;
-      transition: 0.25s ease;
+      transition:transform .2s ease, border-color .2s ease, color .2s ease, background-color .2s ease;
+      user-select:none;
     }
-    .btn-mf:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(26,35,126,0.22);
+
+    .chip:hover{
+      border-color:rgba(46,204,113,0.70);
+      color:var(--secondary);
+      background:#fff;
+      transform:translateY(-1px);
+    }
+
+    .submit-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    .submit-note{
+      font-size:12px;
+      font-weight:600;
+      color:rgba(35,48,67,0.60);
+      line-height:1.6;
+    }
+
+    .submit-btn{
+      min-width:190px;
+      padding:14px 18px;
+      border:none;
+      border-radius:14px;
+      background:var(--primary);
+      color:var(--light);
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .22s ease, box-shadow .22s ease, filter .22s ease;
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(26,35,126,0.20);
+      filter:saturate(104%);
     }
 
     .toast{
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(0.98);
-      width: min(420px, calc(100% - 36px));
-      background: rgba(249,250,251,0.96);
-      border: 1px solid rgba(176,190,197,0.65);
-      box-shadow: 0 18px 50px rgba(26,35,126,0.18);
-      border-radius: 16px;
-      padding: 14px;
-      opacity: 0;
+      position:fixed;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%) scale(0.98);
+      width:min(420px, calc(100% - 36px));
+      background:rgba(255,255,255,0.97);
+      border:1px solid rgba(26,35,126,0.10);
+      box-shadow:0 18px 50px rgba(15,23,42,0.14);
+      border-radius:18px;
+      padding:14px;
+      opacity:0;
       pointer-events:none;
-      transition: 0.35s ease;
-      z-index: 9999;
-      backdrop-filter: blur(10px);
+      transition:opacity .32s ease, transform .32s ease;
+      z-index:9999;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
     }
 
     .toast.show{
-      opacity: 1;
+      opacity:1;
       pointer-events:auto;
-      transform: translate(-50%, -50%) scale(1);
+      transform:translate(-50%, -50%) scale(1);
     }
 
     .toast-head{
@@ -355,168 +478,175 @@
       align-items:center;
       gap:12px;
     }
+
     .toast-head b{
-      font-size: 13px;
-      font-weight: 800;
-      color: rgba(26,35,126,0.92);
-    }
-    .toast-close{
-      border: 1px solid rgba(176,190,197,0.75);
-      background: rgba(249,250,251,0.98);
-      color: rgba(26,35,126,0.90);
-      border-radius: 10px;
-      padding: 6px 10px;
-      font-weight: 800;
-      cursor:pointer;
-      transition: 0.2s ease;
-    }
-    .toast-close:hover{
-      border-color: rgba(46,204,113,0.85);
-      color: var(--secondary);
-    }
-    .toast-body{
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(26,35,126,0.74);
-      line-height: 1.55;
+      font-size:13px;
+      font-weight:800;
+      color:rgba(26,35,126,0.92);
     }
 
-    .site-footer{
-      background: var(--primary);
-      color: rgba(249,250,251,0.92);
-      padding: 58px 0 24px;
-      margin-top: 60px;
+    .toast-close{
+      border:1px solid rgba(26,35,126,0.10);
+      background:rgba(249,250,251,0.98);
+      color:rgba(26,35,126,0.90);
+      border-radius:10px;
+      padding:6px 10px;
+      font-weight:800;
+      cursor:pointer;
     }
+
+    .toast-body{
+      margin-top:8px;
+      font-size:13px;
+      font-weight:600;
+      color:rgba(35,48,67,0.74);
+      line-height:1.6;
+    }
+
+    /* ===== Footer ===== */
+    .site-footer{
+      background:var(--primary);
+      color:rgba(249,250,251,0.92);
+      padding:52px 0 24px;
+      margin-top:46px;
+    }
+
     .footer-grid{
       display:grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr;
-      gap: 22px;
+      grid-template-columns:1.15fr 0.8fr 0.8fr;
+      gap:24px;
       align-items:start;
     }
 
     .footer-brand{
       display:flex;
       align-items:center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 18px;
-      letter-spacing: 0.2px;
-      margin-bottom: 14px;
+      gap:12px;
+      font-weight:800;
+      font-size:1.08rem;
+      margin-bottom:14px;
+      color:#fff;
     }
 
     .footer-text{
-      font-size: 13px;
-      line-height: 1.75;
-      color: rgba(249,250,251,0.85);
-      font-weight: 500;
-      max-width: 520px;
+      font-size:13px;
+      line-height:1.8;
+      color:rgba(249,250,251,0.84);
+      font-weight:500;
+      max-width:520px;
     }
 
     .footer-cta{
-      margin-top: 18px;
+      margin-top:18px;
       display:flex;
       align-items:center;
-      gap: 12px;
+      gap:12px;
       flex-wrap:wrap;
     }
 
     .footer-btn{
-      background: rgba(249,250,251,0.92);
-      color: var(--primary);
-      border: 1px solid rgba(176,190,197,0.35);
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-weight: 800;
+      background:rgba(255,255,255,0.94);
+      color:var(--primary);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:800;
       cursor:pointer;
-      transition: 0.2s ease;
+      transition:transform .2s ease, box-shadow .2s ease;
       text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width: 170px;
+      min-width:170px;
     }
+
     .footer-btn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(0,0,0,0.18);
+      color:var(--primary);
     }
 
     .footer-col h4{
-      margin: 4px 0 14px;
-      font-size: 13px;
-      letter-spacing: 0.2px;
-      font-weight: 800;
-      color: rgba(249,250,251,0.92);
+      margin:4px 0 14px;
+      font-size:13px;
+      letter-spacing:0.03em;
+      font-weight:800;
+      color:rgba(249,250,251,0.92);
+      text-transform:uppercase;
     }
+
     .footer-links{
       list-style:none;
       padding:0;
       margin:0;
       display:grid;
-      gap: 10px;
+      gap:10px;
     }
+
     .footer-links a{
-      color: rgba(249,250,251,0.82);
+      color:rgba(249,250,251,0.82);
       text-decoration:none;
-      font-size: 13px;
-      font-weight: 600;
-      transition: 0.2s ease;
+      font-size:13px;
+      font-weight:600;
+      transition:color .2s ease;
     }
+
     .footer-links a:hover{
-      color: var(--accent);
+      color:var(--accent);
     }
 
     .footer-contact{
-      margin-top: 18px;
+      margin-top:18px;
       display:flex;
-      gap: 10px;
+      gap:10px;
       flex-wrap:wrap;
-      color: rgba(249,250,251,0.86);
-      font-size: 13px;
-      font-weight: 600;
+      color:rgba(249,250,251,0.86);
+      font-size:13px;
+      font-weight:600;
     }
+
     .footer-contact a{
-      color: rgba(249,250,251,0.92);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      color:rgba(249,250,251,0.92);
+      text-decoration:underline;
+      text-underline-offset:3px;
     }
 
     .footer-bottom{
-      margin-top: 26px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(176,190,197,0.28);
+      margin-top:28px;
+      padding-top:18px;
+      border-top:1px solid rgba(176,190,197,0.24);
       display:flex;
       justify-content:space-between;
-      gap: 14px;
+      gap:14px;
       flex-wrap:wrap;
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(249,250,251,0.75);
+      font-size:12px;
+      font-weight:600;
+      color:rgba(249,250,251,0.74);
     }
 
     @media (max-width:980px){
-      .contact-grid{ grid-template-columns:1fr; }
-      .left, .right{ padding:40px 22px; }
-      .footer-grid{ grid-template-columns: 1fr 1fr; }
+      .contact-layout{
+        grid-template-columns:1fr;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
     @media (max-width:560px){
       .row2{ grid-template-columns:1fr; }
-      .phone-row{ grid-template-columns: 1fr; }
-      .footer-grid{ grid-template-columns: 1fr; }
-      .footer-btn{ width: 100%; }
-    }
-
-    nav.nn-nav,
-    nav.nn-nav.scrolled{
-      background: #FFFFFF !important;
-      background-color: #FFFFFF !important;
-    }
-    nav.nn-nav .logo-mask{
-      background: #FFFFFF !important;
-    }
-    nav.nn-nav .navbar-brand{
-      background: transparent !important;
+      .phone-row{ grid-template-columns:1fr; }
+      .footer-grid{ grid-template-columns:1fr; }
+      .footer-btn{ width:100%; }
+      .submit-row{ align-items:stretch; }
+      .submit-btn{ width:100%; }
+      .hero-card,
+      .meta-card,
+      .detail-card,
+      .form-card{
+        padding:20px 18px;
+      }
     }
   </style>
 </head>
@@ -527,9 +657,7 @@
   </div>
 
   <main class="page-blur">
-    <div class="animated-bg"></div>
-
-    <nav class="navbar navbar-expand-sm nn-nav">
+    <nav class="navbar navbar-expand-sm nn-nav sticky-top">
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="#">
           <span class="logo-mask">
@@ -537,16 +665,16 @@
           </span>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navLinks">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-            <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
+            <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -554,116 +682,128 @@
 
     <div class="page">
       <div class="container-mf">
-        <div class="contact-shell">
-          <div class="contact-grid">
 
-            <aside class="left">
-              <h1>Get in Touch</h1>
-              <p>
-                Let’s partner and level up your Mutual Fund journey with clarity, structure, and professional guidance.
-              </p>
+        <section class="contact-layout">
+          <aside class="detail-card">
+            <h2>Get in touch</h2>
+            <p class="lead">
+              Whether you have a question, want to understand a topic better, or want to connect with our team, we’re here to make the experience feel straightforward.
+            </p>
 
-              <ul class="info-list">
-                <li class="info-item">
-                  <div class="icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path d="M4 6.5H20V17.5H4V6.5Z" stroke="#1A237E" stroke-width="2"/>
-                      <path d="M4.5 7L12 12.5L19.5 7" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="info-k">Email</p>
-                    <p class="info-v">connect@neonestfinserve.com</p>
-                  </div>
-                </li>
-
-                <li class="info-item">
-                  <div class="icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path d="M8 3H16V21H8V3Z" stroke="#1A237E" stroke-width="2"/>
-                      <path d="M10 18H14" stroke="#1A237E" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="info-k">Phone</p>
-                    <p class="info-v" id="displayPhone">+91 9869521722</p>
-                  </div>
-                </li>
-
-                <li class="info-item">
-                  <div class="icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 22s7-5.2 7-12a7 7 0 10-14 0c0 6.8 7 12 7 12z" stroke="#1A237E" stroke-width="2"/>
-                      <path d="M12 10.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" stroke="#1A237E" stroke-width="2"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="info-k">Address</p>
-                    <p class="info-v">
-                      NeonestFinserve, Corporate Office<br/>
-                      Mumbai, Andheri<br/>
-                      India
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </aside>
-
-            <section class="right">
-              <div class="form-title">Contact Form</div>
-
-              <form id="contactForm">
-                <div class="row2">
-                  <div>
-                    <label for="firstName">First name<span class="req">*</span></label>
-                    <input id="firstName" type="text" placeholder="Enter first name" required minlength="2" maxlength="40" />
-                  </div>
-                  <div>
-                    <label for="lastName">Last name<span class="req">*</span></label>
-                    <input id="lastName" type="text" placeholder="Enter last name" required minlength="2" maxlength="40" />
-                  </div>
+            <div class="info-stack">
+              <div class="info-row">
+                <div class="icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 6.5H20V17.5H4V6.5Z" stroke="#1A237E" stroke-width="2"/>
+                    <path d="M4.5 7L12 12.5L19.5 7" stroke="#1A237E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
-
                 <div>
-                  <label for="email">Email<span class="req">*</span></label>
-                  <input id="email" type="email" placeholder="Enter email" required maxlength="120" />
+                  <p class="info-k">Email</p>
+                  <p class="info-v">connect@neonestfinserve.com</p>
                 </div>
+              </div>
 
+              <div class="info-row">
+                <div class="icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 3H16V21H8V3Z" stroke="#1A237E" stroke-width="2"/>
+                    <path d="M10 18H14" stroke="#1A237E" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <div>
-                  <label>Phone number<span class="req">*</span></label>
-                  <div class="phone-row">
-                    <select id="countryCode" aria-label="Country code" required>
-                      <option value="+91" selected>India (+91)</option>
-                      <option value="+1">United States (+1)</option>
-                      <option value="+44">United Kingdom (+44)</option>
-                      <option value="+971">United Arab Emirates (+971)</option>
-                      <option value="+61">Australia (+61)</option>
-                      <option value="+65">Singapore (+65)</option>
-                      <option value="+60">Malaysia (+60)</option>
-                      <option value="+81">Japan (+81)</option>
-                    </select>
-                    <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required minlength="7" maxlength="14" />
-                  </div>
-                  <div class="helper" id="phoneHint">Selected country code: India (+91)</div>
+                  <p class="info-k">Phone</p>
+                  <p class="info-v" id="displayPhone">+91 9869521722</p>
                 </div>
+              </div>
 
+              <div class="info-row">
+                <div class="icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22s7-5.2 7-12a7 7 0 10-14 0c0 6.8 7 12 7 12z" stroke="#1A237E" stroke-width="2"/>
+                    <path d="M12 10.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" stroke="#1A237E" stroke-width="2"/>
+                  </svg>
+                </div>
                 <div>
-                  <label for="message">Message<span class="req">*</span></label>
-                  <textarea id="message" placeholder="Tell us what you need help with" required minlength="10" maxlength="1200"></textarea>
-
-                  <div class="chips" aria-label="Quick message templates">
-                    <div class="chip" data-fill="I want to start an SIP. Please guide me on suitable categories and risk.">SIP guidance</div>
-                    <div class="chip" data-fill="I want tax saving options (ELSS). Please share category-level guidance.">Tax saving</div>
-                    <div class="chip" data-fill="I want a long-term plan for wealth creation. Please guide based on my time horizon.">Long-term plan</div>
-                  </div>
+                  <p class="info-k">Address</p>
+                  <p class="info-v">
+                    NeonestFinserve, Corporate Office<br/>
+                    Mumbai, Andheri<br/>
+                    India
+                  </p>
                 </div>
+              </div>
+            </div>
 
-                <button class="btn-mf" type="submit">Request a callback</button>
-              </form>
-            </section>
+            <div class="trust-box">
+              We value clear communication. Keep your message simple and specific, and we’ll do the same in return.
+            </div>
 
-          </div>
-        </div>
+            <div class="quick-links">
+              <a class="btn-primary-soft" href="mailto:connect@neonestfinserve.com">Email us</a>
+              <a class="btn-primary-dark" href="tel:+919869521722">Call now</a>
+            </div>
+          </aside>
+
+          <section class="form-card">
+            <div class="form-title">Send us a message</div>
+            <p class="form-sub">
+              Fill in the details below and we’ll get back to you shortly.
+            </p>
+
+            <form id="contactForm">
+              <div class="row2">
+                <div>
+                  <label for="firstName">First name<span class="req">*</span></label>
+                  <input id="firstName" type="text" placeholder="Enter first name" required minlength="2" maxlength="40" />
+                </div>
+                <div>
+                  <label for="lastName">Last name<span class="req">*</span></label>
+                  <input id="lastName" type="text" placeholder="Enter last name" required minlength="2" maxlength="40" />
+                </div>
+              </div>
+
+              <div>
+                <label for="email">Email<span class="req">*</span></label>
+                <input id="email" type="email" placeholder="Enter email" required maxlength="120" />
+              </div>
+
+              <div>
+                <label>Phone number<span class="req">*</span></label>
+                <div class="phone-row">
+                  <select id="countryCode" aria-label="Country code" required>
+                    <option value="+91" selected>India (+91)</option>
+                    <option value="+1">United States (+1)</option>
+                    <option value="+44">United Kingdom (+44)</option>
+                    <option value="+971">United Arab Emirates (+971)</option>
+                    <option value="+61">Australia (+61)</option>
+                    <option value="+65">Singapore (+65)</option>
+                    <option value="+60">Malaysia (+60)</option>
+                    <option value="+81">Japan (+81)</option>
+                  </select>
+                  <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required minlength="7" maxlength="14" />
+                </div>
+                <div class="helper" id="phoneHint">Selected country code: India (+91)</div>
+              </div>
+
+              <div>
+                <label for="message">Message<span class="req">*</span></label>
+                <textarea id="message" placeholder="Tell us what you need help with" required minlength="10" maxlength="1200"></textarea>
+
+                <div class="chips" aria-label="Quick message templates">
+                  <div class="chip" data-fill="I want to start learning about SIPs. Please help me understand the basics clearly.">SIP basics</div>
+                  <div class="chip" data-fill="I want to understand mutual fund categories better. Please guide me in a simple way.">Fund categories</div>
+                  <div class="chip" data-fill="I want a clearer understanding of long-term investing and how to think about it calmly.">Long-term clarity</div>
+                </div>
+              </div>
+
+              <div class="submit-row">
+                <div class="submit-note">We’ll review your message and respond as soon as possible.</div>
+                <button class="submit-btn" type="submit">Request a callback</button>
+              </div>
+            </form>
+          </section>
+        </section>
       </div>
     </div>
 
@@ -674,198 +814,28 @@
       </div>
       <div class="toast-body" id="toastBody">Your message has been sent.</div>
     </div>
-
-    <script>
-      window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-      });
-
-      window.addEventListener('scroll', function () {
-        const nav = document.querySelector('nav.nn-nav');
-        if (!nav) return;
-        if (window.scrollY > 50) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      }, { passive:true });
-
-      const form = document.getElementById("contactForm");
-      const firstName = document.getElementById("firstName");
-      const lastName  = document.getElementById("lastName");
-      const emailEl   = document.getElementById("email");
-      const countryCode = document.getElementById("countryCode");
-      const phone = document.getElementById("phone");
-      const messageEl = document.getElementById("message");
-
-      const phoneHint = document.getElementById("phoneHint");
-      const displayPhone = document.getElementById("displayPhone");
-
-      const toast = document.getElementById("toast");
-      const toastBody = document.getElementById("toastBody");
-      const toastClose = document.getElementById("toastClose");
-      let toastTimer = null;
-
-      function showToast(message){
-        toastBody.textContent = message;
-        toast.classList.add("show");
-        if (toastTimer) clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => toast.classList.remove("show"), 3800);
-      }
-      toastClose.addEventListener("click", () => toast.classList.remove("show"));
-
-      function updatePhoneUI(){
-        const text = countryCode.options[countryCode.selectedIndex].textContent.trim();
-        phoneHint.textContent = "Selected country code: " + text;
-
-        const digits = (phone.value || "").replace(/[^\d]/g, "").slice(0, 14);
-        displayPhone.textContent = digits ? (countryCode.value + " " + digits) : (countryCode.value + " 90000 00000");
-      }
-
-      phone.addEventListener("input", () => {
-        const digits = (phone.value || "").replace(/[^\d]/g, "");
-        if (phone.value !== digits) phone.value = digits;
-        updatePhoneUI();
-        validatePhone();
-      });
-
-      countryCode.addEventListener("change", () => {
-        updatePhoneUI();
-        validatePhone();
-      });
-
-      updatePhoneUI();
-
-      document.querySelectorAll(".chip").forEach(chip => {
-        chip.addEventListener("click", () => {
-          messageEl.value = chip.getAttribute("data-fill") || "";
-          messageEl.focus();
-          validateMessage();
-        });
-      });
-
-      function setInvalid(el, msg){ el.setCustomValidity(msg); }
-      function setValid(el){ el.setCustomValidity(""); }
-
-      function cleanName(v){ return (v || "").trim().replace(/\s+/g, " "); }
-
-      function validateFirstName(){
-        const v = cleanName(firstName.value);
-        firstName.value = v;
-
-        if (!v) return setInvalid(firstName, "Please enter your first name."), false;
-        if (v.length < 2) return setInvalid(firstName, "First name must be at least 2 characters."), false;
-        if (v.length > 40) return setInvalid(firstName, "First name is too long."), false;
-        if (!/^[A-Za-z][A-Za-z\s'.-]*$/.test(v)) return setInvalid(firstName, "First name can contain letters and basic punctuation only."), false;
-
-        setValid(firstName);
-        return true;
-      }
-
-      function validateLastName(){
-        const v = cleanName(lastName.value);
-        lastName.value = v;
-
-        if (!v) return setInvalid(lastName, "Please enter your last name."), false;
-        if (v.length < 2) return setInvalid(lastName, "Last name must be at least 2 characters."), false;
-        if (v.length > 40) return setInvalid(lastName, "Last name is too long."), false;
-        if (!/^[A-Za-z][A-Za-z\s'.-]*$/.test(v)) return setInvalid(lastName, "Last name can contain letters and basic punctuation only."), false;
-
-        setValid(lastName);
-        return true;
-      }
-
-      function validateEmail(){
-        const v = (emailEl.value || "").trim();
-        emailEl.value = v;
-
-        if (!v) return setInvalid(emailEl, "Please enter your email address."), false;
-        if (v.length > 120) return setInvalid(emailEl, "Email is too long."), false;
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return setInvalid(emailEl, "Please enter a valid email address."), false;
-
-        setValid(emailEl);
-        return true;
-      }
-
-      function validatePhone(){
-        const cc = (countryCode.value || "").trim();
-        const digits = (phone.value || "").replace(/[^\d]/g, "");
-
-        if (!digits) return setInvalid(phone, "Please enter your phone number."), false;
-
-        if (digits.length < 7 || digits.length > 14) {
-          return setInvalid(phone, "Phone number must be between 7 and 14 digits."), false;
-        }
-
-        if (cc === "+91") {
-          if (digits.length !== 10) return setInvalid(phone, "For India (+91), phone number must be 10 digits."), false;
-          if (!/^[6-9]\d{9}$/.test(digits)) return setInvalid(phone, "For India (+91), enter a valid 10-digit mobile number."), false;
-        }
-
-        setValid(phone);
-        return true;
-      }
-
-      function validateMessage(){
-        const v = (messageEl.value || "").trim();
-        if (!v) return setInvalid(messageEl, "Please enter your message."), false;
-        if (v.length < 10) return setInvalid(messageEl, "Message should be at least 10 characters."), false;
-        if (v.length > 1200) return setInvalid(messageEl, "Message is too long (max 1200 characters)."), false;
-
-        setValid(messageEl);
-        return true;
-      }
-
-      firstName.addEventListener("input", validateFirstName);
-      lastName.addEventListener("input", validateLastName);
-      emailEl.addEventListener("input", validateEmail);
-      messageEl.addEventListener("input", validateMessage);
-
-      form.addEventListener("submit", (e) => {
-        validateFirstName();
-        validateLastName();
-        validateEmail();
-        validatePhone();
-        validateMessage();
-
-        if (!form.checkValidity()) {
-          e.preventDefault();
-          form.reportValidity();
-          showToast("Please fill all required fields correctly.");
-          return;
-        }
-
-        e.preventDefault();
-        showToast("Your message has been sent. We will contact you shortly.");
-        form.reset();
-
-        [firstName,lastName,emailEl,phone,messageEl].forEach(el => el.setCustomValidity(""));
-        updatePhoneUI();
-      });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </main>
 
   <footer class="site-footer">
     <div class="container-mf">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand">
-            NeoNestFinserve
-          </div>
+          <div class="footer-brand">Neonest Finserve</div>
 
           <div class="footer-text">
-            An all-in-one platform for mutual fund learning and guidance. We help you understand categories, SIP planning, risk alignment, and long-term wealth creation with clarity.
+            A calmer space for understanding mutual funds, SIPs, investing basics, and financial topics with more clarity and less noise.
           </div>
 
           <div class="footer-cta">
             <a class="footer-btn" href="contact.html">Book a free call</a>
           </div>
 
-          <div class="footer-contact" style="margin-top:16px;">
-            <span>Contact NeonestFinserve Team</span>
+          <div class="footer-contact">
+            <span>Contact our team</span>
             <span>|</span>
             <a href="mailto:connect@neonestfinserve.com">connect@neonestfinserve.com</a>
             <span>|</span>
-            <a href="tel:+919000000000">+91 9869527122</a>
+            <a href="tel:+919869521722">+91 9869521722</a>
           </div>
         </div>
 
@@ -893,5 +863,177 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.classList.add("hide");
+        setTimeout(() => loader.remove(), 450);
+      }
+    });
+
+    window.addEventListener("scroll", function () {
+      const nav = document.querySelector("nav.nn-nav");
+      if (!nav) return;
+      if (window.scrollY > 20) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    }, { passive:true });
+
+    const form = document.getElementById("contactForm");
+    const firstName = document.getElementById("firstName");
+    const lastName  = document.getElementById("lastName");
+    const emailEl   = document.getElementById("email");
+    const countryCode = document.getElementById("countryCode");
+    const phone = document.getElementById("phone");
+    const messageEl = document.getElementById("message");
+
+    const phoneHint = document.getElementById("phoneHint");
+    const displayPhone = document.getElementById("displayPhone");
+
+    const toast = document.getElementById("toast");
+    const toastBody = document.getElementById("toastBody");
+    const toastClose = document.getElementById("toastClose");
+    let toastTimer = null;
+
+    function showToast(message){
+      toastBody.textContent = message;
+      toast.classList.add("show");
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3800);
+    }
+
+    toastClose.addEventListener("click", () => toast.classList.remove("show"));
+
+    function updatePhoneUI(){
+      const text = countryCode.options[countryCode.selectedIndex].textContent.trim();
+      phoneHint.textContent = "Selected country code: " + text;
+
+      const digits = (phone.value || "").replace(/[^\d]/g, "").slice(0, 14);
+      displayPhone.textContent = digits ? (countryCode.value + " " + digits) : (countryCode.value + " 90000 00000");
+    }
+
+    phone.addEventListener("input", () => {
+      const digits = (phone.value || "").replace(/[^\d]/g, "");
+      if (phone.value !== digits) phone.value = digits;
+      updatePhoneUI();
+      validatePhone();
+    });
+
+    countryCode.addEventListener("change", () => {
+      updatePhoneUI();
+      validatePhone();
+    });
+
+    updatePhoneUI();
+
+    document.querySelectorAll(".chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        messageEl.value = chip.getAttribute("data-fill") || "";
+        messageEl.focus();
+        validateMessage();
+      });
+    });
+
+    function setInvalid(el, msg){ el.setCustomValidity(msg); }
+    function setValid(el){ el.setCustomValidity(""); }
+
+    function cleanName(v){ return (v || "").trim().replace(/\s+/g, " "); }
+
+    function validateFirstName(){
+      const v = cleanName(firstName.value);
+      firstName.value = v;
+
+      if (!v) return setInvalid(firstName, "Please enter your first name."), false;
+      if (v.length < 2) return setInvalid(firstName, "First name must be at least 2 characters."), false;
+      if (v.length > 40) return setInvalid(firstName, "First name is too long."), false;
+      if (!/^[A-Za-z][A-Za-z\s'.-]*$/.test(v)) return setInvalid(firstName, "First name can contain letters and basic punctuation only."), false;
+
+      setValid(firstName);
+      return true;
+    }
+
+    function validateLastName(){
+      const v = cleanName(lastName.value);
+      lastName.value = v;
+
+      if (!v) return setInvalid(lastName, "Please enter your last name."), false;
+      if (v.length < 2) return setInvalid(lastName, "Last name must be at least 2 characters."), false;
+      if (v.length > 40) return setInvalid(lastName, "Last name is too long."), false;
+      if (!/^[A-Za-z][A-Za-z\s'.-]*$/.test(v)) return setInvalid(lastName, "Last name can contain letters and basic punctuation only."), false;
+
+      setValid(lastName);
+      return true;
+    }
+
+    function validateEmail(){
+      const v = (emailEl.value || "").trim();
+      emailEl.value = v;
+
+      if (!v) return setInvalid(emailEl, "Please enter your email address."), false;
+      if (v.length > 120) return setInvalid(emailEl, "Email is too long."), false;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return setInvalid(emailEl, "Please enter a valid email address."), false;
+
+      setValid(emailEl);
+      return true;
+    }
+
+    function validatePhone(){
+      const cc = (countryCode.value || "").trim();
+      const digits = (phone.value || "").replace(/[^\d]/g, "");
+
+      if (!digits) return setInvalid(phone, "Please enter your phone number."), false;
+      if (digits.length < 7 || digits.length > 14) {
+        return setInvalid(phone, "Phone number must be between 7 and 14 digits."), false;
+      }
+
+      if (cc === "+91") {
+        if (digits.length !== 10) return setInvalid(phone, "For India (+91), phone number must be 10 digits."), false;
+        if (!/^[6-9]\d{9}$/.test(digits)) return setInvalid(phone, "For India (+91), enter a valid 10-digit mobile number."), false;
+      }
+
+      setValid(phone);
+      return true;
+    }
+
+    function validateMessage(){
+      const v = (messageEl.value || "").trim();
+      if (!v) return setInvalid(messageEl, "Please enter your message."), false;
+      if (v.length < 10) return setInvalid(messageEl, "Message should be at least 10 characters."), false;
+      if (v.length > 1200) return setInvalid(messageEl, "Message is too long (max 1200 characters)."), false;
+
+      setValid(messageEl);
+      return true;
+    }
+
+    firstName.addEventListener("input", validateFirstName);
+    lastName.addEventListener("input", validateLastName);
+    emailEl.addEventListener("input", validateEmail);
+    messageEl.addEventListener("input", validateMessage);
+
+    form.addEventListener("submit", (e) => {
+      validateFirstName();
+      validateLastName();
+      validateEmail();
+      validatePhone();
+      validateMessage();
+
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        form.reportValidity();
+        showToast("Please fill all required fields correctly.");
+        return;
+      }
+
+      e.preventDefault();
+      showToast("Your message has been sent. We will contact you shortly.");
+      form.reset();
+      [firstName,lastName,emailEl,phone,messageEl].forEach(el => el.setCustomValidity(""));
+      updatePhoneUI();
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
