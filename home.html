@@ -806,7 +806,7 @@ IMPORTANT:
             <li class="nav-item reveal d3"><a class="nav-link" href="about.html">About Us</a></li>
             <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
             <li class="nav-item reveal d5"><a class="nav-link" href="contact.html">Contact Us</a></li>
-            <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">Login</a></li>
           </ul>
         </div>
       </div>
@@ -969,7 +969,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
                   <h4>Clarity over noise</h4>
                   <p>We don’t use complicated language or intimidating jargon. Every insight is explained in a way you can follow comfortably.</p>
                 </div>
-                <a class="btn btn-primary" href="#" role="button">Read more</a>
+                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
               </div>
             </div>
 
@@ -980,7 +980,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
                   <h4>Confidence over confusion</h4>
                   <p>Clean visuals, clear categories, and intuitive navigation ensure you never feel lost.</p>
                 </div>
-                <a class="btn btn-primary" href="#" role="button">Read more</a>
+                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
               </div>
             </div>
 
@@ -991,7 +991,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
                   <h4>Education over influence</h4>
                   <p>Our content is created to support learning—not to suggest actions or outcomes. Your decisions are yours.</p>
                 </div>
-                <a class="btn btn-primary" href="#" role="button">Read more</a>
+                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
               </div>
             </div>
 
@@ -1002,7 +1002,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
                   <h4>Savings with purpose</h4>
                   <p>Learn how to build emergency funds, short-term savings, and long-term wealth with clarity.</p>
                 </div>
-                <a class="btn btn-primary" href="#" role="button">Read more</a>
+                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
               </div>
             </div>
 
@@ -1013,7 +1013,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
                   <h4>Business growth insights</h4>
                   <p>Cashflow, budgeting, and smart planning—so your business finances feel organized and strong.</p>
                 </div>
-                <a class="btn btn-primary" href="#" role="button">Read more</a>
+                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
               </div>
             </div>
 
@@ -1024,7 +1024,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
                   <h4>Investing made simple</h4>
                   <p>Understand mutual funds, SIPs, risk, and returns with easy examples and clear learning.</p>
                 </div>
-                <a class="btn btn-primary" href="#" role="button">Read more</a>
+                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
               </div>
             </div>
 
@@ -1156,15 +1156,12 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
     document.body.classList.add("loaded");
 
     // Reveal system
-    const items = Array.from(document.querySelectorAll(".reveal"));
-    if (items.length) {
-      setTimeout(() => {
-        items.forEach((el, i) => {
-          const r = el.getBoundingClientRect();
-          const visible = r.top < window.innerHeight * 0.92 && r.bottom > 0;
-          if (visible) setTimeout(() => el.classList.add("in"), i * 80);
-        });
-      }, 200);
+   document.querySelectorAll(".reveal").forEach(el => {
+  const r = el.getBoundingClientRect();
+  if (r.top < window.innerHeight * 0.9) {
+    el.classList.add("in");
+  }
+});
 
       if (!("IntersectionObserver" in window)) {
         items.forEach(el => el.classList.add("in"));
@@ -1180,7 +1177,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 
         items.forEach(el => { if (!el.classList.contains("in")) obs.observe(el); });
       }
-    }
+    
 
     // Approach slider
     const track = document.getElementById("approachTrack");
@@ -1202,7 +1199,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 
     prevBtn.addEventListener("click", () => scrollByCard(-1));
     nextBtn.addEventListener("click", () => scrollByCard(1));
-    
+
     // Keyboard arrows
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") {
