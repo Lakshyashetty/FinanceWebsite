@@ -5,1186 +5,1340 @@
   <title>NeoNest Finserve</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts + Bootstrap -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
-<style>
-  :root{
-    --primary:#1A237E;
-    --secondary:#2ECC71;
-    --accent:#F4C542;
-    --light:#F9FAFB;
-    --gray:#B0BEC5;
-  }
-
-  html{ scroll-behavior:smooth; }
-
-  body{
-    background-color:var(--light);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-    margin:0;
-  }
-
-  /* ===== LOADING BLUR (like other pages) ===== */
-  .page-blur{
-    opacity:0;
-  transform:translateY(10px);
-  transition:opacity .5s ease, transform .5s ease;
-}
-  
-  body.loaded .page-blur{
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-
-  /* ================= NAVBAR ================= */
-  .logo-mask{
-    display:inline-block;
-    height:78px; /* UPDATED (bigger) */
-    overflow:hidden;
-    background-color: transparent;
-  }
-  
-
-  .navbar-brand .logo{
-    height:180px; /* UPDATED (bigger) */
-    width:auto;
-    object-fit:contain;
-    transform:translateY(-48px) scale(1.22); /* UPDATED */
-    transform-origin:center;
-    display:block;
-  }
-
-  .navbar{
-    background:white;
-    box-shadow:0 4px 18px rgba(0,0,0,0.04);
-    padding:2px 2px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    transition:background 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .navbar.scrolled{
-    background:rgba(255,255,255,0.96);
-    box-shadow:0 6px 22px rgba(0,0,0,0.06);
-  }
-
-  .nav-link{
-    font-weight:500;
-    color:var(--primary) !important;
-    transition:color 0.2s ease, background 0.2s ease;
-    border-radius:10px;
-    padding:10px 12px;
-  }
-  .nav-link:hover{
-    color:var(--secondary) !important;
-    background:rgba(26,35,126,0.06);
-  }
-
-  @media (max-width:768px){
-    .logo-mask{ height:60px; } /* CHANGED */
-      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); } /* CHANGED */
-      .navbar-nav{ text-align:center; margin-top:12px; }
-      .navbar-collapse{ padding-bottom:10px; }
-  }
-
-  /* ================= CAROUSEL (TOP HERO) ================= */
-  #financeCarousel { position: relative; background-color: #fff;
-  }
- #financeCarousel .carousel-item{
-  position: relative;
-  height: clamp(420px, 70vh, 700px);
-  overflow: hidden;
-}
-
-#financeCarousel .carousel-item img{
-  width: 100%;
-  height:100%;
-  object-fit: fill;
-  object-position: center;
-  display: block;
-}
-
-  /* IMPORTANT FIX: overlay must not capture clicks */
-  #financeCarousel .carousel-item::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background: linear-gradient(
-      120deg,
-      rgba(26,35,126,0.75) 0%,
-      rgba(0,0,0,0.35) 45%,
-      rgba(0,0,0,0.10) 100%
-    );
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  #financeCarousel .carousel-caption{
-    z-index: 3;
-    text-align: left;
-    left: 8%;
-    right: 8%;
-    bottom: 18%;
-  }
-
-  #financeCarousel .carousel-caption h2{
-    font-weight: 800;
-    font-size: clamp(1.8rem, 3.2vw, 3.3rem);
-    letter-spacing: -0.5px;
-    margin-bottom: 14px;
-  }
-
-  #financeCarousel .carousel-caption p{
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 720px;
-    color: rgba(255,255,255,0.88);
-  }
-
-  #financeCarousel .carousel-caption .btn{
-    margin-top: 12px;
-    font-weight: 700;
-    padding: 12px 22px;
-    border-radius: 12px;
-    border: none;
-  }
-
-  .btn-slide{
-    background: var(--secondary);
-    color: white;
-    box-shadow: 0 12px 28px rgba(46,204,113,0.25);
-    transition: 0.2s;
-  }
-  .btn-slide:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 16px 35px rgba(46,204,113,0.35);
-  }
-
-  @media(max-width:768px){
- #financeCarousel .carousel-item{
-    height: 65vh;
-    min-height: 380px;
-  }
-
-  #financeCarousel .carousel-item img{
-    width:100%;
-    height:100%;
-    object-fit:fill;
-    object-position:center;
-  }
-
-  #financeCarousel .carousel-caption{
-    bottom: 12%;
-    text-align:center;
-    padding:0 15px;
-  }
-
-  #financeCarousel .carousel-caption p{
-    margin:auto;
-  }
-
-  #financeCarousel .neo-arrow{
-    display:none !important;
-  }
-}
-
-  /* ================= ARROWS (SMALL GLASS + WORKING) ================= */
-  #financeCarousel .carousel-control-prev-icon,
-  #financeCarousel .carousel-control-next-icon{
-    display:none !important;
-  }
-
-  #financeCarousel .neo-arrow{
-    width: 56px;
-    z-index: 6;
-    opacity: 0;
-    transition: opacity 220ms ease;
-    pointer-events: none;
-     /* display: none !important; */
-  }
-
-  @media (hover:hover) and (pointer:fine){
-    #financeCarousel:hover .neo-arrow{ opacity: 1; }
-  }
-  @media (hover:none){
-    #financeCarousel .neo-arrow{ opacity: 1; }
-  }
-
-  #financeCarousel .carousel-control-prev.neo-arrow,
-  #financeCarousel .carousel-control-next.neo-arrow{
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  #financeCarousel .carousel-control-prev.neo-arrow{ left: 10px; }
-  #financeCarousel .carousel-control-next.neo-arrow{ right: 10px; }
-
-  #financeCarousel .neo-arrow-btn{
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    background: rgba(249,250,251,0.16);
-    border: 1px solid rgba(249,250,251,0.45);
-    color: #fff;
-    font-size: 22px;
-    font-weight: 900;
-    line-height: 1;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.20);
-    transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
-    pointer-events: auto;
-  }
-
-  @media (hover:hover) and (pointer:fine){
-    #financeCarousel .neo-arrow-btn:hover{
-      transform: scale(1.10);
-      background: rgba(249,250,251,0.24);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.26);
+  <style>
+    :root{
+      --primary:#1A237E;
+      --secondary:#2ECC71;
+      --accent:#F4C542;
+      --light:#F9FAFB;
+      --gray:#B0BEC5;
+      --text:#233043;
+      --muted:#607D8B;
+      --white:#ffffff;
+      --border:rgba(26,35,126,0.08);
+      --border-strong:rgba(26,35,126,0.12);
+      --shadow-xs:0 4px 14px rgba(15,23,42,0.04);
+      --shadow-soft:0 10px 30px rgba(15,23,42,0.06);
+      --shadow-md:0 18px 42px rgba(15,23,42,0.10);
+      --shadow-lg:0 28px 70px rgba(15,23,42,0.14);
+      --radius-sm:12px;
+      --radius-md:18px;
+      --radius-lg:24px;
+      --container:1200px;
     }
-  }
-
-  @media (max-width: 768px){
-    #financeCarousel .neo-arrow{ width: 48px; }
-    #financeCarousel .neo-arrow-btn{ width: 34px; height: 34px; font-size: 20px; }
-  }
-
-  /* ================= HERO ================= */
-  .hero{
-    position: relative;
-    text-align: center;
-    color: #fff;
-    padding: 60px 20px 90px;
-    background: var(--primary);
-    overflow: hidden;
-  }
-
-  .hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background: radial-gradient(1200px 500px at 50% 10%,
-      rgba(255,255,255,0.10) 0%,
-      rgba(255,255,255,0.00) 55%);
-    pointer-events:none;
-  }
-
-  .hero::before{
-    content:"";
-    position:absolute;
-    top:-90px;
-    left:-80px;
-    width:320px;
-    height:320px;
-    background: rgba(46,204,113,0.22);
-    filter: blur(95px);
-    border-radius:50%;
-    z-index:1;
-  }
-
-  .hero-content{
-    position: relative;
-    z-index: 2;
-    max-width: 920px;
-    margin: 0 auto;
-  }
-
-  .hero-title{
-    font-weight: 800;
-    font-size: clamp(2.4rem, 4.2vw, 4.1rem);
-    line-height: 1.05;
-    letter-spacing: -0.6px;
-    margin: 0 0 18px;
-  }
-
-  .hero-highlight{
-    font-weight: 800;
-    font-size: clamp(2.0rem, 3.4vw, 3.3rem);
-    line-height: 1.08;
-    letter-spacing: -0.4px;
-    color: var(--secondary);
-    margin: 0 0 22px;
-  }
-
-  .hero-desc{
-    font-weight: 500;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.85);
-    max-width: 820px;
-    margin: 0 auto 26px;
-  }
-
-  .btn-primary-custom{
-    background:var(--secondary);
-    border:none;
-    padding:13px 32px;
-    font-weight:600;
-    border-radius:10px;
-    letter-spacing:0.3px;
-    box-shadow:0 10px 25px rgba(46,204,113,0.25);
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .btn-primary-custom:hover{
-    transform:translateY(-2px);
-    box-shadow:0 18px 35px rgba(46,204,113,0.35);
-  }
-
-  @media (max-width: 768px){
-    .hero{ padding: 105px 18px 75px; }
-    .hero-desc{ font-size: 1.05rem; }
-  }
-
-  
-
-  /* ================= SECTIONS ================= */
-  .section{ padding:100px 20px; }
-
-  .section-title{
-    color:var(--primary);
-    font-weight:700;
-    margin-bottom:35px;
-    text-align:center;
-  }
-  .muted{ color:#607D8B; }
-
-  /* ================= FEATURE BOX ================= */
-  .feature-box{
-    background:#fff;
-    padding:26px;
-    border-radius:16px;
-    height:100%;
-    box-shadow:0 10px 30px rgba(0,0,0,0.05);
-    transition:transform 180ms ease, box-shadow 180ms ease;
-    transform:translate3d(0,0,0);
-    backface-visibility:hidden;
-    font-weight:bolder;
-  }
-  .feature-box:hover{
-    transform:translate3d(0,-4px,0);
-    box-shadow:0 16px 36px rgba(0,0,0,0.08);
-  }
-  .check{ color:var(--secondary); font-weight:600; }
-
-  /* ================= OUR APPROACH (NO BLUR) ================= */
-  /* FULL WIDTH like reference */
-  .approach-wrapper{
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-.approach-slider{
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  padding: 20px 0;
-}
-
-/* TRACK */
-.approach-track{
-  display:flex;
-  gap:18px;
-  align-items:stretch;
-  padding: 30px 60px; /* gives space so cards don’t hide under buttons */
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.approach-track::-webkit-scrollbar{
-  display:none;
-}
-
-/* Cards */
-.approach-card{
-  flex:0 0 auto;
-  width:440px;
-  height:520px;
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
-  background:white;
-  box-shadow: 0 25px 55px rgba(0,0,0,0.12);
-  transform: scale(0.96);
-  opacity: 0.95;
-  transition: transform 250ms ease, box-shadow 250ms ease;
-}
-.approach-card:hover{
-  transform: scale(1.02);
-  box-shadow: 0 35px 75px rgba(0,0,0,0.18);
-}
-
-.approach-card img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  display:block;
-}
-
-/* Body */
-.approach-body{
-  padding:22px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  height: calc(520px - 240px);
-}
-
-/* NAV BUTTONS */
-.approach-nav-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:30;
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.10);
-  font-size:30px;
-  font-weight:900;
-  color:#1A237E;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  transition:0.2s ease;
-}
-.approach-nav-btn.left{ left:18px; }
-.approach-nav-btn.right{ right:18px; }
-
-.approach-nav-btn:hover{
-  transform:translateY(-50%) scale(1.08);
-  background: rgba(255,255,255,0.25);
-}
-
-/* BLUR ENDS (like your reference image) */
-.approach-fade{
-  position:absolute;
-  top:0;
-  width:90px;
-  height:100%;
-  z-index:15;
-  pointer-events:none;
-}
-.approach-fade.left{
-  left:0;
-  background: linear-gradient(to right, rgba(233,238,245,1), rgba(233,238,245,0));
-}
-.approach-fade.right{
-  right:0;
-  background: linear-gradient(to left, rgba(233,238,245,1), rgba(233,238,245,0));
-}
-
-/* MOBILE RESPONSIVE */
-@media(max-width:768px){
-
-  .approach-track{
-    padding: 20px 20px;
-  }
-
-  .approach-card{
-    width: 85vw;
-    max-width: 380px;
-  }
-
-  /* make buttons smaller + visible for thumb */
-  .approach-nav-btn{
-    width:44px;
-    height:44px;
-    font-size:24px;
-    background: rgba(255,255,255,0.25);
-    display: none !important;
-  }
-
-  .approach-nav-btn.left{ left:10px; }
-  .approach-nav-btn.right{ right:10px; }
-
-  .approach-fade{
-    width:55px;
-  }
-}
-
-   /* ===========================
-   FOUNDER SECTION (HOVER STYLE)
-=========================== */ 
-
-.section {
-  padding: 60px 0;
-}
-
-.wrap {
-  width: min(1150px, 92%);
-  margin: auto;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 42px;
-  font-weight: 800;
-  color: #1a237e;
-}
-
-.section-sub {
-  max-width: 800px;
-  margin: 14px auto 0;
-  text-align: center;
-  line-height: 1.6;
-  color: #444;
-  font-size: 15px;
-}
-
-/* ====== GRID ====== */
-.founders-grid {
-  margin-top: 35px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-
-  /* FIX EXTRA LEFT/RIGHT SPACE */
-  padding: 0;
-  align-items: start;
-}
-
-/* ====== CARD ====== */
-.founder-card {
-  background: #fff;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  cursor: pointer;
-  align-self: start;
-}
-
-.founder-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 25px 55px rgba(0,0,0,0.18);
-}
-
-/* ====== IMAGE FIX (NO HALF FACE) ====== */
-.founder-img {
-  width: 100%;
-  height: 280px;
-  background: #f2f2f2;
-  overflow: hidden;
-  
-}
-
-.founder-img img {
-
-   width: 100%;
-  height: 320px;
-  object-fit: contain;
-  object-position: center;
-  background: linear-gradient(180deg,#f9fafb,#eef3ff);
-  padding: 14px;
-}
-
-/* ====== BODY ====== */
-.founder-body {
-  padding: 18px 18px 16px;
-  text-align: center;
-  position: relative;
-}
-
-/* Name */
-.founder-body h5 {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1a237e;
-  margin-bottom: 6px;
-}
-
-/* Role */
-.role {
-  display: inline-block;
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-/* HR */
-.founder-body hr {
-  border: none;
-  height: 1px;
-  background: #e5e5e5;
-  margin: 12px 0 14px;
-}
-
-/* ====== ICONS ====== */
-.founder-icons {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  padding-top: 6px;
-  padding-bottom: 4px;
-  position: relative;
-  z-index: 5;
-}
-
-.founder-icons .ic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid #d8d8d8;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  font-size: 18px;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.founder-icons .ic:hover {
-  transform: scale(1.08);
-}
-
-/* Icon Colors */
-.ic.linkedin { color: #0a66c2; }
-.ic.facebook { color: #1877f2; }
-.ic.x { color: #111; }
-
-/* ====== CONTENT (THE MAIN PART YOU WANT) ====== */
-
-/*
-IMPORTANT:
-- Content should appear BETWEEN name and icons
-- It should slide UP from HR line
-- It should NOT overlap name
-- It should push icons downward
-- Card should auto expand height
-*/
-
-/* Default hidden state */
-.founder-content {
-  background: rgba(26,35,126,0.85);
-  color: #fff;
-  border-radius: 14px;
-
-  /* Space from name */
-  margin-top: 12px;
-  margin-bottom: 12px;
-
-  /* Padding inside overlay */
-  padding: 0 14px;
-
-  /* Smooth slide effect */
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(30px);
-
-  transition: max-height 0.6s ease, opacity 0.4s ease, transform 0.45s ease, padding 0.5s ease;
-}
-
-/* Paragraph styling */
-.founder-content p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-@media (hover: hover) {
-  .founder-card:hover .founder-content {
-    max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-    padding: 14px;
-  }
-
-  .founder-card:hover h5 {
-    margin-bottom: 10px;
-  }
-}
-/* MOBILE ACTIVE ONLY */
-.founder-card.active .founder-content {
-  max-height: 500px;
-  opacity: 1;
-  transform: translateY(0);
-  padding: 14px;
-}
-
-.founder-card.active h5 {
-  margin-bottom: 10px;
-}
-
-
-/* Space fix: name should never be covered */
-.founder-card:hover h5,
-.founder-card.active h5 {
-  margin-bottom: 10px;
-}
-
-/* ====== MOBILE NOTE ====== */
-.tap-note {
-  margin-top: 18px;
-  text-align: center;
-  font-size: 13px;
-  color: #444;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 992px) {
-  .founders-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .founder-img {
-    height: 260px;
-  }
-}
-
-@media (max-width: 520px) {
-  .section-title {
-    font-size: 30px;
-  }
-
-  .founder-img {
-    height: 220px;
-  }
-
-  .founder-body {
-    padding: 16px 14px 14px;
-  }
-}
-
-  footer{
-    background: var(--primary);
-    color: white;
-    padding: 22px;
-    text-align: center;
-    margin-top: auto;
-  }
-
-  /* ===== ONE CLEAN FADE SYSTEM (LOAD + SCROLL) ===== */
-  .reveal{
-    opacity: 0 !important;
-    transform: translate3d(0, 22px, 0) !important;
-    filter: blur(2px);
-    transition: opacity 900ms cubic-bezier(.2,.8,.2,1),
-                transform 900ms cubic-bezier(.2,.8,.2,1),
-                filter 900ms cubic-bezier(.2,.8,.2,1);
-    will-change: opacity, transform;
-  }
-  .reveal.in{
-    opacity: 1 !important;
-    transform: translate3d(0,0,0) !important;
-    filter: blur(0);
-  }
-
-  #fot{
-    background:var(--primary);
-    color:white;
-    padding:22px;
-    text-align:center;
-    margin-top: auto;
-  }
-
-  .d1{ transition-delay: 120ms; }
-  .d2{ transition-delay: 240ms; }
-  .d3{ transition-delay: 360ms; }
-  .d4{ transition-delay: 480ms; }
-  .d5{ transition-delay: 600ms; }
-  .d6{ transition-delay: 720ms; }
-  .d7{ transition-delay: 840ms; }
-  .d8{ transition-delay: 960ms; }
-
-  
-</style>
+
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:92px;
+    }
+
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top, rgba(26,35,126,0.03), transparent 26%),
+        var(--light);
+      color:var(--text);
+      font-family:"Inter",sans-serif;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,h4,h5,h6,
+    .nav-link,
+    .btn,
+    .section-title,
+    .hero-title,
+    .hero-highlight,
+    .carousel-caption h2{
+      font-family:"Plus Jakarta Sans",sans-serif;
+      letter-spacing:-0.025em;
+    }
+
+    p,span,a,li,input,textarea,select{
+      letter-spacing:-0.01em;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container,
+    .container-fluid,
+    .wrap{
+      position:relative;
+      z-index:2;
+    }
+
+    .section{
+      padding:96px 20px;
+      position:relative;
+    }
+
+    .section::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:0;
+      transform:translateX(-50%);
+      width:min(1120px, calc(100% - 40px));
+      height:1px;
+      background:linear-gradient(
+        to right,
+        transparent,
+        rgba(26,35,126,0.07),
+        transparent
+      );
+    }
+
+    .section:last-of-type::after{
+      display:none;
+    }
+
+    @media (max-width: 768px){
+      .section{
+        padding:76px 18px;
+      }
+    }
+
+    /* ===== Loader ===== */
+    .loader{
+      position:fixed;
+      inset:0;
+      background:rgba(249,250,251,0.96);
+      display:grid;
+      place-items:center;
+      z-index:9999;
+      transition:opacity .35s ease, visibility .35s ease;
+    }
+
+    .loader.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .spinner{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      border:3px solid rgba(26,35,126,0.12);
+      border-top-color:var(--primary);
+      animation:spin .8s linear infinite;
+    }
+
+    @keyframes spin{
+      to{ transform:rotate(360deg); }
+    }
+
+    /* ===== Page entrance ===== */
+    .page-blur{
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .45s ease, transform .45s ease;
+    }
+
+    body.loaded .page-blur{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ===== Navbar ===== */
+    .navbar{
+      background:rgba(255,255,255,0.82);
+      backdrop-filter:saturate(160%) blur(12px);
+      -webkit-backdrop-filter:saturate(160%) blur(12px);
+      border-bottom:1px solid rgba(26,35,126,0.05);
+      box-shadow:0 6px 22px rgba(15,23,42,0.035);
+      padding:4px 0;
+      transition:background .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .navbar.scrolled{
+      background:rgba(255,255,255,0.94);
+      box-shadow:0 14px 34px rgba(15,23,42,0.06);
+      border-bottom-color:rgba(26,35,126,0.10);
+    }
+
+    .logo-mask{
+      display:inline-block;
+      height:78px;
+      overflow:hidden;
+      background-color:transparent;
+    }
+
+    .navbar-brand .logo{
+      height:180px;
+      width:auto;
+      object-fit:contain;
+      transform:translateY(-48px) scale(1.22);
+      transform-origin:center;
+    }
+
+    .navbar-toggler{
+      border:none;
+      box-shadow:none !important;
+      padding:8px 10px;
+      border-radius:10px;
+    }
+
+    .navbar-toggler:focus{
+      box-shadow:none;
+    }
+
+    .nav-link{
+      font-weight:700;
+      font-size:0.95rem;
+      color:var(--primary) !important;
+      border-radius:10px;
+      padding:10px 14px !important;
+      transition:color .2s ease, background-color .2s ease, transform .2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active{
+      color:var(--secondary) !important;
+      background:rgba(26,35,126,0.05);
+    }
+
+    @media (max-width:768px){
+      .logo-mask{ height:60px; }
+      .navbar-brand .logo{
+        height:120px;
+        transform:translateY(-44px) scale(1.10);
+      }
+      .navbar-nav{
+        text-align:center;
+        margin-top:12px;
+        gap:6px;
+      }
+      .navbar-collapse{
+        padding:10px 0 12px;
+      }
+    }
+
+    /* ===== Carousel ===== */
+    #financeCarousel{
+      position:relative;
+      background-color:#fff;
+      isolation:isolate;
+    }
+
+    #financeCarousel .carousel-item{
+      position:relative;
+      height:clamp(500px, 82vh, 820px);
+      overflow:hidden;
+      background:#dfe6f1;
+    }
+
+    #financeCarousel .carousel-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      transform:scale(1.02);
+      backface-visibility:hidden;
+    }
+
+    #financeCarousel .carousel-item::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(255,255,255,0.16), transparent 22%);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    #financeCarousel .carousel-item::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(
+          110deg,
+          rgba(26,35,126,0.84) 0%,
+          rgba(11,18,40,0.48) 42%,
+          rgba(11,18,40,0.08) 100%
+        );
+      z-index:1;
+      pointer-events:none;
+    }
+
+    #financeCarousel .carousel-caption{
+      z-index:3;
+      text-align:left;
+      left:8%;
+      right:8%;
+      bottom:15%;
+      max-width:760px;
+    }
+
+    #financeCarousel .carousel-caption h2{
+      font-weight:800;
+      font-size:clamp(2.2rem, 3.8vw, 4rem);
+      line-height:0.98;
+      margin-bottom:16px;
+      color:#fff;
+      text-wrap:balance;
+    }
+
+    #financeCarousel .carousel-caption p{
+      font-size:1.08rem;
+      line-height:1.8;
+      max-width:700px;
+      color:rgba(255,255,255,0.88);
+      margin-bottom:0;
+    }
+
+    #financeCarousel .carousel-caption .btn{
+      margin-top:20px;
+      font-weight:700;
+      padding:13px 24px;
+      border-radius:12px;
+      border:none;
+    }
+
+    .btn-slide{
+      background:var(--secondary);
+      color:#fff;
+      box-shadow:0 14px 28px rgba(46,204,113,0.22);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    .btn-slide:hover{
+      color:#fff;
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(46,204,113,0.30);
+      filter:saturate(104%);
+    }
+
+    #financeCarousel .carousel-indicators{
+      margin-bottom:1.5rem;
+      gap:8px;
+      align-items:center;
+    }
+
+    #financeCarousel .carousel-indicators [data-bs-target]{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      border:none;
+      background:rgba(255,255,255,0.48);
+      opacity:1;
+      transition:transform .2s ease, background-color .2s ease, width .2s ease;
+    }
+
+    #financeCarousel .carousel-indicators .active{
+      width:28px;
+      background:#fff;
+    }
+
+    #financeCarousel .carousel-control-prev-icon,
+    #financeCarousel .carousel-control-next-icon{
+      display:none !important;
+    }
+
+    #financeCarousel .neo-arrow{
+      width:62px;
+      z-index:6;
+      opacity:0;
+      transition:opacity .22s ease;
+      pointer-events:none;
+    }
+
+    @media (hover:hover) and (pointer:fine){
+      #financeCarousel:hover .neo-arrow{
+        opacity:1;
+      }
+    }
+
+    @media (hover:none){
+      #financeCarousel .neo-arrow{
+        opacity:1;
+      }
+    }
+
+    #financeCarousel .carousel-control-prev.neo-arrow,
+    #financeCarousel .carousel-control-next.neo-arrow{
+      top:50%;
+      transform:translateY(-50%);
+    }
+
+    #financeCarousel .carousel-control-prev.neo-arrow{ left:16px; }
+    #financeCarousel .carousel-control-next.neo-arrow{ right:16px; }
+
+    #financeCarousel .neo-arrow-btn{
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.34);
+      color:#fff;
+      font-size:24px;
+      font-weight:900;
+      line-height:1;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      box-shadow:0 14px 32px rgba(0,0,0,0.20);
+      transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+      pointer-events:auto;
+    }
+
+    @media (hover:hover) and (pointer:fine){
+      #financeCarousel .neo-arrow-btn:hover{
+        transform:scale(1.08);
+        background:rgba(255,255,255,0.21);
+        box-shadow:0 18px 40px rgba(0,0,0,0.25);
+      }
+    }
+
+    @media(max-width:768px){
+      #financeCarousel .carousel-item{
+        height:66vh;
+        min-height:430px;
+      }
+
+      #financeCarousel .carousel-caption{
+        bottom:12%;
+        left:6%;
+        right:6%;
+        text-align:center;
+      }
+
+      #financeCarousel .carousel-caption p{
+        margin-inline:auto;
+        font-size:1rem;
+      }
+
+      #financeCarousel .neo-arrow{
+        display:none !important;
+      }
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative;
+      text-align:center;
+      color:#fff;
+      padding:92px 20px 104px;
+      background:
+        linear-gradient(180deg, rgba(26,35,126,1) 0%, rgba(26,35,126,0.96) 100%);
+      overflow:hidden;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 520px at 50% 10%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.00) 55%);
+      pointer-events:none;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      top:-90px;
+      left:-80px;
+      width:320px;
+      height:320px;
+      background:rgba(46,204,113,0.16);
+      filter:blur(90px);
+      border-radius:50%;
+      z-index:1;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .hero-title{
+      font-weight:800;
+      font-size:clamp(2.5rem, 4.2vw, 4.5rem);
+      line-height:1.01;
+      margin:0 0 16px;
+      color:#fff;
+      text-wrap:balance;
+    }
+
+    .hero-highlight{
+      font-weight:800;
+      font-size:clamp(2rem, 3.4vw, 3.35rem);
+      line-height:1.04;
+      color:var(--secondary);
+      margin:0 0 22px;
+    }
+
+    .hero-desc{
+      font-weight:500;
+      font-size:1.08rem;
+      line-height:1.9;
+      color:rgba(255,255,255,0.86);
+      max-width:860px;
+      margin:0 auto 30px;
+    }
+
+    .btn-primary-custom{
+      background:var(--secondary);
+      color:#fff;
+      border:none;
+      padding:14px 32px;
+      font-weight:700;
+      border-radius:12px;
+      box-shadow:0 12px 28px rgba(46,204,113,0.22);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn-primary-custom:hover{
+      color:#fff;
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(46,204,113,0.30);
+    }
+
+    @media (max-width: 768px){
+      .hero{
+        padding:82px 18px 78px;
+      }
+      .hero-desc{
+        font-size:1rem;
+      }
+    }
+
+    /* ===== Section headings ===== */
+    .section-title{
+      color:var(--primary);
+      font-weight:800;
+      font-size:clamp(2rem, 2.3vw, 2.8rem);
+      line-height:1.04;
+      margin-bottom:22px;
+      text-align:center;
+      text-wrap:balance;
+    }
+
+    .section-sub{
+      max-width:800px;
+      margin:14px auto 0;
+      text-align:center;
+      line-height:1.8;
+      color:#4b5563;
+      font-size:15px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    /* ===== Features ===== */
+    .feature-box{
+      background:rgba(255,255,255,0.96);
+      padding:30px 28px;
+      border-radius:20px;
+      height:100%;
+      border:1px solid rgba(26,35,126,0.06);
+      box-shadow:var(--shadow-soft);
+      transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+      transform:translate3d(0,0,0);
+      backface-visibility:hidden;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .feature-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,0.24), transparent 40%);
+      pointer-events:none;
+    }
+
+    .feature-box:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--shadow-md);
+      border-color:rgba(26,35,126,0.10);
+    }
+
+    .feature-box h5{
+      font-size:1.08rem;
+      margin-bottom:12px;
+      font-weight:800;
+    }
+
+    .feature-box p{
+      margin-bottom:0;
+      line-height:1.8;
+      font-size:0.98rem;
+    }
+
+    .check{
+      color:var(--secondary);
+    }
+
+    /* ===== Approach ===== */
+    .approach-wrapper{
+      width:100%;
+      padding:0;
+      margin:0;
+    }
+
+    .approach-slider{
+      width:100%;
+      position:relative;
+      overflow:hidden;
+      padding:18px 0 10px;
+    }
+
+    .approach-track{
+      display:flex;
+      gap:22px;
+      align-items:stretch;
+      padding:26px 72px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      scroll-snap-type:x proximity;
+      -webkit-overflow-scrolling:touch;
+      cursor:grab;
+    }
+
+    .approach-track:active{
+      cursor:grabbing;
+    }
+
+    .approach-track::-webkit-scrollbar{
+      display:none;
+    }
+
+    .approach-card{
+      flex:0 0 auto;
+      width:420px;
+      min-height:510px;
+      border-radius:22px;
+      overflow:hidden;
+      position:relative;
+      background:#fff;
+      border:1px solid rgba(26,35,126,0.06);
+      box-shadow:0 18px 46px rgba(15,23,42,0.10);
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      scroll-snap-align:start;
+      isolation:isolate;
+    }
+
+    .approach-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.55);
+      pointer-events:none;
+    }
+
+    .approach-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 28px 64px rgba(15,23,42,0.14);
+      border-color:rgba(26,35,126,0.10);
+    }
+
+    .approach-card img{
+      width:100%;
+      height:245px;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .approach-body{
+      padding:24px 22px 24px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      height:calc(510px - 245px);
+    }
+
+    .approach-body h4{
+      color:var(--primary);
+      font-size:1.3rem;
+      font-weight:800;
+      margin-bottom:12px;
+      line-height:1.2;
+    }
+
+    .approach-body p{
+      color:#4b5563;
+      line-height:1.8;
+      margin-bottom:0;
+    }
+
+    .approach-nav-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:30;
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      border:1px solid rgba(26,35,126,0.10);
+      background:rgba(255,255,255,0.88);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      font-size:28px;
+      font-weight:900;
+      color:var(--primary);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 14px 32px rgba(15,23,42,0.10);
+      transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .approach-nav-btn.left{ left:16px; }
+    .approach-nav-btn.right{ right:16px; }
+
+    .approach-nav-btn:hover{
+      transform:translateY(-50%) scale(1.06);
+      background:rgba(255,255,255,0.98);
+      box-shadow:0 18px 40px rgba(15,23,42,0.14);
+    }
+
+    .approach-fade{
+      position:absolute;
+      top:0;
+      width:110px;
+      height:100%;
+      z-index:15;
+      pointer-events:none;
+    }
+
+    .approach-fade.left{
+      left:0;
+      background:linear-gradient(to right, rgba(249,250,251,1), rgba(249,250,251,0));
+    }
+
+    .approach-fade.right{
+      right:0;
+      background:linear-gradient(to left, rgba(249,250,251,1), rgba(249,250,251,0));
+    }
+
+    @media(max-width:768px){
+      .approach-track{
+        padding:16px 18px;
+        gap:16px;
+      }
+
+      .approach-card{
+        width:84vw;
+        max-width:360px;
+        min-height:485px;
+      }
+
+      .approach-body{
+        height:calc(485px - 245px);
+      }
+
+      .approach-nav-btn{
+        display:none !important;
+      }
+
+      .approach-fade{
+        width:42px;
+      }
+    }
+
+    /* ===== Team ===== */
+    .wrap{
+      width:min(1150px, 92%);
+      margin:auto;
+    }
+
+    .founders-grid{
+      margin-top:38px;
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px;
+      padding:0;
+      align-items:start;
+    }
+
+    .founder-card{
+      background:#fff;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(26,35,126,0.06);
+      box-shadow:0 18px 44px rgba(15,23,42,0.10);
+      transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+      cursor:pointer;
+      align-self:start;
+      position:relative;
+    }
+
+    .founder-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.55);
+      pointer-events:none;
+    }
+
+    .founder-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 28px 62px rgba(15,23,42,0.15);
+      border-color:rgba(26,35,126,0.10);
+    }
+
+    .founder-img{
+      width:100%;
+      height:290px;
+      background:#f2f2f2;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .founder-img img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      background:linear-gradient(180deg,#f9fafb,#eef3ff);
+      padding:14px;
+    }
+
+    .founder-body{
+      padding:22px 18px 16px;
+      text-align:center;
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0.98));
+    }
+
+    .founder-body h5{
+      font-size:1.35rem;
+      font-weight:800;
+      color:var(--primary);
+      margin-bottom:6px;
+    }
+
+    .role{
+      display:inline-block;
+      font-size:14px;
+      color:#555;
+      margin-bottom:10px;
+      font-weight:600;
+    }
+
+    .founder-body hr{
+      border:none;
+      height:1px;
+      background:#e6e8ee;
+      margin:14px 0 16px;
+    }
+
+    .founder-icons{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      padding-top:6px;
+      padding-bottom:4px;
+      position:relative;
+      z-index:5;
+    }
+
+    .founder-icons .ic{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border:1px solid #d8d8d8;
+      display:grid;
+      place-items:center;
+      text-decoration:none;
+      font-size:18px;
+      background:#fff;
+      transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+
+    .founder-icons .ic:hover{
+      transform:scale(1.08);
+      background:#f8fafc;
+      box-shadow:0 10px 20px rgba(15,23,42,0.08);
+    }
+
+    .ic.linkedin{ color:#0a66c2; }
+    .ic.facebook{ color:#1877f2; }
+    .ic.x{ color:#111; }
+
+    .founder-content{
+      background:rgba(26,35,126,0.94);
+      color:#fff;
+      border-radius:14px;
+      margin-top:12px;
+      margin-bottom:12px;
+      padding:0 14px;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transform:translateY(24px);
+      transition:max-height .55s ease, opacity .35s ease, transform .4s ease, padding .45s ease;
+    }
+
+    .founder-content p{
+      font-size:14px;
+      line-height:1.78;
+      margin-bottom:10px;
+    }
+
+    @media (hover: hover) {
+      .founder-card:hover .founder-content{
+        max-height:500px;
+        opacity:1;
+        transform:translateY(0);
+        padding:14px;
+      }
+
+      .founder-card:hover h5{
+        margin-bottom:10px;
+      }
+    }
+
+    .founder-card.active .founder-content{
+      max-height:500px;
+      opacity:1;
+      transform:translateY(0);
+      padding:14px;
+    }
+
+    .founder-card.active h5{
+      margin-bottom:10px;
+    }
+
+    .tap-note{
+      margin-top:18px;
+      text-align:center;
+      font-size:13px;
+      color:#444;
+    }
+
+    @media (max-width: 992px){
+      .founders-grid{
+        grid-template-columns:1fr;
+      }
+
+      .founder-img{
+        height:260px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .section-title{
+        font-size:30px;
+      }
+
+      .founder-img{
+        height:220px;
+      }
+
+      .founder-body{
+        padding:16px 14px 14px;
+      }
+    }
+
+    /* ===== Footer ===== */
+    footer,
+    #fot{
+      background:var(--primary);
+      color:white;
+      padding:24px 22px;
+      text-align:center;
+      margin-top:auto;
+      font-weight:500;
+      letter-spacing:-0.01em;
+    }
+
+    /* ===== Reveal ===== */
+    .reveal{
+      opacity:0;
+      transform:translate3d(0,18px,0);
+      transition:opacity .7s cubic-bezier(.2,.8,.2,1),
+                 transform .7s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:translate3d(0,0,0);
+    }
+
+    .d1{ transition-delay:80ms; }
+    .d2{ transition-delay:140ms; }
+    .d3{ transition-delay:200ms; }
+    .d4{ transition-delay:260ms; }
+    .d5{ transition-delay:320ms; }
+    .d6{ transition-delay:380ms; }
+    .d7{ transition-delay:440ms; }
+    .d8{ transition-delay:500ms; }
+
+    /* ===== Reduced motion ===== */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+
+      *,
+      *::before,
+      *::after{
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+        scroll-behavior:auto !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<main>
-  <!-- Loader -->
-  <div class="loader" id="loader"><div class="spinner"></div></div>
+  <main>
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+    </div>
 
-  <!-- Everything else -->
-  <div class="page-blur">
+    <div class="page-blur">
+      <nav class="navbar navbar-expand-sm navbar-light sticky-top">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+          <a class="navbar-brand" href="#">
+            <span class="logo-mask">
+              <img src="./images/Logo2.png" class="logo" alt="NeoNest Logo" loading="lazy">
+            </span>
+          </a>
 
-    <!-- ================= NAVBAR ================= -->
-    <nav class="navbar navbar-expand-sm navbar-light sticky-top reveal d1">
-      <div class="container-fluid d-flex align-items-center justify-content-between">
-        <a class="navbar-brand" href="#">
-          <span class="logo-mask">
-            <img src="./images/Logo2.png" class="logo" alt="NeoNest Logo" loading="lazy">
-          </span>
-        </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <button class="navbar-toggler reveal d2" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
-          <span class="navbar-toggler-icon"></span>
+          <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item reveal d2"><a class="nav-link active" href="home.html">Home</a></li>
+              <li class="nav-item reveal d3"><a class="nav-link" href="about.html">About Us</a></li>
+              <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
+              <li class="nav-item reveal d5"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div id="financeCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./images/immg.jpg" alt="Smart investing">
+            <div class="carousel-caption">
+              <h2>Invest smarter. Stay calm.</h2>
+              <p>Research-backed insights to help you understand mutual funds, markets, and long-term wealth building.</p>
+              <a href="#" class="btn btn-slide">Start Now</a>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="./images/carousel2.jpg" alt="Savings planning">
+            <div class="carousel-caption">
+              <h2>Turn savings into a strategy.</h2>
+              <p>Build a savings system that supports goals like travel, education, emergency funds, and financial freedom.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="./images/carousel3.jpg" alt="SIP wealth">
+            <div class="carousel-caption">
+              <h2>SIP is not just a plan.</h2>
+              <p>It’s discipline. Learn how consistent investing can create powerful results over time.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="./images/carousel4.jpg" alt="Business finance">
+            <div class="carousel-caption">
+              <h2>Business finance, simplified.</h2>
+              <p>From cashflow to risk planning—understand what makes businesses financially strong.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="./images/carousel5.jpg" alt="Retirement planning">
+            <div class="carousel-caption">
+              <h2>Plan your retirement with confidence.</h2>
+              <p>Learn the basics of long-term investing, retirement funds, and goal-based financial planning.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev neo-arrow" type="button" data-bs-target="#financeCarousel" data-bs-slide="prev" aria-label="Previous">
+          <span class="neo-arrow-btn" aria-hidden="true">‹</span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navLinks">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item reveal d2"><a class="nav-link active" href="home.html">Home</a></li>
-            <li class="nav-item reveal d3"><a class="nav-link" href="about.html">About Us</a></li>
-            <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
-            <li class="nav-item reveal d5"><a class="nav-link" href="contact.html">Contact Us</a></li>
-            <!-- <li class="nav-item"><a class="nav-link active" href="#">Login</a></li> -->
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- ================= FINANCE CAROUSEL (TOP) ================= -->
-    <div id="financeCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
-
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="2"></button>
-        <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="3"></button>
-        <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="4"></button>
-        <!-- <button type="button" data-bs-target="#financeCarousel" data-bs-slide-to="5"></button> -->
+        <button class="carousel-control-next neo-arrow" type="button" data-bs-target="#financeCarousel" data-bs-slide="next" aria-label="Next">
+          <span class="neo-arrow-btn" aria-hidden="true">›</span>
+        </button>
       </div>
 
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="./images/immg.jpg" alt="Smart investing" >
-          <div class="carousel-caption">
-            <h2>Invest smarter. Stay calm.</h2>
-            <p>Research-backed insights to help you understand mutual funds, markets, and long-term wealth building.</p>
-            <a href="#" class="btn btn-slide">Start Now</a>
+      <section class="hero hero-clean">
+        <div class="container hero-content">
+          <h1 class="hero-title reveal d2">Money doesn’t have to feel overwhelming.</h1>
+
+          <h2 class="hero-highlight reveal d3">
+            It can be clear, calm, and confident.
+          </h2>
+
+          <p class="hero-desc reveal d4">
+            Money decisions feel lighter when the information is clear.
+            Neonest Finserve aims to provide modern learning and insights that helps individuals, companies, and families understand financial topics at their own pace—without noise, pressure, or recommendations. we’re building a universe for them to slow down, explore, learn, and make their own financial decisions with clarity and confidence.
+          </p>
+
+          <div class="hero-actions reveal d5">
+            <a href="#" class="btn btn-primary-custom">Explore Insights</a>
           </div>
         </div>
+      </section>
 
-        <div class="carousel-item">
-          <img src="./images/carousel2.jpg" alt="Savings planning" >
-          <div class="carousel-caption">
-            <h2>Turn savings into a strategy.</h2>
-            <p>Build a savings system that supports goals like travel, education, emergency funds, and financial freedom.</p>
-            <!-- <a href="#" class="btn btn-slide">Start Saving Better</a> -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title reveal d1">A Fresher Way to Look at Your Finances</h2>
+
+          <div class="row g-4">
+            <div class="col-md-4 reveal d2">
+              <div class="feature-box">
+                <h5 class="check">✔ Clear</h5>
+                <p class="muted">
+                  Well-structured information, simple explanations, and intuitive visualisations.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4 reveal d3">
+              <div class="feature-box">
+                <h5 class="check">✔ Calm</h5>
+                <p class="muted">
+                  A clutter-free, non-promotional environment where learning takes the front seat.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4 reveal d4">
+              <div class="feature-box">
+                <h5 class="check">✔ Empowering</h5>
+                <p class="muted">
+                  You stay in control. We simply give you the clarity to think confidently.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="carousel-item">
-          <img src="./images/carousel3.jpg" alt="SIP wealth" >
-          <div class="carousel-caption">
-            <h2>SIP is not just a plan.</h2>
-            <p>It’s discipline. Learn how consistent investing can create powerful results over time.</p>
-            <!-- <a href="#" class="btn btn-slide">Learn SIP</a> -->
+      <section class="section">
+        <h2 class="section-title text-center mt-0 reveal d1">Our Approach</h2>
+
+        <div class="approach-wrapper">
+          <div class="approach-slider" id="approachSlider">
+            <button class="approach-nav-btn left" id="prevApproach" aria-label="Previous approach card">‹</button>
+
+            <div class="approach-track" id="approachTrack">
+              <div class="approach-card">
+                <img src="./images/ind1.png" alt="Clarity over noise" />
+                <div class="approach-body">
+                  <div>
+                    <h4>Clarity over noise</h4>
+                    <p>We don’t use complicated language or intimidating jargon. Every insight is explained in a way you can follow comfortably.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="approach-card">
+                <img src="./images/ind2.png" alt="Confidence over confusion" />
+                <div class="approach-body">
+                  <div>
+                    <h4>Confidence over confusion</h4>
+                    <p>Clean visuals, clear categories, and intuitive navigation ensure you never feel lost.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="approach-card">
+                <img src="./images/ind3.png" alt="Education over influence" />
+                <div class="approach-body">
+                  <div>
+                    <h4>Education over influence</h4>
+                    <p>Our content is created to support learning—not to suggest actions or outcomes. Your decisions are yours.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="approach-card">
+                <img src="./images/ind4.png" alt="Savings habits" />
+                <div class="approach-body">
+                  <div>
+                    <h4>Savings with purpose</h4>
+                    <p>Learn how to build emergency funds, short-term savings, and long-term wealth with clarity.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="approach-card">
+                <img src="./images/ind5.png" alt="Business growth finance" />
+                <div class="approach-body">
+                  <div>
+                    <h4>Business growth insights</h4>
+                    <p>Cashflow, budgeting, and smart planning—so your business finances feel organized and strong.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="approach-card">
+                <img src="./images/ind6.png" alt="Smart investing" />
+                <div class="approach-body">
+                  <div>
+                    <h4>Investing made simple</h4>
+                    <p>Understand mutual funds, SIPs, risk, and returns with easy examples and clear learning.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="approach-nav-btn right" id="nextApproach" aria-label="Next approach card">›</button>
+
+            <div class="approach-fade left"></div>
+            <div class="approach-fade right"></div>
           </div>
         </div>
+      </section>
 
-        <div class="carousel-item">
-          <img src="./images/carousel4.jpg" alt="Business finance" >
-          <div class="carousel-caption">
-            <h2>Business finance, simplified.</h2>
-            <p>From cashflow to risk planning—understand what makes businesses financially strong.</p>
-            <!-- <a href="#" class="btn btn-slide">Business Insights</a> -->
+      <section class="section pt-0">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="section-title reveal d1">Our Team</h2>
+            <p class="section-sub reveal d2">
+              Neonest Finserve was started by industry professionals with deep experience in Investments, Research, banking, finance,
+              and consumer behaviour — united by one mission: make financial understanding accessible for everyone.
+            </p>
           </div>
+
+          <div class="founders-grid">
+            <div class="founder-card reveal d3">
+              <div class="founder-img">
+                <img src="./images/Navin.jpeg" alt="Navin Jain">
+              </div>
+
+              <div class="founder-body">
+                <h5>Navin Jain</h5>
+                <span class="role">Co-Founder</span>
+                <hr>
+
+                <div class="founder-content">
+                  <p>
+                    A seasoned finance professional with close to two decades of expertise in financial strategy,
+                    Balance Sheet & Liquidity Management, Corporate Treasury, Domestic & Overseas Markets,
+                    PnL optimisation, and risk management.
+                  </p>
+                  <p>
+                    He has been associated with Institutional like Societe Generale, HDFC Bank Ltd., Bandhan Bank, and IDBI Bank Ltd.
+                  </p>
+                </div>
+
+                <div class="founder-icons">
+                  <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+                  <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="founder-card reveal d4">
+              <div class="founder-img">
+                <img src="./images/santosh.jpeg" alt="Santosh Singh">
+              </div>
+
+              <div class="founder-body">
+                <h5>Santosh Singh</h5>
+                <span class="role">Co-Founder</span>
+                <hr>
+
+                <div class="founder-content">
+                  <p>
+                    Santosh is a Chartered Accountant & CFA charterholder with around 25 years of profound experience
+                    in financial markets.
+                  </p>
+                  <p>
+                    He was associated with Motilal Oswal Asset Management as Head of Research and later as Fund Manager.
+                    Previously, he was Head of Research and Lead Analyst at Haitong International Securities Ltd.
+                  </p>
+                  <p>
+                    Notably, he was ranked the No. 1 analyst in India for the insurance sector in the Asia Money polls from 2015 to 2017.
+                  </p>
+                </div>
+
+                <div class="founder-icons">
+                  <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+                  <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="tap-note"></p>
         </div>
-
-        <div class="carousel-item">
-          <img src="./images/carousel5.jpg" alt="Retirement planning" >
-          <div class="carousel-caption">
-            <h2>Plan your retirement with confidence.</h2>
-            <p>Learn the basics of long-term investing, retirement funds, and goal-based financial planning.</p>
-            <!-- <a href="#" class="btn btn-slide">Retirement Guide</a> -->
-          </div>
-        </div>
-
-        <!-- <div class="carousel-item">
-          <img src="./images/carousel6.jpg" alt="Family planning finance" loading="lazy">
-          <div class="carousel-caption">
-            <h2>Finance for families & future.</h2>
-            <p>Support your family with smart decisions—insurance, budgeting, education funds, and wealth planning.</p>
-          </div>
-        </div> -->
-      </div>
-
-      <!-- small glass arrows -->
-      <button class="carousel-control-prev neo-arrow" type="button"
-        data-bs-target="#financeCarousel" data-bs-slide="prev" aria-label="Previous">
-        <span class="neo-arrow-btn" aria-hidden="true">‹</span>
-      </button>
-
-      <button class="carousel-control-next neo-arrow" type="button"
-        data-bs-target="#financeCarousel" data-bs-slide="next" aria-label="Next">
-        <span class="neo-arrow-btn" aria-hidden="true">›</span>
-      </button>
+      </section>
     </div>
+  </main>
 
-   
+  <footer id="fot">
+    © All Rights Reserved to Neonest Finserve Private Limited
+  </footer>
 
-    <!-- ================= HERO ================= -->
-    <section class="hero hero-clean">
-      <div class="container hero-content">
-        <h1 class="hero-title reveal d2">Money doesn’t have to feel overwhelming.</h1>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <h2 class="hero-highlight reveal d3">
-          It can be clear, calm, and confident.
-        </h2>
+  <script>
+    const navbar = document.querySelector(".navbar");
+    const loader = document.getElementById("loader");
 
-        <p class="hero-desc reveal d4">
-          Money decisions feel lighter when the information is clear.
-Neonest Finserve aims to provide modern learning and insights that helps individuals, companies, and families understand financial topics at their own pace—without noise, pressure, or recommendations. we’re building a universe for them to slow down, explore, learn, and make their own financial decisions with clarity and confidence.
+    function handleNavbarScroll() {
+      if (!navbar) return;
+      navbar.classList.toggle("scrolled", window.scrollY > 20);
+    }
 
-        </p>
+    window.addEventListener("scroll", handleNavbarScroll, { passive: true });
 
-        <div class="hero-actions reveal d5">
-          <a href="#" class="btn btn-primary-custom">Explore Insights</a>
-        </div>
-      </div>
-    </section>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+      handleNavbarScroll();
 
-    
+      if (loader) {
+        loader.classList.add("hide");
+        setTimeout(() => loader.remove(), 450);
+      }
 
-    <!-- ================= FEATURES ================= -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title reveal d1">A Fresher Way to Look at Your Finances</h2>
-
-        <div class="row g-4">
-          <div class="col-md-4 reveal d2">
-            <div class="feature-box">
-              <h5 class="check">✔ Clear</h5>
-              <p class="muted">
-                Well-structured information, simple explanations, and intuitive visualisations.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4 reveal d3">
-            <div class="feature-box">
-              <h5 class="check">✔ Calm</h5>
-              <p class="muted">
-                A clutter-free, non-promotional environment where learning takes the front seat.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4 reveal d4">
-            <div class="feature-box">
-              <h5 class="check">✔ Empowering</h5>
-              <p class="muted">
-                You stay in control. We simply give you the clarity to think confidently.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-</section>
-      <!-- ================= OUR APPROACH ================= -->
-       <section class="section">
-      <h2 class="text-center mt-5">Our Approach </h2>
-
-      <div class="approach-wrapper">
-        <div class="approach-slider" id="approachSlider">
-
-          <button class="approach-nav-btn left" id="prevApproach">‹</button>
-
-          <div class="approach-track" id="approachTrack">
-
-            <div class="approach-card">
-              <img src="./images/ind1.png" alt="Clarity over noise" />
-              <div class="approach-body">
-                <div>
-                  <h4>Clarity over noise</h4>
-                  <p>We don’t use complicated language or intimidating jargon. Every insight is explained in a way you can follow comfortably.</p>
-                </div>
-                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
-              </div>
-            </div>
-
-            <div class="approach-card">
-              <img src="./images/ind2.png" alt="Confidence over confusion" />
-              <div class="approach-body">
-                <div>
-                  <h4>Confidence over confusion</h4>
-                  <p>Clean visuals, clear categories, and intuitive navigation ensure you never feel lost.</p>
-                </div>
-                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
-              </div>
-            </div>
-
-            <div class="approach-card">
-              <img src="./images/ind3.png" alt="Education over influence" />
-              <div class="approach-body">
-                <div>
-                  <h4>Education over influence</h4>
-                  <p>Our content is created to support learning—not to suggest actions or outcomes. Your decisions are yours.</p>
-                </div>
-                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
-              </div>
-            </div>
-
-            <div class="approach-card">
-              <img src="./images/ind4.png" alt="Savings habits" />
-              <div class="approach-body">
-                <div>
-                  <h4>Savings with purpose</h4>
-                  <p>Learn how to build emergency funds, short-term savings, and long-term wealth with clarity.</p>
-                </div>
-                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
-              </div>
-            </div>
-
-            <div class="approach-card">
-              <img src="./images/ind5.png" alt="Business growth finance" />
-              <div class="approach-body">
-                <div>
-                  <h4>Business growth insights</h4>
-                  <p>Cashflow, budgeting, and smart planning—so your business finances feel organized and strong.</p>
-                </div>
-                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
-              </div>
-            </div>
-
-            <div class="approach-card">
-              <img src="./images/ind6.png" alt="Smart investing" />
-              <div class="approach-body">
-                <div>
-                  <h4>Investing made simple</h4>
-                  <p>Understand mutual funds, SIPs, risk, and returns with easy examples and clear learning.</p>
-                </div>
-                <!-- <a class="btn btn-primary" href="#" role="button">Read more</a> -->
-              </div>
-            </div>
-
-          </div>
-
-          <button class="approach-nav-btn right" id="nextApproach">›</button>
-
-          <div class="approach-fade left"></div>
-          <div class="approach-fade right"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FOUNDERS ================= -->
-<!-- TEAM / FOUNDERS -->
-   <section class="section pt-0">
-  <div class="wrap">
-
-    <div class="section-head">
-      <h2 class="section-title">Our Team </h2>
-      <p class="section-sub">
-        Neonest Finserve was started by industry professionals with deep experience in Investments, Research, banking, finance,
-        and consumer behaviour — united by one mission: make financial understanding accessible for everyone.
-      </p>
-    </div>
-
-    <div class="founders-grid">
-
-      <!-- Founder 1 -->
-      <div class="founder-card">
-
-        <div class="founder-img">
-          <img src="./images/Navin.jpeg" alt="Navin Jain">
-        </div>
-
-        <div class="founder-body">
-          <h5>Navin Jain</h5>
-          <span class="role">Co-Founder</span>
-
-          <!-- This is the "trigger line" -->
-          <hr>
-
-          <!-- CONTENT should slide from HR to name -->
-          <div class="founder-content">
-            <p>
-              A seasoned finance professional with close to two decades of expertise in financial strategy,
-              Balance Sheet & Liquidity Management, Corporate Treasury, Domestic & Overseas Markets,
-              PnL optimisation, and risk management.
-            </p>
-            <p>
-              He has been associated with Institutional like Societe Generale, HDFC Bank Ltd., Bandhan Bank, and IDBI Bank Ltd.
-            </p>
-          </div>
-
-          <!-- Icons always stay at bottom -->
-          <div class="founder-icons">
-            <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Founder 2 -->
-      <div class="founder-card">
-
-        <div class="founder-img">
-          <img src="./images/santosh.jpeg" alt="Santosh Singh">
-        </div>
-
-        <div class="founder-body">
-          <h5>Santosh Singh</h5>
-          <span class="role">Co-Founder</span>
-
-          <hr>
-
-          <div class="founder-content">
-            <p>
-              Santosh is a Chartered Accountant & CFA charterholder with around 25 years of profound experience
-              in financial markets.
-            </p>
-            <p>
-              He was associated with Motilal Oswal Asset Management as Head of Research and later as Fund Manager.
-              Previously, he was Head of Research and Lead Analyst at Haitong International Securities Ltd.
-            </p>
-            <p>
-              Notably, he was ranked the No. 1 analyst in India for the insurance sector in the Asia Money polls from 2015 to 2017.
-            </p>
-          </div>
-
-          <div class="founder-icons">
-            <a href="#" class="ic linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="ic x" target="_blank"><i class="bi bi-twitter-x"></i></a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-<!-- Mobile Hint -->
-    <p class="tap-note">
-      
-    </p>
-
-  </div>
-</section>
-
-
-</main>
-
-<footer id="fot">
-  © All Rights Reserved to Neonest Finserve Private Limited
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-  // cache selectors once (no behavior change)
-  const navbar = document.querySelector('.navbar');
-
-  // navbar scroll (same logic)
-  window.addEventListener('scroll', function () {
-    if (!navbar) return;
-    if (window.scrollY > 50) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
-  }, { passive:true });
-
-  window.addEventListener("load", () => {
-    document.body.classList.add("loaded");
-
-   const items = Array.from(document.querySelectorAll(".reveal"));
-if (items.length) {
- items.forEach(el => el.classList.add("in"));;
+      const reveals = document.querySelectorAll(".reveal");
 
       if (!("IntersectionObserver" in window)) {
-        items.forEach(el => el.classList.add("in"));
+        reveals.forEach(el => el.classList.add("in"));
       } else {
         const obs = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
@@ -1193,108 +1347,85 @@ if (items.length) {
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
+        }, {
+          threshold: 0.12,
+          rootMargin: "0px 0px -8% 0px"
+        });
 
-        items.forEach(el => { if (!el.classList.contains("in")) obs.observe(el); });
+        reveals.forEach(el => obs.observe(el));
       }
-    
-}
-    // Approach slider
-    const track = document.getElementById("approachTrack");
-    const prevBtn = document.getElementById("prevApproach");
-    const nextBtn = document.getElementById("nextApproach");
 
-    function scrollByCard(direction){
-      const card = track.querySelector(".approach-card");
-      if(!card) return;
+      const track = document.getElementById("approachTrack");
+      const prevBtn = document.getElementById("prevApproach");
+      const nextBtn = document.getElementById("nextApproach");
 
-      const gap = 18;
-      const scrollAmount = card.offsetWidth + gap;
+      function getScrollAmount() {
+        const card = track?.querySelector(".approach-card");
+        if (!card) return 320;
+        const styles = window.getComputedStyle(track);
+        const gap = parseInt(styles.columnGap || styles.gap || 22, 10);
+        return card.offsetWidth + gap;
+      }
 
-      track.scrollBy({
-        left: direction * scrollAmount,
-        behavior: "smooth"
+      function scrollByCard(direction) {
+        if (!track) return;
+        track.scrollBy({
+          left: direction * getScrollAmount(),
+          behavior: "smooth"
+        });
+      }
+
+      if (prevBtn) prevBtn.addEventListener("click", () => scrollByCard(-1));
+      if (nextBtn) nextBtn.addEventListener("click", () => scrollByCard(1));
+
+      document.addEventListener("keydown", (e) => {
+        if (!track) return;
+        if (e.key === "ArrowRight") scrollByCard(1);
+        if (e.key === "ArrowLeft") scrollByCard(-1);
       });
-    }
-    
 
-    prevBtn.addEventListener("click", () => scrollByCard(-1));
-    nextBtn.addEventListener("click", () => scrollByCard(1));
+      if (track) {
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
 
-    // Keyboard arrows
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") {
-    scrollByCard(1);
-  }
+        track.addEventListener("mousedown", (e) => {
+          isDown = true;
+          startX = e.pageX - track.offsetLeft;
+          scrollLeft = track.scrollLeft;
+        });
 
-  if (e.key === "ArrowLeft") {
-    scrollByCard(-1);
-  }
-});
+        track.addEventListener("mouseleave", () => {
+          isDown = false;
+        });
 
-    // // Mouse wheel => horizontal
-    // track.addEventListener("wheel", (e) => {
-    //   e.preventDefault();
-    //   const speed = 1.2;
-    //   const delta = (Math.abs(e.deltaY) > Math.abs(e.deltaX)) ? e.deltaY : e.deltaX;
-    //   track.scrollLeft += delta * speed;
-    // }, { passive: false });
+        track.addEventListener("mouseup", () => {
+          isDown = false;
+        });
 
-    // Grab drag
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    track.addEventListener("mousedown", (e) => {
-      isDown = true;
-      startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
+        track.addEventListener("mousemove", (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - track.offsetLeft;
+          const walk = (x - startX) * 1.35;
+          track.scrollLeft = scrollLeft - walk;
+        });
+      }
     });
 
-    track.addEventListener("mouseleave", () => isDown = false);
-    track.addEventListener("mouseup", () => isDown = false);
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll(".founder-card");
+      const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
-    track.addEventListener("mousemove", (e) => {
-      if(!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - track.offsetLeft;
-      const walk = (x - startX) * 1.6;
-      track.scrollLeft = scrollLeft - walk;
+      if (!isMobile) return;
+
+      cards.forEach(card => {
+        card.addEventListener("click", function (e) {
+          if (e.target.closest(".founder-icons a")) return;
+          card.classList.toggle("active");
+        });
+      });
     });
-  });
-  // Tap-to-open for mobile (hover doesn't work on phones)
-
-
-/* ===============================
-   MOBILE TAP TO EXPAND / COLLAPSE
-================================ */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const cards = document.querySelectorAll(".founder-card");
-
-  // Detect mobile (touch device)
-  const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-
-  if (!isMobile) return; // Do nothing on desktop
-
-  cards.forEach(card => {
-
-    card.addEventListener("click", function (e) {
-
-      // Prevent toggle if clicking on social icons
-      if (e.target.closest(".founder-icons a")) return;
-
-      // Toggle SAME card only
-      card.classList.toggle("active");
-
-    });
-
-  });
-
-});
-
-</script>
-
+  </script>
 </body>
 </html>

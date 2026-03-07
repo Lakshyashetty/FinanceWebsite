@@ -76,18 +76,18 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .logo-mask{
-     display:inline-block;
-    height:78px; /* UPDATED (bigger) */
-    overflow:hidden;
+      display:inline-block;
+      height:78px;
+      overflow:hidden;
     }
 
     .navbar-brand .logo{
-      height:180px; /* UPDATED (bigger) */
-    width:auto;
-    object-fit:contain;
-    transform:translateY(-48px) scale(1.22); /* UPDATED */
-    transform-origin:center;
-    display:block;
+      height:180px;
+      width:auto;
+      object-fit:contain;
+      transform:translateY(-48px) scale(1.22);
+      transform-origin:center;
+      display:block;
     }
 
     nav.nn-nav{
@@ -126,8 +126,8 @@
     }
 
     @media (max-width:768px){
-      .logo-mask{ height:60px; } /* CHANGED */
-      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); } /* CHANGED */
+      .logo-mask{ height:60px; }
+      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); }
       .navbar-nav{ text-align:center; margin-top:12px; }
       .navbar-collapse{ padding-bottom:10px; }
     }
@@ -228,27 +228,6 @@
       word-break: break-word;
     }
 
-    .blob-sm{
-      position:absolute;
-      width:44px;
-      height:44px;
-      border-radius:50%;
-      right:120px;
-      bottom:168px;
-      background: radial-gradient(circle, var(--accent), var(--secondary));
-      opacity: 0.95;
-    }
-    .blob-lg{
-      position:absolute;
-      width:240px;
-      height:240px;
-      border-radius:50%;
-      right:-90px;
-      bottom:-110px;
-      background: radial-gradient(circle, var(--accent), var(--primary));
-      opacity: 0.95;
-    }
-
     .right{ padding:56px; background:#fff; }
     .form-title{
       font-size:18px;
@@ -347,28 +326,28 @@
     }
 
     .toast{
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0.98);
-  width: min(420px, calc(100% - 36px));
-  background: rgba(249,250,251,0.96);
-  border: 1px solid rgba(176,190,197,0.65);
-  box-shadow: 0 18px 50px rgba(26,35,126,0.18);
-  border-radius: 16px;
-  padding: 14px;
-  opacity: 0;
-  pointer-events:none;
-  transition: 0.35s ease;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-}
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.98);
+      width: min(420px, calc(100% - 36px));
+      background: rgba(249,250,251,0.96);
+      border: 1px solid rgba(176,190,197,0.65);
+      box-shadow: 0 18px 50px rgba(26,35,126,0.18);
+      border-radius: 16px;
+      padding: 14px;
+      opacity: 0;
+      pointer-events:none;
+      transition: 0.35s ease;
+      z-index: 9999;
+      backdrop-filter: blur(10px);
+    }
 
-.toast.show{
-  opacity: 1;
-  pointer-events:auto;
-  transform: translate(-50%, -50%) scale(1);
-}
+    .toast.show{
+      opacity: 1;
+      pointer-events:auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
     .toast-head{
       display:flex;
@@ -424,24 +403,6 @@
       font-size: 18px;
       letter-spacing: 0.2px;
       margin-bottom: 14px;
-    }
-
-    .footer-logo{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      overflow:hidden;
-      background: rgba(249,250,251,0.10);
-      border: 1px solid rgba(176,190,197,0.30);
-      display:grid;
-      place-items:center;
-      flex: 0 0 auto;
-    }
-    .footer-logo img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display:block;
     }
 
     .footer-text{
@@ -536,8 +497,6 @@
     @media (max-width:980px){
       .contact-grid{ grid-template-columns:1fr; }
       .left, .right{ padding:40px 22px; }
-      .blob-sm{ right: 36px; bottom: 160px; }
-      .blob-lg{ right: -110px; bottom: -140px; }
       .footer-grid{ grid-template-columns: 1fr 1fr; }
     }
 
@@ -570,7 +529,7 @@
   <main class="page-blur">
     <div class="animated-bg"></div>
 
-    <nav class="navbar navbar-expand-sm  nn-nav">
+    <nav class="navbar navbar-expand-sm nn-nav">
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="#">
           <span class="logo-mask">
@@ -648,26 +607,20 @@
                   </div>
                 </li>
               </ul>
-
-              <div class="blob-sm"></div>
-              <div class="blob-lg"></div>
             </aside>
 
             <section class="right">
               <div class="form-title">Contact Form</div>
 
-              <!-- IMPORTANT: removed novalidate so browser validation works -->
               <form id="contactForm">
                 <div class="row2">
                   <div>
                     <label for="firstName">First name<span class="req">*</span></label>
-                    <input id="firstName" type="text" placeholder="Enter first name" required
-                           minlength="2" maxlength="40" />
+                    <input id="firstName" type="text" placeholder="Enter first name" required minlength="2" maxlength="40" />
                   </div>
                   <div>
                     <label for="lastName">Last name<span class="req">*</span></label>
-                    <input id="lastName" type="text" placeholder="Enter last name" required
-                           minlength="2" maxlength="40" />
+                    <input id="lastName" type="text" placeholder="Enter last name" required minlength="2" maxlength="40" />
                   </div>
                 </div>
 
@@ -689,16 +642,14 @@
                       <option value="+60">Malaysia (+60)</option>
                       <option value="+81">Japan (+81)</option>
                     </select>
-                    <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required
-                           minlength="7" maxlength="14" />
+                    <input id="phone" type="tel" inputmode="numeric" placeholder="Enter phone number" required minlength="7" maxlength="14" />
                   </div>
                   <div class="helper" id="phoneHint">Selected country code: India (+91)</div>
                 </div>
 
                 <div>
                   <label for="message">Message<span class="req">*</span></label>
-                  <textarea id="message" placeholder="Tell us what you need help with" required
-                            minlength="10" maxlength="1200"></textarea>
+                  <textarea id="message" placeholder="Tell us what you need help with" required minlength="10" maxlength="1200"></textarea>
 
                   <div class="chips" aria-label="Quick message templates">
                     <div class="chip" data-fill="I want to start an SIP. Please guide me on suitable categories and risk.">SIP guidance</div>
@@ -725,12 +676,10 @@
     </div>
 
     <script>
-      // Loading blur finish
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
       });
 
-      // navbar scroll
       window.addEventListener('scroll', function () {
         const nav = document.querySelector('nav.nn-nav');
         if (!nav) return;
@@ -738,7 +687,6 @@
         else nav.classList.remove('scrolled');
       }, { passive:true });
 
-      // Elements
       const form = document.getElementById("contactForm");
       const firstName = document.getElementById("firstName");
       const lastName  = document.getElementById("lastName");
@@ -750,7 +698,6 @@
       const phoneHint = document.getElementById("phoneHint");
       const displayPhone = document.getElementById("displayPhone");
 
-      // Toast
       const toast = document.getElementById("toast");
       const toastBody = document.getElementById("toastBody");
       const toastClose = document.getElementById("toastClose");
@@ -764,7 +711,6 @@
       }
       toastClose.addEventListener("click", () => toast.classList.remove("show"));
 
-      // Phone preview
       function updatePhoneUI(){
         const text = countryCode.options[countryCode.selectedIndex].textContent.trim();
         phoneHint.textContent = "Selected country code: " + text;
@@ -773,7 +719,6 @@
         displayPhone.textContent = digits ? (countryCode.value + " " + digits) : (countryCode.value + " 90000 00000");
       }
 
-      // Keep only digits in phone input (still same UI)
       phone.addEventListener("input", () => {
         const digits = (phone.value || "").replace(/[^\d]/g, "");
         if (phone.value !== digits) phone.value = digits;
@@ -788,7 +733,6 @@
 
       updatePhoneUI();
 
-      // Chips fill message
       document.querySelectorAll(".chip").forEach(chip => {
         chip.addEventListener("click", () => {
           messageEl.value = chip.getAttribute("data-fill") || "";
@@ -797,7 +741,6 @@
         });
       });
 
-      // Validation helpers
       function setInvalid(el, msg){ el.setCustomValidity(msg); }
       function setValid(el){ el.setCustomValidity(""); }
 
@@ -851,7 +794,6 @@
           return setInvalid(phone, "Phone number must be between 7 and 14 digits."), false;
         }
 
-        // India strict rule
         if (cc === "+91") {
           if (digits.length !== 10) return setInvalid(phone, "For India (+91), phone number must be 10 digits."), false;
           if (!/^[6-9]\d{9}$/.test(digits)) return setInvalid(phone, "For India (+91), enter a valid 10-digit mobile number."), false;
@@ -871,15 +813,12 @@
         return true;
       }
 
-      // Live validation
       firstName.addEventListener("input", validateFirstName);
       lastName.addEventListener("input", validateLastName);
       emailEl.addEventListener("input", validateEmail);
       messageEl.addEventListener("input", validateMessage);
 
-      // Submit
       form.addEventListener("submit", (e) => {
-        // apply our custom rules BEFORE browser checkValidity()
         validateFirstName();
         validateLastName();
         validateEmail();
@@ -888,17 +827,15 @@
 
         if (!form.checkValidity()) {
           e.preventDefault();
-          form.reportValidity();     // THIS will now show messages (novalidate removed)
+          form.reportValidity();
           showToast("Please fill all required fields correctly.");
           return;
         }
 
-        // if valid, stop actual submit (demo)
         e.preventDefault();
         showToast("Your message has been sent. We will contact you shortly.");
         form.reset();
 
-        // clear custom validity after reset
         [firstName,lastName,emailEl,phone,messageEl].forEach(el => el.setCustomValidity(""));
         updatePhoneUI();
       });
@@ -912,10 +849,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <div class="footer-logo" aria-hidden="true">
-              <img src="../images/Logo1.jpg" alt="NeonestFinserve">
-            </div>
-            NeoNestFinserve
+            NeonestFinserve
           </div>
 
           <div class="footer-text">
