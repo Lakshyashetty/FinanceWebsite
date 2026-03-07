@@ -1155,13 +1155,15 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
   window.addEventListener("load", () => {
     document.body.classList.add("loaded");
 
-    // Reveal system
-   document.querySelectorAll(".reveal").forEach(el => {
-  const r = el.getBoundingClientRect();
-  if (r.top < window.innerHeight * 0.9) {
-    el.classList.add("in");
-  }
-});
+   const items = Array.from(document.querySelectorAll(".reveal"));
+if (items.length) {
+  setTimeout(() => {
+    items.forEach((el, i) => {
+      const r = el.getBoundingClientRect();
+      const visible = r.top < window.innerHeight * 0.92 && r.bottom > 0;
+      if (visible) setTimeout(() => el.classList.add("in"), i * 80);
+    });
+  }, 200);
 
       if (!("IntersectionObserver" in window)) {
         items.forEach(el => el.classList.add("in"));
@@ -1178,7 +1180,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
         items.forEach(el => { if (!el.classList.contains("in")) obs.observe(el); });
       }
     
-
+}
     // Approach slider
     const track = document.getElementById("approachTrack");
     const prevBtn = document.getElementById("prevApproach");
@@ -1196,6 +1198,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
         behavior: "smooth"
       });
     }
+    
 
     prevBtn.addEventListener("click", () => scrollByCard(-1));
     nextBtn.addEventListener("click", () => scrollByCard(1));
