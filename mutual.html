@@ -855,14 +855,20 @@
         scroll-behavior:auto !important;
       }
     }
-    #fot{
-  background:var(--primary);
-  color:#fff;
-  padding:24px 22px;
-  text-align:center;
-  margin-top:0;
-  font-weight:500;
-  letter-spacing:-0.01em;
+   /* ===== Footer ===== */
+footer{
+      background:var(--primary);
+      color:white;
+      padding:24px 22px;
+      text-align:center;
+      margin-top: 30px;
+      font-weight:600;
+      letter-spacing:-0.01em;
+    }
+footer p{
+  margin:0;
+  font-size:16px;
+  color:#ffffff;
 }
   </style>
 </head>
@@ -1218,13 +1224,13 @@
       </div>
     </section>
 
-    <footer id="fot">
+    <footer>
       <p>© <span id="year"></span> Neonest Finserve Private Limited. All rights reserved.</p>
     </footer>
-  
-  <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const navbar = document.querySelector('.navbar');
