@@ -87,10 +87,10 @@
   }
 
   @media (max-width:768px){
-    .logo-mask{ height:64px; }
-    .navbar-brand .logo{ height:140px; transform:translateY(-42px) scale(1.15); }
-    .navbar-nav{ text-align:center; margin-top:12px; }
-    .navbar-collapse{ padding-bottom:10px; }
+    .logo-mask{ height:60px; } /* CHANGED */
+      .navbar-brand .logo{ height:120px; transform: translateY(-44px) scale(1.10); } /* CHANGED */
+      .navbar-nav{ text-align:center; margin-top:12px; }
+      .navbar-collapse{ padding-bottom:10px; }
   }
 
   /* ================= CAROUSEL (TOP HERO) ================= */
@@ -103,6 +103,7 @@
     object-fit: cover;
     display: block;
     filter: saturate(1.05);
+      
   }
 
   /* IMPORTANT FIX: overlay must not capture clicks */
@@ -165,6 +166,7 @@
     #financeCarousel .carousel-item img{ height: 420px; }
     #financeCarousel .carousel-caption{ bottom: 14%; text-align:center; }
     #financeCarousel .carousel-caption p{ margin: 0 auto; }
+     #financeCarousel .neo-arrow{display: none !important;}
   }
 
   /* ================= ARROWS (SMALL GLASS + WORKING) ================= */
@@ -179,6 +181,7 @@
     opacity: 0;
     transition: opacity 220ms ease;
     pointer-events: none;
+     /* display: none !important; */
   }
 
   @media (hover:hover) and (pointer:fine){
@@ -475,6 +478,7 @@
     height:44px;
     font-size:24px;
     background: rgba(255,255,255,0.25);
+    display: none !important;
   }
 
   .approach-nav-btn.left{ left:10px; }
@@ -487,7 +491,7 @@
 
    /* ===========================
    FOUNDER SECTION (HOVER STYLE)
-=========================== */ */
+=========================== */ 
 
 .section {
   padding: 60px 0;
@@ -523,6 +527,7 @@
 
   /* FIX EXTRA LEFT/RIGHT SPACE */
   padding: 0;
+  align-items: start;
 }
 
 /* ====== CARD ====== */
@@ -533,6 +538,7 @@
   box-shadow: 0 18px 40px rgba(0,0,0,0.12);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   cursor: pointer;
+  align-self: start;
 }
 
 .founder-card:hover {
@@ -623,6 +629,17 @@
 .ic.x { color: #111; }
 
 /* ====== CONTENT (THE MAIN PART YOU WANT) ====== */
+
+/*
+IMPORTANT:
+- Content should appear BETWEEN name and icons
+- It should slide UP from HR line
+- It should NOT overlap name
+- It should push icons downward
+- Card should auto expand height
+*/
+
+/* Default hidden state */
 .founder-content {
   background: rgba(26,35,126,0.85);
   color: #fff;
@@ -651,16 +668,30 @@
   margin-bottom: 10px;
 }
 
-/* Hover / Active state */
-.founder-card:hover .founder-content,
+@media (hover: hover) {
+  .founder-card:hover .founder-content {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 14px;
+  }
+
+  .founder-card:hover h5 {
+    margin-bottom: 10px;
+  }
+}
+/* MOBILE ACTIVE ONLY */
 .founder-card.active .founder-content {
-  max-height: 500px; /* expands */
+  max-height: 500px;
   opacity: 1;
   transform: translateY(0);
-
-  /* padding expands only when open */
-  padding: 14px 14px;
+  padding: 14px;
 }
+
+.founder-card.active h5 {
+  margin-bottom: 10px;
+}
+
 
 /* Space fix: name should never be covered */
 .founder-card:hover h5,
@@ -759,7 +790,7 @@
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="#">
           <span class="logo-mask">
-            <img src="../images/Logo1.jpg" class="logo" alt="NeoNest Logo">
+            <img src="./images/Logo1.jpg" class="logo" alt="NeoNest Logo" loading="lazy">
           </span>
         </a>
 
@@ -769,7 +800,7 @@
 
         <div class="collapse navbar-collapse" id="navLinks">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item reveal d2"><a class="nav-link active" href="Home.html">Home</a></li>
+            <li class="nav-item reveal d2"><a class="nav-link active" href="home.html">Home</a></li>
             <li class="nav-item reveal d3"><a class="nav-link" href="about.html">About Us</a></li>
             <li class="nav-item reveal d4"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
             <li class="nav-item reveal d5"><a class="nav-link" href="contact.html">Contact Us</a></li>
@@ -792,7 +823,7 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../images/carousel1.jpg" alt="Smart investing">
+          <img src="./images/carousel1.jpg" alt="Smart investing" loading="lazy">
           <div class="carousel-caption">
             <h2>Invest smarter. Stay calm.</h2>
             <p>Research-backed insights to help you understand mutual funds, markets, and long-term wealth building.</p>
@@ -801,7 +832,7 @@
         </div>
 
         <div class="carousel-item">
-          <img src="../images/carousel2.jpg" alt="Savings planning">
+          <img src="./images/carousel2.jpg" alt="Savings planning" loading="lazy">
           <div class="carousel-caption">
             <h2>Turn savings into a strategy.</h2>
             <p>Build a savings system that supports goals like travel, education, emergency funds, and financial freedom.</p>
@@ -809,15 +840,28 @@
         </div>
 
         <div class="carousel-item">
-          <img src="../images/carousel3.jpg" alt="SIP wealth">
+          <img src="./images/carousel3.jpg" alt="SIP wealth" loading="lazy">
           <div class="carousel-caption">
             <h2>SIP is not just a plan.</h2>
             <p>It’s discipline. Learn how consistent investing can create powerful results over time.</p>
+<<<<<<< HEAD:Main/home.html
+=======
+            <a href="#" class="btn btn-slide">Learn SIP</a>
           </div>
         </div>
 
         <div class="carousel-item">
-          <img src="../images/carousel5.jpg" alt="Retirement planning">
+          <img src="./images/carousel4.jpg" alt="Business finance" loading="lazy">
+          <div class="carousel-caption">
+            <h2>Business finance, simplified.</h2>
+            <p>From cashflow to risk planning—understand what makes businesses financially strong.</p>
+            <a href="#" class="btn btn-slide">Business Insights</a>
+>>>>>>> 1e528b568cf2b384aefc530ff9d5a54f1abfcd23:home.html
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="./images/carousel5.jpg" alt="Retirement planning" loading="lazy">
           <div class="carousel-caption">
             <h2>Plan your retirement with confidence.</h2>
             <p>Learn the basics of long-term investing, retirement funds, and goal-based financial planning.</p>
@@ -825,7 +869,7 @@
         </div>
 
         <div class="carousel-item">
-          <img src="../images/carousel6.jpg" alt="Family planning finance">
+          <img src="./images/carousel6.jpg" alt="Family planning finance" loading="lazy">
           <div class="carousel-caption">
             <h2>Finance for families & future.</h2>
             <p>Support your family with smart decisions—insurance, budgeting, education funds, and wealth planning.</p>
@@ -868,43 +912,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
       </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ✅ NEW STRUCTURE SECTION (YOUR POINTS) -->
-    <!-- ========================================================= -->
-    <!-- <section class="manifesto">
-      <div class="manifesto-card reveal d2">
-
-        <div class="manifesto-brand">NEONEST FINSERVE</div>
-
-        <h2 class="manifesto-title">
-          Money decisions feel lighter when the information is clear.
-        </h2>
-
-        <p class="manifesto-line reveal d3">It doesn’t have to be confusing, noisy, or rushed.</p>
-        <p class="manifesto-line reveal d4">Money doesn’t have to feel overwhelming.</p>
-
-        <p class="manifesto-soft reveal d5">
-          Neonest Finserve is building a universe where people can slow down, explore, learn,
-          and make their own financial decisions with clarity and confidence.
-        </p>
-
-        <div class="manifesto-strong reveal d6">
-          We are not here to tell you what to do.<br>
-          We are here to help you understand what’s possible.
-        </div>
-
-        <div class="clarity-block reveal d7">
-          <h3>Learn. Understand. Decide.</h3>
-          <p>No tips. No predictions. No personalised advice. Just clarity.</p>
-
-          <div class="clarity-quote">
-            A calmer way to learn finance — built for real people.
-            <span>Not for hype.</span>
-          </div>
-        </div>
-
-      </div>
-    </section> -->
+    
 
     <!-- ================= FEATURES ================= -->
     <section class="section">
@@ -942,7 +950,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
       </div>
 
       <!-- ================= OUR APPROACH ================= -->
-      <h2 class="text-center mt-5">Our Approach</h2>
+      <h2 class="text-center mt-5">Our Approach </h2>
 
       <div class="approach-wrapper">
         <div class="approach-slider" id="approachSlider">
@@ -952,7 +960,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
           <div class="approach-track" id="approachTrack">
 
             <div class="approach-card">
-              <img src="../images/img1.jpg" alt="Clarity over noise" />
+              <img src="./images/img1.jpg" alt="Clarity over noise" />
               <div class="approach-body">
                 <div>
                   <h4>Clarity over noise</h4>
@@ -963,7 +971,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
             </div>
 
             <div class="approach-card">
-              <img src="../images/img2.jpg" alt="Confidence over confusion" />
+              <img src="./images/img2.jpg" alt="Confidence over confusion" />
               <div class="approach-body">
                 <div>
                   <h4>Confidence over confusion</h4>
@@ -974,7 +982,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
             </div>
 
             <div class="approach-card">
-              <img src="../images/img3.jpg" alt="Education over influence" />
+              <img src="./images/img3.jpg" alt="Education over influence" />
               <div class="approach-body">
                 <div>
                   <h4>Education over influence</h4>
@@ -985,7 +993,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
             </div>
 
             <div class="approach-card">
-              <img src="../images/carousel4.jpg" alt="Savings habits" />
+              <img src="./images/carousel4.jpg" alt="Savings habits" />
               <div class="approach-body">
                 <div>
                   <h4>Savings with purpose</h4>
@@ -996,7 +1004,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
             </div>
 
             <div class="approach-card">
-              <img src="../images/carousel5.jpg" alt="Business growth finance" />
+              <img src="./images/carousel5.jpg" alt="Business growth finance" />
               <div class="approach-body">
                 <div>
                   <h4>Business growth insights</h4>
@@ -1007,7 +1015,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
             </div>
 
             <div class="approach-card">
-              <img src="../images/carousel6.jpg" alt="Smart investing" />
+              <img src="./images/carousel6.jpg" alt="Smart investing" />
               <div class="approach-body">
                 <div>
                   <h4>Investing made simple</h4>
@@ -1046,7 +1054,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
       <div class="founder-card">
 
         <div class="founder-img">
-          <img src="../images/Navin.jpeg" alt="Navin Jain">
+          <img src="./images/Navin.jpeg" alt="Navin Jain">
         </div>
 
         <div class="founder-body">
@@ -1081,7 +1089,7 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
       <div class="founder-card">
 
         <div class="founder-img">
-          <img src="../images/santosh.jpeg" alt="Santosh Singh">
+          <img src="./images/santosh.jpeg" alt="Santosh Singh">
         </div>
 
         <div class="founder-body">
@@ -1223,37 +1231,37 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
     });
   });
   // Tap-to-open for mobile (hover doesn't work on phones)
-(function () {
+
+
+/* ===============================
+   MOBILE TAP TO EXPAND / COLLAPSE
+================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
   const cards = document.querySelectorAll(".founder-card");
-  if (!cards.length) return;
 
-  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  // Detect mobile (touch device)
+  const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
-  if (!isTouchDevice) return;
+  if (!isMobile) return; // Do nothing on desktop
 
-  cards.forEach((card) => {
-    card.addEventListener("click", (e) => {
+  cards.forEach(card => {
 
-      // If user clicks icons, don't toggle card
+    card.addEventListener("click", function (e) {
+
+      // Prevent toggle if clicking on social icons
       if (e.target.closest(".founder-icons a")) return;
 
-      // Close other cards
-      cards.forEach((c) => {
-        if (c !== card) c.classList.remove("active");
-      });
-
-      // Toggle current
+      // Toggle SAME card only
       card.classList.toggle("active");
+
     });
+
   });
 
-  // Tap outside closes all
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".founder-card")) {
-      cards.forEach((c) => c.classList.remove("active"));
-    }
-  });
-})();
+});
+
 </script>
 
 </body>
