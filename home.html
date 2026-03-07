@@ -1202,14 +1202,25 @@ Neonest Finserve aims to provide modern learning and insights that helps individ
 
     prevBtn.addEventListener("click", () => scrollByCard(-1));
     nextBtn.addEventListener("click", () => scrollByCard(1));
+    
+    // Keyboard arrows
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") {
+    scrollByCard(1);
+  }
 
-    // Mouse wheel => horizontal
-    track.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      const speed = 1.2;
-      const delta = (Math.abs(e.deltaY) > Math.abs(e.deltaX)) ? e.deltaY : e.deltaX;
-      track.scrollLeft += delta * speed;
-    }, { passive: false });
+  if (e.key === "ArrowLeft") {
+    scrollByCard(-1);
+  }
+});
+
+    // // Mouse wheel => horizontal
+    // track.addEventListener("wheel", (e) => {
+    //   e.preventDefault();
+    //   const speed = 1.2;
+    //   const delta = (Math.abs(e.deltaY) > Math.abs(e.deltaX)) ? e.deltaY : e.deltaX;
+    //   track.scrollLeft += delta * speed;
+    // }, { passive: false });
 
     // Grab drag
     let isDown = false;
