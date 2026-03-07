@@ -23,7 +23,6 @@
       --light:#F9FAFB;
       --gray:#B0BEC5;
     }
-
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
 
@@ -184,12 +183,12 @@
       content:"";
       position:absolute;
       inset:0;
-      background-image: url("../images/immg.jpg");
-      background-size: cover;
+      background-image: url("./images/about.png");
+      background-size: contain;
       background-position: center right;
       background-repeat:no-repeat;
       opacity: 1;
-      transform: scale(1.05);
+      transform: none;
       will-change: transform;
     }
 
@@ -452,7 +451,7 @@
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="#">
           <span class="logo-mask">
-            <img src="../images/Logo1.jpg" class="logo" alt="NeoNest Logo">
+            <img src="./images/Logo2.png" class="logo" alt="NeoNest Logo">
           </span>
         </a>
 
@@ -466,7 +465,7 @@
             <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="mutual.html">Neovarsity</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-            <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">Login</a></li>
           </ul>
         </div>
       </div>
